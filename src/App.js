@@ -9,6 +9,7 @@ import Options from "./components/Options";
 import NavbarMenu from "./components/Navbar/NavbarMenu";
 import CreateTour from "./components/create-tour/CreateTour";
 import Tours from "./components/tours/Tours";
+import Tour from "./components/tour/Tour";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/create" component={CreateTour}></Route>
           <Route exact path="/profile" component={Profile}></Route>
           <Route exact path="/options" component={Options}></Route>
+          <Route exact path="/tour/:id" component={Tour} />
         </Switch>
       </main>
     </div>

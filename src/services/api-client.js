@@ -8,6 +8,10 @@ export const getTours = () => {
   return http.get("/tour/list").then((response) => response.data);
 };
 
+export const getTourById = (id) => {
+  return http.get(`/tour/${id}`).then((response) => response.data);
+};
+
 export const createTour = (body) => {
   return http.post("/tour/new", body).then((response) => response.data);
 };

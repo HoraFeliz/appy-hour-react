@@ -1,5 +1,6 @@
 import React from "react";
 import { getTours } from "../../services/api-client";
+import TourCard from "../tour-card/TourCard";
 
 class Tours extends React.Component {
   state = {
@@ -16,10 +17,12 @@ class Tours extends React.Component {
   }
   render() {
     return (
-      <div className="cards">
-        {this.state.tours.map((tour, key) => (
-          <pre key={key}>{JSON.stringify(tour)}</pre>
-        ))}
+      <div>
+        <div className="cards">
+          {this.state.tours.map((tour, key) => (
+            <TourCard key={key} tour={tour} />
+          ))}
+        </div>
       </div>
     );
   }
