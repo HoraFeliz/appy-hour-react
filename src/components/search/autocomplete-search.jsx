@@ -22,11 +22,29 @@ const loadScript = (url, callback) => {
 };
 
 function handleScriptLoad(updateQuery, autoCompleteRef) {
+  const completeFields = [
+    "address_components",
+    "place_id",
+    "geometry",
+    "icon",
+    "name",
+    "photos",
+    "types",
+    "formatted_address",
+    "name",
+    "rating",
+    "formatted_phone_number",
+    "reviews",
+    "website",
+    "opening_hours",
+    "price_level",
+    "types",
+  ];
   autoComplete = new window.google.maps.places.Autocomplete(
     autoCompleteRef.current,
     { types: ["establishment"], componentRestrictions: { country: "es" } }
   );
-  autoComplete.setFields(["address_components", "formatted_address"]);
+  autoComplete.setFields(completeFields);
   autoComplete.addListener("place_changed", () =>
     handlePlaceSelect(updateQuery)
   );
@@ -36,7 +54,17 @@ async function handlePlaceSelect(updateQuery) {
   const addressObject = autoComplete.getPlace();
   const query = addressObject.formatted_address;
   updateQuery(query);
-  console.log(addressObject);
+  const place = {
+    ...addressObject,
+    geometry: {
+      longitude: addressObject.geometry.location.lng(),
+      latitude: addressObject.geometry.location.lat(),
+    },
+    imgSrc: addressObject.photos[0].getUrl(),
+    city: addressObject.address_components[2].long_name,
+    tags: addressObject.types,
+  };
+  console.log("Created", place);
 }
 
 function AutocompleteSearch() {
