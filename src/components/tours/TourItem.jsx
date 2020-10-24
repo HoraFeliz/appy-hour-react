@@ -4,21 +4,13 @@ import { faMapMarkerAlt, faWalking, faRoute } from '@fortawesome/free-solid-svg-
 
 class TourItem extends Component {
 
-    recommendedColor = ''
-
     render() {
-
-        if (this.props.brand === 'mahou') {
-            this.recommendedColor = 'mahou';
-        } else if (this.props.brand === 'estrella') {
-            this.recommendedColor = 'estrella';
-        }
 
         return (
             <div className="appy--tours-item">
                 <div className="appy--tours-item-image" style={{ backgroundImage: "url('https://fotos01.autofacil.es/2020/02/29/690x278/istock-1.jpg'" }}>
                     {(this.props.recommended) &&
-                        <div className={`appy--tours-item-recommended-logo ${this.recommendedColor}`}>
+                        <div className={`appy--tours-item-recommended-logo ${this.props.brand}`}>
                             {(this.props.brand === 'mahou') ? <img src="../../img/logo-mahou.svg" alt="Mahou" /> :
                                 (this.props.brand === 'estrella') ? <img src="../../img/logo-estrella.svg" alt="Estrella" /> : null}
 
@@ -31,7 +23,7 @@ class TourItem extends Component {
                         <img className="appy--tours-item-rating-img" src="../../img/rating-beer-off.svg" alt="5" />
                     </div>
                 </div>
-                <div className={`appy--tours-item-distancebar ${this.recommendedColor}`}>
+                <div className={`appy--tours-item-distancebar ${this.props.brand}`}>
                     <div className="appy--tours-item-distancebar-distante-tour">
                         <div className="appy--tours-item-distancebar-icon">
                             <FontAwesomeIcon icon={faWalking} />
