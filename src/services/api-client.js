@@ -15,3 +15,7 @@ export const getTourById = (id) => {
 export const createTour = (body) => {
   return http.post("/tour/new", body).then((response) => response.data);
 };
+
+export const savePlace = (body) => {
+  return http.post("/place/new", body).then((response) => response.data);
+};

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { savePlace } from "../../services/api-client";
 
 let autoComplete;
 
@@ -60,11 +61,13 @@ async function handlePlaceSelect(updateQuery) {
       longitude: addressObject.geometry.location.lng(),
       latitude: addressObject.geometry.location.lat(),
     },
-    imgSrc: addressObject.photos[0].getUrl(),
+    image: addressObject.photos[0].getUrl(),
     city: addressObject.address_components[2].long_name,
     tags: addressObject.types,
   };
-  console.log("Created", place);
+  savePlace(place)
+    .then((res) => console.log("New place created", res))
+    .catch((err) => console.log("Error creating place", err));
 }
 
 function AutocompleteSearch() {
