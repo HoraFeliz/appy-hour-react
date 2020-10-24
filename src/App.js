@@ -1,17 +1,14 @@
-import React from 'react';
+import React from "react";
 // import logo from './logo.svg';
-import './App.scss';
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
-import Navbar from './components/Navbar/Navbar';
-import Tours from './components/Tours'
-import RecordTour from './components/RecordTour';
-import CreateTour from './components/CreateTour';
-import Profile from './components/Profile';
-import Options from './components/Options';
-import NavbarMenu from './components/Navbar/NavbarMenu';
+import "./App.scss";
+import { Switch, Route } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import RecordTour from "./components/RecordTour";
+import Profile from "./components/Profile";
+import Options from "./components/Options";
+import NavbarMenu from "./components/Navbar/NavbarMenu";
+import CreateTour from "./components/create-tour/CreateTour";
+import Tours from "./components/tours/Tours";
 
 function App() {
   return (
@@ -19,7 +16,6 @@ function App() {
       <header className="App-header">
         <Navbar />
         <NavbarMenu />
-
       </header>
       <main className="App-main">
         <Switch>
