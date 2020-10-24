@@ -5,13 +5,14 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Navbar from './components/Navbar/Navbar';
-import Tours from './components/Tours'
+import Navbar from './components/navbar/Navbar';
+import Tours from './components/tours/Tours'
 import RecordTour from './components/RecordTour';
 import CreateTour from './components/CreateTour';
 import Profile from './components/Profile';
 import Options from './components/Options';
-import NavbarMenu from './components/Navbar/NavbarMenu';
+import NavbarMenu from './components/navbar/NavbarMenu';
+import FooterNavbar from './components/navbar/FooterNavbar';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <header className="App-header">
         <Navbar />
         <NavbarMenu />
+        <FooterNavbar />
 
       </header>
       <main className="App-main">

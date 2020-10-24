@@ -6,7 +6,7 @@ import { faSearchLocation, faBars } from '@fortawesome/free-solid-svg-icons'
 function Navbar() {
     return (
         <nav className="appy--navbar">
-            <Link className="appy--navbar-brand"><FontAwesomeIcon icon={faBars} /></Link>
+            <Link className="appy--navbar-brand" to="/tours"><FontAwesomeIcon icon={faBars} /></Link>
 
             <form className="appy--search-form">
                 <input className="appy--search-input" type="search" placeholder="Search Tours" aria-label="Search" />
