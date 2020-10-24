@@ -1,4 +1,5 @@
 import React from "react";
+import Search from "../search/search";
 
 class TourDetail extends React.Component {
   render() {
@@ -8,6 +9,8 @@ class TourDetail extends React.Component {
           <div className="name">{this.props.tour.name}</div>
           <div className="description">{this.props.tour.description}</div>
         </div>
+
+        <Search />
       </div>
     );
   }
