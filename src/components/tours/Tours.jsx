@@ -16,7 +16,7 @@ export default function Tours() {
             </TourBarInfo>
             <ReactSwipe
                 className="carousel"
-                swipeOptions={{ continuous: true }}
+                swipeOptions={{ continuous: false }}
             // ref={el => (reactSwipeEl = el)}
             >
                 <div style={{ display: 'inline-flex' }}>
@@ -26,6 +26,10 @@ export default function Tours() {
                 <div style={{ display: 'inline-flex' }}>
                     <TourItem recommended={true} brand="mahou" />
                     <TourItem recommended={true} brand="estrella" />
+                </div>
+                <div style={{ display: 'inline-flex' }}>
+                    <TourItem />
+                    <TourItem />
                 </div>
             </ReactSwipe>
 
