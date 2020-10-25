@@ -1,24 +1,6 @@
 @import '../../variables';
 
-// Recommended
-
-.recommended {
-    background-color: $recommended-color !important;
-}
-
-.recommended-color {
-    color: $recommended-color !important;
-}
-
-.mahou {
-    background-color: $mahou !important;
-}
-
-.estrella {
-    background-color: $estrella !important;
-}
-
-// Tours ------------------- // 
+// Tours ------------------- //
 
 // InfoBar
 
@@ -30,6 +12,8 @@
             display: flex;
             margin-top: 15px;
             justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 0 0 0 2px;
 
             &-title {
                 display: flex;
@@ -44,6 +28,7 @@
                 &-title {
                     margin-bottom: 0px;
                     padding-left: 10px;
+                    font-size: 18px;
                 }
             }
 
@@ -51,21 +36,22 @@
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
-                width: 50vw;
                 font-size: $text-icons;
-                color: $white-color;
+                color: $primary-color;
 
                 &-num {
-                    padding: 1px 10px;
+                    padding: 1px 1px 0 0px;
                     border-radius: 4px;
                     margin-right: 5px;
-                    background-color: $primary-color;
+                    border: 1px solid $primary-color;
+                    height: 31px;
+                    width: 31px;
                 }
 
                 &-map {
                     padding: 1px 10px;
                     border-radius: 4px;
-                    background-color: $primary-color;
+                    border: 1px solid $primary-color;
                 }
             }
         }
@@ -74,13 +60,14 @@
         // Tour Items
 
         &-list {
-            display: flex;
+            display: inline-flex;
             flex-wrap: nowrap;
             margin-bottom: 20px;
         }
 
         &-item {
             width: calc(50vw);
+            min-height: 100px;
             background-color: $white-color;
             margin-top: 7px;
             margin-right: 4px;
@@ -88,7 +75,8 @@
             text-align: left;
 
             &-image {
-                height: 90px;
+                min-height: 70px;
+                height: calc(47.7vh - 240px);
                 width: 100%;
                 background-size: cover;
                 background-position: center;
@@ -165,12 +153,15 @@
 
                 &-title {
                     font-size: $text-title;
+                    margin-bottom: 3px;
                 }
 
                 &-description {
                     font-size: $text-description;
                     color: $grey;
                     margin-bottom: 8px;
+                    height: 40px;
+                    line-height: 12px;
                 }
 
                 &-creator {

@@ -44,7 +44,7 @@ class TourItem extends Component {
 
                 <div className="appy--tours-item-info">
                     <h3 className="appy--tours-item-info-title">Mahou Historical Tour</h3>
-                    <p className="appy--tours-item-info-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo quibusdam perspiciatis corporis vero dolore.</p>
+                    <p className="appy--tours-item-info-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo quibusdam perspiciatis.</p>
                     <div className="appy--tours-item-info-creator">
                         <div className="appy--tours-item-info-creator-icon"><FontAwesomeIcon icon={faRoute} /></div>
                         <div className="appy--tours-item-info-creator-text">Appy Hour Tours</div>

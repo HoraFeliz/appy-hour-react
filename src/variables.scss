@@ -22,9 +22,47 @@ $box-shadow-up: 0px -1px 7px 0px rgba(0, 0, 0, 0.16);
 
 // Font Size
 $text-icons: 18px;
-$icons: 20px;
+$icons: 18px;
 $text-menu: 14px;
 $text-bars: 12px;
-$text-title: 14px;
+$text-title: 12px;
 $text-creator: 9px;
 $text-description: 10px;
+
+// Common 
+
+// Recommended
+
+// .recommended {
+//     border: 1px solid $recommended-color !important;
+// }
+
+.recommended-color {
+    border: 1px solid $recommended-color !important;
+    color: $recommended-color !important;
+}
+
+.recommended-title {
+    color: $recommended-color !important;
+}
+
+// Brand
+
+.mahou {
+    background-color: $mahou !important;
+}
+
+.estrella {
+    background-color: $estrella !important;
+}
+
+// Button Colors
+
+.recommended-btn {
+    border-color: $recommended-color !important;
+    color: $recommended-color !important;
+}
+
+.primary-btn {
+    border-color: $primary-color;
+}

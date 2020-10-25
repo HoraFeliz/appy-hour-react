@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/profile" component={Profile}></Route>
           <Route exact path="/options" component={Options}></Route>
         </Switch>
-      </main>
+      </main>º
     </div>
   );
 }

@@ -1,6 +1,7 @@
 @import 'variables';
 @import './components/tours/Tours.scss';
 @import './components/navbar/Navbar.scss';
+@import './components/infobar/InfoBar.scss';
 
 * {
   outline: none !important;
@@ -40,7 +41,7 @@
 }
 
 .App-main {
-  padding: 60px 5px 60px 5px;
+  padding: 60px 5px 65px 5px;
 }
 
 @keyframes App-logo-spin {
