@@ -4,6 +4,7 @@ import TourItem from "./TourItem";
 import ReactSwipe from "react-swipe";
 import Button from "../common/Button";
 import { getTours } from "../../services/api-client";
+import { NavLink } from "react-router-dom";
 
 class Tours extends React.Component {
   // let reactSwipeEl;
@@ -33,12 +34,9 @@ class Tours extends React.Component {
           <div style={{ display: "inline-flex" }}>
             {this.state.tours.length ? (
               this.state.tours.map((tour, key) => (
-                <TourItem
-                  key={key}
-                  tour={tour}
-                  recommended={true}
-                  brand="mahou"
-                />
+                <NavLink key={key} to={`/tour/${tour._id}`}>
+                  <TourItem tour={tour} recommended={true} brand="mahou" />
+                </NavLink>
               ))
             ) : (
               <p className="text-center">Loading...</p>

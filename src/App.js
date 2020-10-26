@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Tours from "./components/tours/Tours";
 import RecordTour from "./components/RecordTour";
-
+import Tour from "./components/tour/Tour";
 import Profile from "./components/Profile";
 import Options from "./components/Options";
 import NavbarMenu from "./components/navbar/NavbarMenu";
@@ -30,6 +30,7 @@ function App() {
           <Route exact path="/record" component={RecordTour}></Route>
           <Route exact path="/profile" component={Profile}></Route>
           <Route exact path="/options" component={Options}></Route>
+          <Route exact path="/tour/:id" component={Tour} />
         </Switch>
       </main>
     </div>
