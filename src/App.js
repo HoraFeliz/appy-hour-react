@@ -11,7 +11,7 @@ import Options from "./components/Options";
 import NavbarMenu from "./components/navbar/NavbarMenu";
 import FooterNavbar from "./components/navbar/FooterNavbar";
 import PlaceId from "./components/places/PlaceId";
-import { createTour } from "./services/api-client";
+import CreateTour from "./components/create-tour/CreateTour";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Tours}></Route>
           <Route exact path="/place" component={PlaceId}></Route>
+          <Route exact path="/create" component={CreateTour}></Route>
           <Route exact path="/tours" component={Tours}></Route>
           <Route exact path="/record" component={RecordTour}></Route>
           <Route exact path="/profile" component={Profile}></Route>
