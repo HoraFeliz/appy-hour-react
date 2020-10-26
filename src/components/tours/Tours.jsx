@@ -1,31 +1,55 @@
 import React from "react";
-import { getTours } from "../../services/api-client";
-import TourCard from "../tour-card/TourCard";
+import TourBarInfo from "./TourBarInfo";
+import TourItem from "./TourItem";
+import ReactSwipe from "react-swipe";
+import Button from "../common/Button";
 
-class Tours extends React.Component {
-  state = {
-    tours: [],
-  };
+export default function Tours() {
+  // let reactSwipeEl;
 
-  geetTours = () => {
-    getTours().then((tours) => {
-      this.setState({ tours });
-    });
-  };
-  componentDidMount() {
-    this.geetTours();
-  }
-  render() {
-    return (
-      <div>
-        <div className="cards">
-          {this.state.tours.map((tour, key) => (
-            <TourCard key={key} tour={tour} />
-          ))}
+  return (
+    <div>
+      <TourBarInfo recommended={true}>
+        <Button num="5" info={true} recommended={true} />
+        <Button type="map" info={true} recommended={true} />
+      </TourBarInfo>
+      <ReactSwipe className="carousel" swipeOptions={{ continuous: false }}>
+        <div style={{ display: "inline-flex" }}>
+          <TourItem recommended={true} brand="mahou" />
+          <TourItem recommended={true} brand="recommended" />
         </div>
-      </div>
-    );
-  }
-}
+        <div style={{ display: "inline-flex" }}>
+          <TourItem recommended={true} brand="recommended" />
+          <TourItem recommended={true} brand="recommended" />
+        </div>
+        <div style={{ display: "inline-flex" }}>
+          <TourItem recommended={true} brand="recommended" />
+          <TourItem recommended={true} brand="recommended" />
+        </div>
+      </ReactSwipe>
 
-export default Tours;
+      <TourBarInfo>
+        <Button num="5" info={true} />
+        <Button type="map" info={true} />
+      </TourBarInfo>
+      <ReactSwipe
+        className="carousel"
+        swipeOptions={{ continuous: false }}
+        widthOfSiblingSlidePreview="50px"
+      >
+        <div style={{ display: "inline-flex" }}>
+          <TourItem />
+          <TourItem />
+        </div>
+        <div style={{ display: "inline-flex" }}>
+          <TourItem />
+          <TourItem />
+        </div>
+        <div style={{ display: "inline-flex" }}>
+          <TourItem />
+          <TourItem />
+        </div>
+      </ReactSwipe>
+    </div>
+  );
+}

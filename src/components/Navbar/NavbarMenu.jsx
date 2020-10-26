@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function NavbarMenu() {
     return (
         <div >
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav mr-auto" style={{ display: 'none' }}>
                 <li className="nav-item active">
                     <Link className="nav-link" to="/tours">Tours <span className="sr-only">(current)</span></Link>
                 </li>

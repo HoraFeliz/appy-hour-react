@@ -1,0 +1,92 @@
+@import '../../variables.scss';
+
+.appy-- {
+
+    &place {
+
+        &-item {
+
+            background-color: $white-color;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            margin-bottom: 10px;
+
+            &-map {
+                height: 215px;
+                background-color: $grey-text;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 60px;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+
+            }
+
+            &-info {
+                padding: 10px 10px 15px 10px;
+                text-align-last: left;
+
+
+
+                &-placename {
+                    font-size: $text-info-title;
+                    font-weight: normal;
+                }
+
+                &-address {
+                    font-size: $text-info-address;
+                    margin-bottom: 0px;
+
+                    &-open {
+                        color: $text-open;
+                    }
+
+                    &-close {
+                        color: $text-close;
+                    }
+                }
+
+                &-schedule {
+                    display: flex;
+                    flex-direction: row;
+                    font-size: $text-menu;
+                    margin-top: 15px;
+
+                    &-days {
+                        color: $grey;
+                    }
+
+                    &-hours {
+                        display: flex;
+                        justify-content: flex-end;
+                        text-align: right;
+                        margin-right: 15px;
+                        color: $grey-text;
+                    }
+
+                    &-container {
+                        width: 100%;
+                        font-size: $text-info-shedule;
+                        margin-bottom: 4px;
+                    }
+                }
+
+                &-rating {
+
+                    &-container {
+                        width: 100%;
+                    }
+
+                    &-text {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+
+
+            }
+        }
+
+    }
+}

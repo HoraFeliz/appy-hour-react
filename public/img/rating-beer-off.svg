@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14">
+  <g id="Grupo_1152" data-name="Grupo 1152" transform="translate(2.01 3.65)">
+    <g id="Grupo_18" data-name="Grupo 18" transform="translate(0 0)">
+      <g id="Grupo_17" data-name="Grupo 17">
+        <path id="Trazado_993" data-name="Trazado 993" d="M84.856,113.062H83.662v-.911a.261.261,0,0,0-.261-.261h-6.64a.261.261,0,0,0-.261.261v8.1a1.194,1.194,0,0,0,1.194,1.194h4.775a1.194,1.194,0,0,0,1.194-1.194v-.716h1.194a1.194,1.194,0,0,0,1.194-1.194v-4.083A1.194,1.194,0,0,0,84.856,113.062Zm-1.671,6.948h-.728a.238.238,0,1,0,0,.475h.687a.72.72,0,0,1-.675.48H77.694a.717.717,0,0,1-.675-.477h3.528a.239.239,0,1,0,0-.478H76.977v-7.595s6.16.01,6.207,0Zm.477-5.515h.955V118.1h-.955Zm1.91,3.844a.717.717,0,0,1-.716.716H83.662v-.477h1.194a.239.239,0,0,0,.239-.239v-4.083a.239.239,0,0,0-.239-.239H83.662v-.477h1.194a.717.717,0,0,1,.716.716Z" transform="translate(-76.5 -111.89)"/>
+      </g>
+    </g>
+    <g id="Grupo_10" data-name="Grupo 10" transform="translate(4.763 8.103)">
+      <g id="Grupo_9" data-name="Grupo 9" transform="translate(0 0)">
+        <path id="Trazado_989" data-name="Trazado 989" d="M276.239,451.29a.239.239,0,1,0,.239.239A.239.239,0,0,0,276.239,451.29Z" transform="translate(-276 -451.29)"/>
+      </g>
+    </g>
+    <g id="Grupo_12" data-name="Grupo 12" transform="translate(1.409 1.872)">
+      <g id="Grupo_11" data-name="Grupo 11" transform="translate(0 0)">
+        <path id="Trazado_990" data-name="Trazado 990" d="M135.739,190.29a.239.239,0,0,0-.239.239v4.56a.239.239,0,1,0,.477,0v-4.56A.239.239,0,0,0,135.739,190.29Z" transform="translate(-135.5 -190.29)"/>
+      </g>
+    </g>
+    <g id="Grupo_14" data-name="Grupo 14" transform="translate(3.319 1.872)">
+      <g id="Grupo_13" data-name="Grupo 13" transform="translate(0 0)">
+        <path id="Trazado_991" data-name="Trazado 991" d="M215.739,190.29a.239.239,0,0,0-.239.239v4.56a.239.239,0,1,0,.477,0v-4.56A.239.239,0,0,0,215.739,190.29Z" transform="translate(-215.5 -190.29)"/>
+      </g>
+    </g>
+    <g id="Grupo_16" data-name="Grupo 16" transform="translate(5.24 1.872)">
+      <g id="Grupo_15" data-name="Grupo 15" transform="translate(0 0)">
+        <path id="Trazado_992" data-name="Trazado 992" d="M296.239,190.29a.239.239,0,0,0-.239.239v4.56a.239.239,0,1,0,.478,0v-4.56A.239.239,0,0,0,296.239,190.29Z" transform="translate(-296 -190.29)"/>
+      </g>
+    </g>
+    <rect id="Rectángulo_1952" data-name="Rectángulo 1952" width="12" height="14" transform="translate(-2.01 -3.65)" fill="none"/>
+  </g>
+</svg>
