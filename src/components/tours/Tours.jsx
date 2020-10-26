@@ -10,102 +10,83 @@ import "slick-carousel/slick/slick-theme.css";
 import { NavLink } from "react-router-dom";
 
 var settings = {
-  // dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 2,
-  slidesToScroll: 1,
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    arrows: false,
+    easing: 'ease-in-out',
+
 };
 
 class Tours extends React.Component {
-  // let reactSwipeEl;
+    // let reactSwipeEl;
 
-  state = {
-    tours: [],
-  };
+    state = {
+        tours: [],
+    };
 
-  fetchTours = () => {
-    getTours().then((tours) => {
-      this.setState({ tours });
-    });
-  };
+    fetchTours = () => {
+        getTours().then((tours) => {
+            this.setState({ tours });
+        });
+    };
 
-  componentDidMount() {
-    this.fetchTours();
-  }
+    componentDidMount() {
+        this.fetchTours();
+    }
 
-  render() {
-    return (
-      <div>
-        <TourBarInfo recommended={true}>
-          <Button num="5" info={true} recommended={true} />
-          <Button type="map" info={true} recommended={true} />
-        </TourBarInfo>
-        {/* <Slider {...settings}>
-                    <div>
+    render() {
+        return (
+            <div>
+                <TourBarInfo recommended={true}>
+                    <Button num="5" info={true} recommended={true} />
+                    <Button type="map" info={true} recommended={true} />
+                </TourBarInfo>
+
+                <Slider {...settings}>
+                    {this.state.tours.length ? (
+                        this.state.tours.map((tour, key) => (
+                            <NavLink key={key} to={`/tour/${tour._id}`}>
+                                <TourItem
+                                    key={key}
+                                    tour={tour}
+                                    recommended={true}
+                                    brand="recommended"
+                                />
+                            </NavLink>
+                        ))
+                    ) : (
+                            <p className="text-center">Loading...</p>
+                        )}
+                </Slider>
+
+                <TourBarInfo>
+                    <Button num="5" info={true} />
+                    <Button type="map" info={true} />
+                </TourBarInfo>
+                <ReactSwipe
+                    className="carousel"
+                    swipeOptions={{ continuous: false }}
+                    widthOfSiblingSlidePreview="50px"
+                >
+                    <div style={{ display: "inline-flex" }}>
+                        <TourItem />
                         <TourItem />
                     </div>
-                    <div>
+                    <div style={{ display: "inline-flex" }}>
+                        <TourItem />
                         <TourItem />
                     </div>
-                    <div>
+                    <div style={{ display: "inline-flex" }}>
+                        <TourItem />
                         <TourItem />
                     </div>
-                    <div>
-                        <TourItem />
-                    </div>
-                    <div>
-                        <TourItem />
-                    </div>
-                    <div>
-                        <TourItem />
-                    </div>
-                </Slider> */}
-
-        <Slider {...settings}>
-          {this.state.tours.length ? (
-            this.state.tours.map((tour, key) => (
-              <div>
-                <NavLink key={key} to={`/tour/${tour._id}`}>
-                  <TourItem
-                    key={key}
-                    tour={tour}
-                    recommended={true}
-                    brand="mahou"
-                  />
-                </NavLink>
-              </div>
-            ))
-          ) : (
-            <p className="text-center">Loading...</p>
-          )}
-        </Slider>
-
-        <TourBarInfo>
-          <Button num="5" info={true} />
-          <Button type="map" info={true} />
-        </TourBarInfo>
-        <ReactSwipe
-          className="carousel"
-          swipeOptions={{ continuous: false }}
-          widthOfSiblingSlidePreview="50px"
-        >
-          <div style={{ display: "inline-flex" }}>
-            <TourItem />
-            <TourItem />
-          </div>
-          <div style={{ display: "inline-flex" }}>
-            <TourItem />
-            <TourItem />
-          </div>
-          <div style={{ display: "inline-flex" }}>
-            <TourItem />
-            <TourItem />
-          </div>
-        </ReactSwipe>
-      </div>
-    );
-  }
+                </ReactSwipe>
+            </div>
+        );
+    }
 }
 
 export default Tours;
