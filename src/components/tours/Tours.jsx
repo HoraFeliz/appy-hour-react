@@ -2,7 +2,7 @@ import React from 'react'
 import TourBarInfo from './TourBarInfo'
 import TourItem from './TourItem'
 import ReactSwipe from 'react-swipe';
-import InfoButton from '../infobar/InfoButton';
+import Button from '../common/Button'
 
 export default function Tours() {
 
@@ -11,36 +11,34 @@ export default function Tours() {
     return (
         <div>
             <TourBarInfo recommended={true}>
-                <InfoButton num="5" info={true} recommended={true} />
-                <InfoButton type="map" info={true} recommended={true} />
+                <Button num="5" info={true} recommended={true} />
+                <Button type="map" info={true} recommended={true} />
             </TourBarInfo>
             <ReactSwipe
                 className="carousel"
                 swipeOptions={{ continuous: false }}
-            // ref={el => (reactSwipeEl = el)}
             >
                 <div style={{ display: 'inline-flex' }}>
                     <TourItem recommended={true} brand="mahou" />
-                    <TourItem recommended={true} brand="estrella" />
+                    <TourItem recommended={true} brand="recommended" />
                 </div>
                 <div style={{ display: 'inline-flex' }}>
-                    <TourItem recommended={true} brand="mahou" />
-                    <TourItem recommended={true} brand="estrella" />
+                    <TourItem recommended={true} brand="recommended" />
+                    <TourItem recommended={true} brand="recommended" />
                 </div>
                 <div style={{ display: 'inline-flex' }}>
-                    <TourItem />
-                    <TourItem />
+                    <TourItem recommended={true} brand="recommended" />
+                    <TourItem recommended={true} brand="recommended" />
                 </div>
             </ReactSwipe>
 
             <TourBarInfo>
-                <InfoButton num="5" info={true} />
-                <InfoButton type="map" info={true} />
+                <Button num="5" info={true} />
+                <Button type="map" info={true} />
             </TourBarInfo>
             <ReactSwipe
                 className="carousel"
                 swipeOptions={{ continuous: false }}
-                // ref={el => (reactSwipeEl = el)}
                 widthOfSiblingSlidePreview="50px"
             >
                 <div style={{ display: 'inline-flex' }}>
@@ -57,21 +55,6 @@ export default function Tours() {
                 </div>
             </ReactSwipe>
         </div>
-
-        // <div>
-        //     <TourBarInfo recommended={true} num="5" />
-
-        //     <ToursList>
-        //         <TourItem recommended={true} brand="mahou" />
-        //         <TourItem recommended={true} brand="estrella" />
-        //     </ToursList>
-
-        //     <TourBarInfo num="15" />
-        //     <ToursList>
-        //         <TourItem />
-        //         <TourItem />
-        //     </ToursList>
-        // </div>
 
     )
 }

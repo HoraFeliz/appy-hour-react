@@ -8,6 +8,8 @@ $grey: #707070;
 $light-grey: #ECECEC;
 $grey-text: #9E9E9E;
 $white-color: #ffffff;
+$text-open: green;
+$text-close: red;
 $mahou: #C8102E;
 $estrella: #000000;
 
@@ -28,22 +30,32 @@ $text-bars: 12px;
 $text-title: 12px;
 $text-creator: 9px;
 $text-description: 10px;
+$text-rating: 20px;
+$text-info-title: 22px;
+$text-info-shedule: 3vw;
+$text-info-address: 12px;
+$text-button: 16px;
+$icon-button: 14px;
 
-// Common 
+// Colors
 
-// Recommended
+.appy-- {
 
-// .recommended {
-//     border: 1px solid $recommended-color !important;
-// }
+    &primary-color {
+        color: $primary-color;
+    }
+
+    &primary-bg {
+        background-color: $primary-color;
+    }
+}
 
 .recommended-color {
-    border: 1px solid $recommended-color !important;
     color: $recommended-color !important;
 }
 
-.recommended-title {
-    color: $recommended-color !important;
+.recommended {
+    background-color: $recommended-color;
 }
 
 // Brand

@@ -8,7 +8,7 @@ class TourBarInfo extends Component {
 
         return (
             <div className="appy--tours-barinfo">
-                <div className={`appy--tours-barinfo-title ${(this.props.recommended) && 'recommended-title'}`}>
+                <div className={`appy--tours-barinfo-title ${(this.props.recommended) && 'recommended-color'}`}>
                     <FontAwesomeIcon className="appy--tours-barinfo-title-icon" icon={(this.props.recommended) ? faStar : faRoute} />
                     <h5 className="appy--tours-barinfo-title-title">{(this.props.recommended) ? 'Recommended' : 'Near Tours'}</h5>
                 </div>

@@ -1,7 +1,7 @@
 import { faMapMarkerAlt, faPen, faPlus, faSave } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
-import './InfoBar'
+import '../infobar/InfoBar'
 
 class InfoButton extends Component {
     render() {

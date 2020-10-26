@@ -2,41 +2,36 @@
 
 .appy-- {
 
-    &button {
+    &infobar {
+        height: 50px;
+        background-color: $white-color;
+        border-bottom: 1px solid $light-grey;
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding: 1px 0px 0 0px;
-        border-radius: 4px;
-        margin-left: 5px;
-        border: 1px solid;
-        height: 31px;
-        min-width: 31px;
+        align-items: center;
+        position: fixed;
+        width: 100vw;
+        margin: 0px -5px;
+        top: 60px;
+        padding: 0px 5px;
 
-        &-info {
-            padding: 1px 7px 0 9px !important;
+
+        &-title {
+            font-size: $icons;
+            margin-bottom: 2px;
+            width: -webkit-fill-available;
+            text-align: left;
         }
 
         &-icon {
-            font-size: 14px;
-        }
-
-        &-text {
-            margin-bottom: 0px;
-            font-size: 14px;
-            margin-left: 5px;
-
-            &:first-letter {
-                text-transform: capitalize
-            }
-        }
-
-        &-num {
-            margin-bottom: 0px;
-            font-size: 16px;
-            font-weight: bold;
+            padding-right: 10px;
         }
     }
 
-
+    &buttons-info {
+        width: -webkit-fill-available;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }

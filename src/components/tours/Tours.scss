@@ -87,17 +87,6 @@
                 position: relative;
             }
 
-            &-recommended-logo {
-                background-color: $primary-color;
-                border-radius: 20px;
-                height: 20px;
-                width: 20px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-            }
-
             &-rating {
                 display: flex;
                 background-color: #ffffffdb;
@@ -110,7 +99,7 @@
                 right: 4px;
                 border-radius: 4px;
 
-                &-img {
+                &>img {
                     width: 15px;
                 }
             }
@@ -145,6 +134,10 @@
                     color: $white-color;
                     padding-left: 7px;
                     padding-right: 7px;
+                }
+
+                &-recommended {
+                    background-color: $recommended-color;
                 }
             }
 

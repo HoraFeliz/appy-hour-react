@@ -1,7 +1,9 @@
 @import 'variables';
 @import './components/tours/Tours.scss';
 @import './components/navbar/Navbar.scss';
+@import './components/common/Common.scss';
 @import './components/infobar/InfoBar.scss';
+@import './components/places/Places.scss';
 
 * {
   outline: none !important;
