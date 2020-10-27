@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StarRating from '../common/StarRating';
+import PlaceListItem from './PlaceListItem';
 import PlaceSchedule from './PlaceSchedule';
 
 class PlaceInfo extends Component {
@@ -19,6 +20,7 @@ class PlaceInfo extends Component {
                         <div className="appy--col-6"><StarRating /></div>
                     </div>
                 </div>
+                <PlaceListItem />
             </div >
         )
     }

@@ -70,9 +70,12 @@
             min-height: 100px;
             background-color: $white-color;
             margin-top: 7px;
-            margin-right: 4px;
             border-radius: 4px;
             text-align: left;
+
+            &-first {
+                margin-right: 4px;
+            }
 
             &-image {
                 min-height: 70px;
