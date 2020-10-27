@@ -57,7 +57,7 @@ class Tours extends React.Component {
                     <Button type="map" info={true} recommended={true} />
                 </TourBarInfo>
 
-                {/* <Slider {...settings}>
+                <Slider {...settingsRecommended}>
                     {this.state.tours.length ? (
                         this.state.tours.map((tour, key) => (
                             <NavLink key={key} to={`/tour/${tour._id}`}>
@@ -73,9 +73,9 @@ class Tours extends React.Component {
                     ) : (
                             <p className="text-center">Loading...</p>
                         )}
-                </Slider> */}
+                </Slider>
 
-                <Slider {...settingsRecommended}>
+                {/* <Slider {...settingsRecommended}>
                     <TourItem
                         recommended={true}
                         brand="recommended"
@@ -96,13 +96,13 @@ class Tours extends React.Component {
                         recommended={true}
                         brand="estrella"
                     />
-                </Slider>
+                </Slider> */}
 
                 <TourBarInfo>
                     <Button num="5" info={true} />
                     <Button type="map" info={true} />
                 </TourBarInfo>
-                {/* <Slider {...settings}>
+                <Slider {...settings}>
                     {this.state.tours.length ? (
                         this.state.tours.map((tour, key) => (
                             <NavLink key={key} to={`/tour/${tour._id}`}>
@@ -116,13 +116,13 @@ class Tours extends React.Component {
                     ) : (
                             <p className="text-center">Loading...</p>
                         )}
-                </Slider> */}
-
-                <Slider {...settings}>
-                    <TourItem />
-                    <TourItem />
-                    <TourItem />
                 </Slider>
+
+                {/* <Slider {...settings}>
+                    <TourItem />
+                    <TourItem />
+                    <TourItem />
+                </Slider> */}
             </div>
         );
     }
