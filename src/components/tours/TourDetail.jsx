@@ -47,7 +47,7 @@ class TourDetail extends Component {
                     <div
                         className="appy--tours-detail-map"
                         style={{
-                            backgroundImage: "url('./img/map-route.png'",
+                            backgroundImage: "url('/img/map-route.png'",
                             backgroundSize: "cover",
                             backgroundPosition: "center right",
                         }}
