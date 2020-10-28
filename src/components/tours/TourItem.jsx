@@ -4,6 +4,7 @@ import {
     faMapMarkerAlt,
     faWalking,
     faRoute,
+    faStopwatch,
 } from "@fortawesome/free-solid-svg-icons";
 import TourImageCanvas from "../common/ImageCanvas";
 
@@ -25,11 +26,11 @@ class TourItem extends Component {
                         </div>
                         <div className="appy--tours-item-distancebar-text">12 Km.</div>
                     </div>
-                    <div className="appy--tours-item-distancebar-distante-nearby">
+                    <div className="appy--tours-item-distancebar-distante-tour">
                         <div className="appy--tours-item-distancebar-icon">
-                            <FontAwesomeIcon icon={faMapMarkerAlt} />
+                            <FontAwesomeIcon icon={faStopwatch} />
                         </div>
-                        <div className="appy--tours-item-distancebar-text">300 m.</div>
+                        <div className="appy--tours-item-distancebar-text">30 Min.</div>
                     </div>
                 </div>
 
@@ -46,7 +47,7 @@ class TourItem extends Component {
                         </div>
                         <div className="appy--tours-item-info-creator-text">
                             Appy Hour Tours
-            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 class BeerRating extends Component {
     render() {
         return (
-            <div className={this.props.place ? 'appy--image-placeid-rating' : 'appy--tours-item-rating'}>
+            <div className={this.props.place ? 'appy--image-placeid-rating' :
+                this.props.type === 'tour-detail' ? 'appy--tours-detail-rating' : 'appy--tours-item-rating'}>
                 {this.props.place &&
                     <span className="appy--image-placeid-rating-num">4.5</span>
+                }
+                {this.props.type &&
+                    <span className="appy--tours-detail-rating-num">4.5</span>
                 }
                 <img src="../../img/rating-beer-on.svg" alt="1" />
                 <img src="../../img/rating-beer-on.svg" alt="2" />

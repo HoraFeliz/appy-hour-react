@@ -4,7 +4,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import BeerRating from './BeerRating';
 
 
-class TourImageCanvas extends Component {
+class ImageCanvas extends Component {
 
     recommended = () => {
         if (this.props.place && this.props.recommended) {
@@ -44,4 +44,4 @@ class TourImageCanvas extends Component {
 
 
 
-export default TourImageCanvas;
+export default ImageCanvas;

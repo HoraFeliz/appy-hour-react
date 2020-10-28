@@ -146,6 +146,9 @@
 
             &-info {
                 padding: 10px 7px;
+                border: 1px solid #ECECEC;
+                border-top: 0px;
+                border-radius: 0pc 0pc 4px 4px;
 
                 &-title {
                     font-size: $text-title;
@@ -192,8 +195,28 @@
             border-bottom-right-radius: 4px;
             margin-top: 55px;
 
+            &-info {
+                padding: 15px 10px 15px 10px;
+                background-color: white;
+                border-radius: 0px 0px 4px 4px;
+                text-align: left;
+
+                &-placename {
+                    font-size: $text-info-title;
+                    font-weight: normal;
+                    margin-bottom: 12px;
+                }
+
+                &-description {
+                    font-size: $text-info-address;
+                    margin-bottom: 0px;
+                    margin-bottom: 15px;
+                    margin-top: 4px;
+                }
+            }
+
             &-map {
-                height: 422px;
+                height: 330px;
                 background-color: $grey-text;
                 display: flex;
                 justify-content: center;
@@ -201,6 +224,46 @@
                 border-top-left-radius: 4px;
                 border-top-right-radius: 4px;
 
+            }
+
+            &-distancebar {
+                display: flex;
+                justify-content: space-between;
+                background-color: $primary-color;
+                height: 20px;
+                font-size: $text-menu;
+            }
+
+            &-rating {
+                display: flex;
+                background-color: #ffffffdb;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 5px;
+                bottom: 4px;
+                right: 4px;
+                border-radius: 4px;
+                margin-top: -4px;
+
+                &>img {
+                    width: 20px;
+                }
+
+                &-text {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 10px;
+                }
+
+                &-num {
+                    font-size: 20px;
+                    margin-right: 5px;
+                    display: flex;
+                    align-items: center;
+                    color: #C8102E;
+                    font-weight: bold;
+                    padding-top: 5px;
+                }
             }
         }
     }
