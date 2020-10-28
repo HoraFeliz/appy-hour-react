@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/record" component={RecordTour}></Route>
           <Route exact path="/profile" component={Profile}></Route>
           <Route exact path="/options" component={Options}></Route>
-          <Route exact path="/tour/:id" component={Tour} />
+          <Route exact path="/tour/:id" component={TourDetail} />
         </Switch>
       </main>
     </div>
