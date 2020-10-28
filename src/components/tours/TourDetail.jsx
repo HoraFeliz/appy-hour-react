@@ -14,7 +14,7 @@ class TourDetail extends Component {
             <div>
                 <InfoBar back={true} />
                 <div className="appy--tours-detail">
-                    <div className="appy--tours-detail-map" style={{ backgroundImage: "url('./img/map-route.png'", backgroundSize: 'cover', backgroundPosition: 'center right' }}>
+                    <div className="appy--tours-detail-map" style={{ backgroundImage: "url('/img/map-route.png'", backgroundSize: 'cover', backgroundPosition: 'center right' }}>
                     </div>
                 </div>
 
@@ -66,8 +66,21 @@ class TourDetail extends Component {
                         </div>
                     </div>
                     <hr style={{ marginTop: '10px' }} />
-                    <span className="appy--tours-detail-rating-text">Share Tour</span>
-                    <Button type="whatsapp" />
+                    <div className="appy--tours-detail-share">
+                        <div className="container">
+                            <div className="row">
+                                <div className="appy--col-6">
+                                    <span className="appy--tours-detail-rating-text">Share Tour</span>
+                                </div>
+                                <div className="appy--col-6">
+                                    <div className="appy--tours-detail-share-buttons">
+                                        <Button type="whatsapp" />
+                                        <Button type="facebook" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
