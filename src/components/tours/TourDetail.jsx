@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import BeerRating from "../common/BeerRating";
 import { getAllPlaces, getPlaces } from "../../services/api-client";
+import AppyButton from '../common/AppyButton'
 
 class TourDetail extends Component {
     state = {
@@ -137,8 +138,8 @@ class TourDetail extends Component {
                                 </div>
                                 <div className="appy--col-6">
                                     <div className="appy--tours-detail-share-buttons">
-                                        <Button type="whatsapp" />
-                                        <Button type="facebook" />
+                                        <AppyButton type="whatsapp" />
+                                        <AppyButton type="facebook" />
                                     </div>
                                 </div>
                             </div>

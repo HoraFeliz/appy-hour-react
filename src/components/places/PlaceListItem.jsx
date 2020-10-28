@@ -1,6 +1,6 @@
 import { faCalendarCheck, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Button from '../common/Button';
+import AppyButton from '../common/AppyButton';
 import React, { Component } from 'react';
 
 class PlaceListItem extends Component {
@@ -50,7 +50,7 @@ class PlaceListItem extends Component {
                         <p className="appy--place-list-item-position-num">1</p>
                         :
                         <p className="appy--place-list-item-position-num">
-                            <Button type="delete" />
+                            <AppyButton type="delete" />
                         </p>
                     }
                 </div>

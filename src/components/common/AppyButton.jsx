@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import '../infobar/InfoBar'
 
-class InfoButton extends Component {
+class AppyButton extends Component {
     render() {
         return (
 
@@ -31,4 +31,4 @@ class InfoButton extends Component {
     }
 }
 
-export default InfoButton;
+export default AppyButton;

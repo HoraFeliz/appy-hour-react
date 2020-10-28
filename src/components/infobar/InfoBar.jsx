@@ -1,6 +1,6 @@
 import { faChevronLeft, faRoute } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Button from '../common/Button';
+import AppyButton from '../common/AppyButton';
 import React, { Component } from 'react';
 
 class InfoBar extends Component {
@@ -16,9 +16,9 @@ class InfoBar extends Component {
                     <strong>La Latina Tour</strong>
                 </div>
                 <div className="appy--buttons-info">
-                    <Button num="1" info={true} />
-                    <Button type="edit" />
-                    <Button type="save" info={true} />
+                    <AppyButton num="1" info={true} />
+                    <AppyButton type="edit" />
+                    <AppyButton type="save" info={true} />
                 </div>
             </div>
         );
