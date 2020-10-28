@@ -39,11 +39,11 @@ const MutipleSlidesPerView = (props) => {
         ? tours.map((tour, key) => (
             <div>
               <TourItem
-                key={props.key}
-                tour={props.tour}
+                key={key}
+                tour={tour}
                 recommended={true}
                 brand="recommended"
-                first={props.key === 0 ? true : false}
+                first={key === 0 ? true : false}
               />
             </div>
           ))
