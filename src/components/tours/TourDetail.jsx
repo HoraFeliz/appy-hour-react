@@ -6,6 +6,7 @@ import PlaceListItem from '../places/PlaceListItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faRoute, faStopwatch, faWalking } from '@fortawesome/free-solid-svg-icons';
 import BeerRating from '../common/BeerRating';
+import Button from '../common/Button';
 
 class TourDetail extends Component {
     render() {
@@ -66,6 +67,7 @@ class TourDetail extends Component {
                     </div>
                     <hr style={{ marginTop: '10px' }} />
                     <span className="appy--tours-detail-rating-text">Share Tour</span>
+                    <Button type="whatsapp" />
                 </div>
             </div>
         );

@@ -15,7 +15,8 @@ class InfoButton extends Component {
                         (this.props.type === 'edit') ? <FontAwesomeIcon className="appy--button-icon" icon={faPen} /> :
                             (this.props.type === 'save') ? <FontAwesomeIcon className="appy--button-icon" icon={faSave} /> :
                                 (this.props.type === 'map') ? <FontAwesomeIcon className="appy--button-icon" icon={faMapMarkerAlt} /> :
-                                    (this.props.type === 'delete') ? <FontAwesomeIcon className="appy--button-icon" icon={faTrashAlt} /> : null
+                                    (this.props.type === 'delete') ? <FontAwesomeIcon className="appy--button-icon" icon={faTrashAlt} /> :
+                                        (this.props.type === 'whatsapp') ? <img src="/img/whatsapp-brands.svg" alt="Whatsapp" /> : null
                 }
 
                 {(this.props.info) &&
