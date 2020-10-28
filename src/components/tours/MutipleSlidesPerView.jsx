@@ -3,6 +3,7 @@ import Swiper from "react-id-swiper";
 import TourItem from "./TourItem";
 import "swiper/swiper.scss";
 import { getTours } from "../../services/api-client";
+import { NavLink } from "react-router-dom";
 
 const MutipleSlidesPerView = (props) => {
   const [tours, setTours] = useState([]);
@@ -35,21 +36,20 @@ const MutipleSlidesPerView = (props) => {
   };
   return (
     <Swiper {...params}>
-      {tours.length ? (
-        tours.map((tour, key) => (
-          <div className="test">
-            <TourItem
-              key={key}
-              tour={tour}
-              recommended={true}
-              brand="recommended"
-              first={key === 0 ? true : false}
-            />
-          </div>
-        ))
-      ) : (
-        <p className="text-center">Loading...</p>
-      )}
+      {tours.length
+        ? tours.map((tour, key) => (
+            <div key={key}>
+              <NavLink to={`/tour/${tour._id}`}>
+                <TourItem
+                  tour={tour}
+                  recommended={true}
+                  brand="recommended"
+                  first={key === 0 ? true : false}
+                />
+              </NavLink>
+            </div>
+          ))
+        : "Loading"}
     </Swiper>
   );
 };
