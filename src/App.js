@@ -33,6 +33,7 @@ function App() {
           <Route exact path="/profile" component={Profile}></Route>
           <Route exact path="/options" component={Options}></Route>
           <Route exact path="/tour/:id" component={TourDetail} />
+          <Route exact path="/tour/places/add" component={Tour} />
         </Switch>
       </main>
     </div>

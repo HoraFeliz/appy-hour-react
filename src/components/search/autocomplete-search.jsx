@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { savePlace } from "../../services/api-client";
+import { getAllPlaces, savePlace } from "../../services/api-client";
 
 let autoComplete;
 
@@ -72,6 +72,7 @@ async function handlePlaceSelect(updateQuery) {
 
 function AutocompleteSearch() {
   const [query, setQuery] = useState("");
+  const [places, setPlaces] = useState("");
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
@@ -79,6 +80,12 @@ function AutocompleteSearch() {
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&libraries=places`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
+
+    getAllPlaces()
+      .then((res) => {
+        setPlaces(res);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -89,6 +96,14 @@ function AutocompleteSearch() {
         placeholder="Search place"
         value={query}
       />
+
+      <div>
+        {places.length
+          ? places.map((place, key) => (
+              <div key={key}>{JSON.stringify(place.name)}</div>
+            ))
+          : "Loading places"}
+      </div>
     </div>
   );
 }
