@@ -35,21 +35,19 @@ const MutipleSlidesPerView = (props) => {
   };
   return (
     <Swiper {...params}>
-      {tours.length ? (
-        tours.map((tour, key) => (
-          <div className="test">
-            <TourItem
-              key={key}
-              tour={tour}
-              recommended={true}
-              brand="recommended"
-              first={key === 0 ? true : false}
-            />
-          </div>
-        ))
-      ) : (
-        <p className="text-center">Loading...</p>
-      )}
+      {tours.length
+        ? tours.map((tour, key) => (
+            <div>
+              <TourItem
+                key={props.key}
+                tour={props.tour}
+                recommended={true}
+                brand="recommended"
+                first={props.key === 0 ? true : false}
+              />
+            </div>
+          ))
+        : "Loading"}
     </Swiper>
   );
 };
