@@ -20,7 +20,6 @@ class PlaceInfo extends Component {
                         <div className="appy--col-6"><StarRating /></div>
                     </div>
                 </div>
-                <PlaceListItem />
             </div >
         )
     }

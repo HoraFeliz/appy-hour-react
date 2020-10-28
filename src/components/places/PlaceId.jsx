@@ -9,7 +9,7 @@ class PlaceId extends Component {
             <div>
                 <InfoBar back={true} />
                 <div className="appy--place-item">
-                    <div className="appy--place-item-map" style={{ backgroundImage: "url('./img/map-captura.png'", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div className="appy--place-item-map" style={{ backgroundImage: "url('./img/map-place.png'", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     </div>
                     <ImageCanvas place={true} recommended={true} />
                     <PlaceInfo />

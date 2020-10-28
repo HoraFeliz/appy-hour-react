@@ -12,7 +12,7 @@
             margin-top: 55px;
 
             &-map {
-                height: 215px;
+                height: 290px;
                 background-color: $grey-text;
                 display: flex;
                 justify-content: center;
@@ -90,7 +90,7 @@
         &-list {
 
             &-item {
-                margin-top: 20px;
+                margin-top: 5px;
                 margin-right: 0px;
                 margin-left: 0px;
                 border-radius: 5px;
@@ -98,7 +98,7 @@
                 background-color: $white-color;
 
                 &-img {
-                    width: 100px;
+                    width: 25%;
                     border-radius: 5px;
                     background-position: center;
                     background-size: cover;
@@ -108,7 +108,7 @@
                     height: 100%;
 
                     &-col {
-                        padding-right: 90px;
+                        padding-right: 75px;
                     }
                 }
 
@@ -121,36 +121,42 @@
                     background-color: $recommended-color;
                     padding: 3px;
                     border-radius: 3px;
+                    font-size: 10px;
                 }
 
                 &-rating {
-                    background-color: #c8102ebf;
+                    background-color: $primary-color;
                     border-radius: 5px;
                     display: flex;
                     position: absolute;
                     bottom: 0px;
                     width: 100%;
                     align-items: center;
-                    justify-content: center;
-                    padding: 5px 10px;
+                    justify-content: space-around;
+                    padding: 2px 5px;
 
                     &>img {
                         width: 10px;
                         height: 10px;
+
                     }
 
                     &-num {
                         color: $white-color;
+                        font-size: 3.5vw;
+                        padding-right: 4px;
                     }
                 }
 
                 &-info {
-                    padding: 10px;
+                    padding: 10px 0px 10px 15px;
                     border-bottom-left-radius: 5px;
                     border-bottom-right-radius: 5px;
+                    text-align: left;
+                    margin-left: 0px;
 
                     &-title {
-                        font-size: 14px;
+                        font-size: $text-icons;
                         margin-bottom: 0px;
                     }
 
@@ -165,12 +171,14 @@
                     flex-wrap: nowrap;
                     height: 20px;
                     margin-left: 0px;
+                    margin-top: 10px;
 
                     &-schedule-info {
-                        padding: 0px 10px;
+                        padding: 0px 5px;
                         margin-top: -1px;
                         font-size: 14px;
                         font-weight: bold;
+                        color: $text-open;
                     }
 
                     &-price-info {
@@ -188,23 +196,30 @@
                     &-open-icon {
                         display: flex;
                         justify-content: right;
-                        color: #FFBB00;
+                        color: $light-grey;
                         padding: 0px;
                     }
 
                     &-price-icon {
                         height: 16px;
                         margin-top: -8px;
+                        font-style: 16px;
+
+                        &>img {
+                            width: 20px;
+                            margin-top: 9px;
+                        }
                     }
                 }
 
                 &-position {
                     width: 100%;
                     justify-content: center;
-                    display: flex;
-                    padding: 0px 10px 0 0px;
-                    margin-right: -15px;
+                    margin-right: 0px;
                     align-items: center;
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 0px;
 
                     &-num {
                         position: absolute;

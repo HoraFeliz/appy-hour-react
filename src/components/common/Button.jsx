@@ -1,4 +1,4 @@
-import { faMapMarkerAlt, faPen, faPlus, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faPen, faPlus, faSave, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Component } from 'react';
 import '../infobar/InfoBar'
@@ -14,7 +14,8 @@ class InfoButton extends Component {
                     (this.props.type === 'create' || this.props.type === 'add') ? <FontAwesomeIcon className="appy--button-icon" icon={faPlus} /> :
                         (this.props.type === 'edit') ? <FontAwesomeIcon className="appy--button-icon" icon={faPen} /> :
                             (this.props.type === 'save') ? <FontAwesomeIcon className="appy--button-icon" icon={faSave} /> :
-                                (this.props.type === 'map') ? <FontAwesomeIcon className="appy--button-icon" icon={faMapMarkerAlt} /> : null
+                                (this.props.type === 'map') ? <FontAwesomeIcon className="appy--button-icon" icon={faMapMarkerAlt} /> :
+                                    (this.props.type === 'delete') ? <FontAwesomeIcon className="appy--button-icon" icon={faTrashAlt} /> : null
                 }
 
                 {(this.props.info) &&
