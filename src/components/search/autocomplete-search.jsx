@@ -52,18 +52,18 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
 }
 
 async function handlePlaceSelect(updateQuery) {
-  const addressObject = autoComplete.getPlace();
-  const query = addressObject.formatted_address;
-  updateQuery(query);
+  const placeObject = autoComplete.getPlace();
+
+  updateQuery(placeObject);
   const place = {
-    ...addressObject,
+    ...placeObject,
     geometry: {
-      longitude: addressObject.geometry.location.lng(),
-      latitude: addressObject.geometry.location.lat(),
+      longitude: placeObject.geometry.location.lng(),
+      latitude: placeObject.geometry.location.lat(),
     },
-    image: addressObject.photos[0].getUrl(),
-    city: addressObject.address_components[2].long_name,
-    tags: addressObject.types,
+    image: placeObject.photos[0].getUrl(),
+    city: placeObject.address_components[2].long_name,
+    tags: placeObject.types,
   };
   savePlace(place)
     .then((res) => console.log("New place created", res))
