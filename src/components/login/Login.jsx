@@ -1,30 +1,31 @@
 import React, { Component } from 'react'
-import './LoginLogic'
+import './Login.scss'
 
 export default class Login extends Component {
     render() {
         return (
-            <div className="container">
-                <h2>login</h2>
+
+            <div class="login-container">
                 <form>
-                    <input type="text" className="email" placeholder="email" />
-                    <br />
-                    <input type="text" className="pwd" placeholder="password" />
+                    <h1>Login</h1>
+                    <div class="form-group">
+                        <input type="text" required="required" />
+                        <label for="input" class="control-label">User</label><i class="bar"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" required="required" />
+                        <label for="input" class="control-label">Password</label><i class="bar"></i>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" /><i class="helper"></i>Remember
+                        </label>
+                    </div>
+
                 </form>
-                <a href="#" className="link">
-                    forgot your password ?
-                </a>
-                <br />
-                <button className="register">
-                    <span>register</span>
-                </button>
-                <button className="signin">
-                    <span>sign in</span>
-                </button>
-                <h3>your registration is complete !    </h3>
-                <h3>your sign in is complete !</h3>
-                <div className="reg"></div>
-                <div className="sig"></div>
+                <div class="button-container">
+                    <button type="button" class="button"><span>Submit</span></button>
+                </div>
             </div>
         )
     }
