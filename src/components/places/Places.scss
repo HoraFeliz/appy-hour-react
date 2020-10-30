@@ -98,7 +98,7 @@
                 border: 1px solid $light-grey;
 
                 &-img {
-                    width: 25%;
+                    width: 100%;
                     border-radius: 5px 0px 0px 5px;
                     background-position: center;
                     background-size: cover;
@@ -108,7 +108,7 @@
                     height: 100%;
 
                     &-col {
-                        padding-right: 75px;
+                        // padding-right: 75px;
                     }
                 }
 
@@ -131,9 +131,9 @@
                     position: absolute;
                     bottom: 0px;
                     width: 100%;
-                    align-items: center;
+                    align-items: baseline;
                     justify-content: space-around;
-                    padding: 2px 5px;
+                    padding: 3px 5px 2px 5px;
 
                     &>img {
                         width: 10px;
@@ -143,7 +143,7 @@
 
                     &-num {
                         color: $white-color;
-                        font-size: 3.5vw;
+                        font-size: ($text-info-shedule + 0.5);
                         padding-right: 4px;
                     }
                 }
@@ -162,12 +162,13 @@
                     }
 
                     &-description {
-                        font-size: 10px;
+                        font-size: $text-info-address;
                         font-weight: 100;
                         margin-bottom: 5px;
                         height: 20px;
                         line-height: 14px;
                         margin-bottom: 15px;
+                        padding-right: 15px;
                     }
                 }
 
@@ -182,7 +183,7 @@
                         margin-top: -1px;
                         font-size: $text-bars;
                         font-weight: normal;
-                        color: $text-open;
+                        margin-left: 10px;
                     }
 
                     &-price-info {
@@ -200,20 +201,25 @@
 
                     &-open-icon {
                         display: flex;
-                        justify-content: right;
-                        color: $grey-text;
-                        padding: 0px;
+                        justify-content: center;
+                        color: $secundary-color;
                         font-size: $icon-button;
+                        margin-top: -4px;
                     }
 
                     &-price-icon {
                         height: 16px;
-                        margin-top: -9px;
+                        margin-top: -4px;
                         font-style: $text-bars;
 
                         &>img {
                             width: 18px;
                             margin-top: 9px;
+                        }
+
+                        &>span {
+                            font-size: 3.5vw;
+                            padding-top: 16px;
                         }
                     }
                 }
@@ -224,7 +230,7 @@
                     margin-right: 0px;
                     align-items: center;
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: flex-end;
                     padding: 0px;
 
                     &-num {
@@ -244,6 +250,55 @@
                         justify-content: center;
                         margin-top: 18px;
                         margin-left: 0px;
+                    }
+                }
+
+                &-time {
+
+                    padding: 15px 20px 5px 0px;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    text-align: left;
+                    margin-left: 0px;
+
+                    &-info {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+
+                    }
+
+                    &-title {
+                        font-size: 18px;
+                        margin-bottom: 0px;
+                        font-weight: normal;
+                        margin-left: 10px;
+                    }
+
+                    &-num {
+                        position: absolute;
+                        padding-left: 2px;
+                        font-weight: normal;
+                        padding-top: 5px;
+                        width: 55px;
+                        text-align: center;
+                        font-size: 40px;
+                        color: $primary-color;
+                        display: flex;
+                        height: 55px;
+                        align-items: center;
+                        margin-top: 0px;
+                        margin-left: -27px;
+                        justify-content: center;
+                        margin-top: 24px;
+                        margin-left: 0px;
+                    }
+
+                    &-hr {
+                        border-top: 1px dotted;
+                        margin: 3px 0px 0px 0px;
+                        border-color: $light-grey;
                     }
                 }
             }

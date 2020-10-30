@@ -13,8 +13,10 @@ import FooterNavbar from "./components/navbar/FooterNavbar";
 import PlaceId from "./components/places/PlaceId";
 import CreateTour from "./components/create-tour/CreateTour";
 import TourDetail from "./components/tours/TourDetail";
+import Login from "./components/login/Login";
 
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
@@ -24,8 +26,10 @@ function App() {
       </header>
       <main className="App-main">
         <Switch>
+
           <Route exact path="/" component={Tours}></Route>
           <Route exact path="/place" component={PlaceId}></Route>
+          <Route exact path="/place/:id" component={PlaceId}></Route>
           <Route exact path="/create" component={CreateTour}></Route>
           <Route exact path="/tourdetail" component={TourDetail}></Route>
           <Route exact path="/tours" component={Tours}></Route>
@@ -34,6 +38,7 @@ function App() {
           <Route exact path="/options" component={Options}></Route>
           <Route exact path="/tour/:id" component={TourDetail} />
           <Route exact path="/tour/places/add" component={Tour} />
+          <Route exact path="/login" component={Login} />
         </Switch>
       </main>
     </div>

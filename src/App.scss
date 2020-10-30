@@ -4,10 +4,16 @@
 @import './components/common/Common.scss';
 @import './components/infobar/InfoBar.scss';
 @import './components/places/Places.scss';
+// @import './components/login/Login.scss';
 
 * {
   outline: none !important;
   box-sizing: border-box !important;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 
 .App {

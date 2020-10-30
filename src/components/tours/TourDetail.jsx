@@ -11,20 +11,30 @@ import {
     faWalking,
 } from "@fortawesome/free-solid-svg-icons";
 import BeerRating from "../common/BeerRating";
-import { getAllPlaces, getPlaces } from "../../services/api-client";
+import { getAllPlaces, getPlaces, getTourById } from "../../services/api-client";
 import AppyButton from '../common/AppyButton'
 
 class TourDetail extends Component {
     state = {
         places: [],
+        tour: {}
     };
 
     componentDidMount() {
+        console.log(this.props.match.params.id);
         this.fetchAllPlaces();
+        this.fetchTour();
     }
     fetchPlaces = () => {
         getPlaces(this.props.match.params.id).then((places) => {
             console.log(places);
+        });
+    };
+
+    fetchTour = () => {
+        getTourById(this.props.match.params.id).then((tour) => {
+            console.log(tour);
+            this.setState({ tour });
         });
     };
 
@@ -37,13 +47,9 @@ class TourDetail extends Component {
     render() {
         return (
             <div>
-                <InfoBar back={true} />
+                <InfoBar back={true} tour={this.state.tour} />
                 <div className="appy--tours-detail">
-                    {this.state.places.length
-                        ? this.state.places.map((place, key) => (
-                            <div key={key}>{place.name}</div>
-                        ))
-                        : "NO PLACES"}
+
                     <div
                         className="appy--tours-detail-map"
                         style={{
@@ -57,7 +63,7 @@ class TourDetail extends Component {
                 {/*  Image Canvas */}
                 {/* <ImageCanvas place={true} recommended={true} /> */}
                 <div className="appy--tours-detail-info">
-                    <h2 className="appy--tours-detail-info-placename">La Latina Tour</h2>
+                    <h2 className="appy--tours-detail-info-placename">{this.state.tour.name}</h2>
                     <div className="appy--tours-item-info-creator">
                         <div className="appy--tours-item-info-creator-icon">
                             <FontAwesomeIcon icon={faRoute} />
@@ -67,10 +73,8 @@ class TourDetail extends Component {
             </div>
                     </div>
                     <p className="appy--tours-detail-info-description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-                        error porro illo cupiditate, deserunt magnam corporis perferendis
-                        sed harum. Dignissimos.
-          </p>
+                        {this.state.tour.description}
+                    </p>
                     <hr />
                     <div
                         className={`appy--tours-detail-distancebar`}
@@ -106,16 +110,16 @@ class TourDetail extends Component {
                                 className="appy--tours-item-distancebar-text"
                                 style={{ color: "#707070" }}
                             >
-                                6 Places
-              </div>
+                                {this.state.places.length + ' Places'}
+                            </div>
                         </div>
                     </div>
                     <hr />
-                    <PlaceListItem type="num" recommended={false} />
-                    <PlaceListItem type="num" recommended={true} />
-                    <PlaceListItem type="num" recommended={false} />
-                    <PlaceListItem type="num" recommended={false} />
-                    <PlaceListItem type="num" recommended={true} />
+                    {this.state.places.length
+                        ? this.state.places.map((place, key) => (
+                            <PlaceListItem key={key} type="num" num={key} total={this.state.places.length} recommended={false} place={place} />
+                        ))
+                        : "NO PLACES"}
                     <hr style={{ marginBottom: "10px" }} />
                     <div className="appy--tours-detail-rating-container">
                         <div className="appy--row">
@@ -134,12 +138,13 @@ class TourDetail extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="appy--col-6">
-                                    <span className="appy--tours-detail-rating-text">Share Tour</span>
+                                    <span className="appy--tours-detail-share-text">Share Tour</span>
                                 </div>
                                 <div className="appy--col-6">
                                     <div className="appy--tours-detail-share-buttons">
                                         <AppyButton type="whatsapp" />
                                         <AppyButton type="facebook" />
+                                        <AppyButton type="twitter" />
                                     </div>
                                 </div>
                             </div>

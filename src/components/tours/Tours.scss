@@ -280,6 +280,12 @@
                     align-items: center;
                     justify-content: flex-end;
                 }
+
+                &-text {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 5px;
+                }
             }
         }
     }

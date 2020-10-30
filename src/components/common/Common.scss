@@ -47,6 +47,16 @@
         max-width: 66.666667%;
     }
 
+    &col-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+
+    &col-10 {
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+    }
+
     &second-col div.appy--place-item-info-schedule-hours {
         margin-right: 5px;
     }
@@ -94,6 +104,14 @@
 
         &-brand {
             width: 10px;
+
+            &-whatsapp {
+                width: 19px;
+            }
+
+            &-twitter {
+                width: 18px;
+            }
         }
     }
 
@@ -182,4 +200,34 @@
         align-items: center;
         height: 100vh;
     }
+
+    &price-item {
+
+        &-active {
+            color: $primary-color;
+        }
+
+        &-disabled {
+            color: $primary-color;
+            opacity: .2;
+        }
+    }
+}
+
+// Slick
+
+.slick-dots {
+    bottom: 4px !important;
+
+    & li {
+        margin: -3px -2px !important;
+    }
+}
+
+.slick-dots li.slick-active button:before {
+    color: $primary-color !important;
+}
+
+.slick-dots li button:before {
+    color: $primary-color !important;
 }
