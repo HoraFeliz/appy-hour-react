@@ -1,6 +1,6 @@
 import React from "react";
 import { createTour } from "../../../services/api-client";
-
+import { withRouter } from "react-router-dom";
 import TextInput from "../form-components/text-input/TextInput";
 import TextArea from "../form-components/textarea/TextArea";
 
@@ -22,14 +22,12 @@ class Form extends React.Component {
     touch: {},
   };
 
-  handleTourCreated = () => {
-    this.props.onTourCreated();
-  };
-
   handleSubmit = (event) => {
     event.preventDefault();
     createTour(this.state.data)
-      .then((res) => console.log("New tour created", res))
+      .then((tour) => {
+        this.props.history.push(`/tour/add/${tour.id}`);
+      })
       .catch((err) => console.log("Error creating tour", err));
   };
 
@@ -101,15 +99,9 @@ class Form extends React.Component {
             </form>
           </div>
         </div>
-
-        {/* <div className="col">
-          <label>State</label>
-
-          <pre>{JSON.stringify(this.state, null, " ")}</pre>
-        </div> */}
       </div>
     );
   }
 }
 
-export default Form;
+export default withRouter(Form);
