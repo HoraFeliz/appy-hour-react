@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import InfoBar from "../infobar/InfoBar";
-import ImageCanvas from "../common/ImageCanvas";
-import PlaceInfo from "../places/PlaceInfo";
 import PlaceListItem from "../places/PlaceListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -117,7 +115,7 @@ class TourDetail extends Component {
                     <hr />
                     {this.state.places.length
                         ? this.state.places.map((place, key) => (
-                            <PlaceListItem key={key} type="num" num={key} total={this.state.places.length} recommended={false} place={place} />
+                            <PlaceListItem key={key} num={key} total={this.state.places.length} recommended={false} place={place} />
                         ))
                         : "NO PLACES"}
                     <hr style={{ marginBottom: "10px" }} />

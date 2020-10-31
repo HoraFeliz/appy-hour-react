@@ -1,4 +1,4 @@
-import { faMapMarkerAlt, faMarker, faStar, faWalking } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faStar, faWalking } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AppyButton from '../common/AppyButton';
 import React, { Component } from 'react';
@@ -96,7 +96,8 @@ class PlaceListItem extends Component {
                             </div>
 
                             {/* Slide #2 */}
-                            {(this.props.num < this.props.total - 1) ?
+                            {this.props.type &&
+                                (this.props.num < this.props.total - 1) ?
                                 <div>
                                     <div className="row">
                                         <div className="appy--col-3 appy--place-list-item-position">

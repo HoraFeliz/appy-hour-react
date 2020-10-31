@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import StarRating from '../common/StarRating';
-import PlaceListItem from './PlaceListItem';
 import PlaceSchedule from './PlaceSchedule';
 
 class PlaceInfo extends Component {
