@@ -1,5 +1,4 @@
 import React from "react";
-// import logo from './logo.svg';
 import "./App.scss";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
@@ -14,9 +13,9 @@ import PlaceId from "./components/places/PlaceId";
 import CreateTour from "./components/create-tour/CreateTour";
 import TourDetail from "./components/tours/TourDetail";
 import Login from "./components/login/Login";
+import AddPlaces from "./components/addplaces/AddPlaces";
 
 function App() {
-
   return (
     <div className="App">
       <header className="App-header">
@@ -26,7 +25,6 @@ function App() {
       </header>
       <main className="App-main">
         <Switch>
-
           <Route exact path="/" component={Tours}></Route>
           <Route exact path="/place" component={PlaceId}></Route>
           <Route exact path="/place/:id" component={PlaceId}></Route>
@@ -38,6 +36,7 @@ function App() {
           <Route exact path="/options" component={Options}></Route>
           <Route exact path="/tour/:id" component={TourDetail} />
           <Route exact path="/tour/places/add" component={Tour} />
+          <Route exact path="/tour/add/:id" component={AddPlaces} />
           <Route exact path="/login" component={Login} />
         </Switch>
       </main>

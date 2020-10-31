@@ -1,23 +1,19 @@
 import React from "react";
 import { createTour } from "../../../services/api-client";
-
+import { withRouter } from "react-router-dom";
 import TextInput from "../form-components/text-input/TextInput";
-import TextArea from "../form-components/textarea/TextArea";
 
 const validations = {
   name: (value) => value.length > 1,
-  description: (value) => value.length > 1,
 };
 
 class Form extends React.Component {
   state = {
     data: {
       name: "",
-      description: "",
     },
     error: {
       name: true,
-      description: true,
     },
     touch: {},
   };
@@ -25,7 +21,9 @@ class Form extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     createTour(this.state.data)
-      .then((res) => console.log("New tour created", res))
+      .then((tour) => {
+        this.props.history.push(`/tour/add/${tour.id}`);
+      })
       .catch((err) => console.log("Error creating tour", err));
   };
 
@@ -77,16 +75,8 @@ class Form extends React.Component {
                 touch={touch.name}
               />
 
-              <TextArea
-                name="description"
-                value={data.description}
-                onBlur={this.handleBlur}
-                onChange={this.handleChange}
-                error={error.description}
-                touch={touch.description}
-              />
-
               <button
+                onClick={this.handleTourCreated}
                 type="submit"
                 className="btn btn-primary"
                 disabled={isError}
@@ -96,15 +86,9 @@ class Form extends React.Component {
             </form>
           </div>
         </div>
-
-        <div className="col">
-          <label>State</label>
-
-          <pre>{JSON.stringify(this.state, null, " ")}</pre>
-        </div>
       </div>
     );
   }
 }
 
-export default Form;
+export default withRouter(Form);

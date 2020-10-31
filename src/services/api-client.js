@@ -12,7 +12,11 @@ export const getPlaces = (id) => {
   return http.get(`/places/${id}`).then((response) => response.data);
 };
 
-export const getAllPlaces = (id) => {
+export const getPlace = (id) => {
+  return http.get(`/place/${id}`).then((response) => response.data);
+};
+
+export const getAllPlaces = () => {
   return http.get(`/places`).then((response) => response.data);
 };
 
@@ -24,6 +28,8 @@ export const createTour = (body) => {
   return http.post("/tour/new", body).then((response) => response.data);
 };
 
-export const savePlace = (body) => {
-  return http.post("/place/new", body).then((response) => response.data);
+export const savePlace = (body, tourId) => {
+  return http
+    .post(`/place/new/${tourId}`, body)
+    .then((response) => response.data);
 };
