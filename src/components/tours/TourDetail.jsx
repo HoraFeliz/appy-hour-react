@@ -24,12 +24,12 @@ class TourDetail extends Component {
 
   componentDidMount() {
     console.log(this.props.match.params.id);
-    this.fetchAllPlaces();
+    this.fetchPlaces();
     this.fetchTour();
   }
   fetchPlaces = () => {
     getPlaces(this.props.match.params.id).then((places) => {
-      console.log(places);
+      this.setState({ places });
     });
   };
 
