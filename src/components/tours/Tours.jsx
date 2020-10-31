@@ -15,14 +15,14 @@ const Tours = () => {
         <AppyButton type="map" info={true} recommended={true} />
       </TourBarInfo>
 
-      <MutipleSlidesPerView />
+      <MutipleSlidesPerView recommended={true} brand="recommended" />
 
       <TourBarInfo>
         <AppyButton num="5" info={true} />
         <AppyButton type="map" info={true} />
       </TourBarInfo>
 
-      <MutipleSlidesPerView />
+      <MutipleSlidesPerView recommended={false} brand="primary-bg" />
     </div>
   );
 };

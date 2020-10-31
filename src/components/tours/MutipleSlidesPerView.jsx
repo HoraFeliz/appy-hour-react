@@ -38,17 +38,17 @@ const MutipleSlidesPerView = (props) => {
     <Swiper {...params}>
       {tours.length
         ? tours.map((tour, key) => (
-            <div key={key}>
-              <NavLink to={`/tour/${tour._id}`}>
-                <TourItem
-                  tour={tour}
-                  recommended={true}
-                  brand="recommended"
-                  first={key === 0 ? true : false}
-                />
-              </NavLink>
-            </div>
-          ))
+          <div key={key}>
+            <NavLink to={`/tour/${tour._id}`}>
+              <TourItem
+                tour={tour}
+                recommended={props.recommended}
+                brand={props.brand}
+                first={key === 0 ? true : false}
+              />
+            </NavLink>
+          </div>
+        ))
         : "Loading"}
     </Swiper>
   );
