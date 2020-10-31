@@ -53,7 +53,7 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
 
 async function handlePlaceSelect(updateQuery) {
   const placeObject = autoComplete.getPlace();
-
+  const tourId = window.location.href.split("/add/")[1];
   updateQuery(placeObject);
   const place = {
     ...placeObject,
@@ -65,12 +65,12 @@ async function handlePlaceSelect(updateQuery) {
     city: placeObject.address_components[2].long_name,
     tags: placeObject.types,
   };
-  savePlace(place)
+  savePlace(place, tourId)
     .then((res) => console.log("New place created", res))
     .catch((err) => console.log("Error creating place", err));
 }
 
-function AddPlaces() {
+const AddPlaces = (props) => {
   const [query, setQuery] = useState("");
   const [places, setPlaces] = useState("");
   const autoCompleteRef = useRef(null);
@@ -98,6 +98,6 @@ function AddPlaces() {
       />
     </div>
   );
-}
+};
 
 export default AddPlaces;
