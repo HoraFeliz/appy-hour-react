@@ -22,6 +22,10 @@ class Form extends React.Component {
     touch: {},
   };
 
+  handleTourCreated = () => {
+    this.props.onTourCreated();
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
     createTour(this.state.data)
@@ -87,6 +91,7 @@ class Form extends React.Component {
               />
 
               <button
+                onClick={this.handleTourCreated}
                 type="submit"
                 className="btn btn-primary"
                 disabled={isError}
@@ -97,11 +102,11 @@ class Form extends React.Component {
           </div>
         </div>
 
-        <div className="col">
+        {/* <div className="col">
           <label>State</label>
 
           <pre>{JSON.stringify(this.state, null, " ")}</pre>
-        </div>
+        </div> */}
       </div>
     );
   }
