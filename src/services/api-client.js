@@ -12,7 +12,11 @@ export const getPlaces = (id) => {
   return http.get(`/places/${id}`).then((response) => response.data);
 };
 
-export const getAllPlaces = (id) => {
+export const getPlace = (id) => {
+  return http.get(`/place/${id}`).then((response) => response.data);
+};
+
+export const getAllPlaces = () => {
   return http.get(`/places`).then((response) => response.data);
 };
 
