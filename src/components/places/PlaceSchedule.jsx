@@ -9,8 +9,9 @@ const PlaceSchedule = (props) => {
           <div className="appy--col-6">
             <ul className="appy--ul">
               {props.place.openingHours
-                ? props.place.openingHours.map((openingHour) => (
+                ? props.place.openingHours.map((openingHour, key) => (
                     <PlaceScheduleItem
+                      key={key}
                       day={openingHour.split(/:(.+)/)[0]}
                       time={openingHour.split(/:(.+)/)[1]}
                     />
