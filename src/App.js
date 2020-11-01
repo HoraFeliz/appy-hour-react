@@ -27,7 +27,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Tours}></Route>
           <Route exact path="/place" component={PlaceId}></Route>
-          <Route exact path="/place/:id" component={PlaceId}></Route>
+          <Route exact path="/place/:id/:tour" component={PlaceId}></Route>
           <Route exact path="/create" component={CreateTour}></Route>
           <Route exact path="/tourdetail" component={TourDetail}></Route>
           <Route exact path="/tours" component={Tours}></Route>

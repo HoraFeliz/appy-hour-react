@@ -5,16 +5,18 @@ import {
     faRoute,
     faStopwatch,
 } from "@fortawesome/free-solid-svg-icons";
-import TourImageCanvas from "../common/ImageCanvas";
+import ImageCanvas from "../common/ImageCanvas";
 
 class TourItem extends Component {
     render() {
         return (
             <div className={this.props.first ? 'appy--tours-item appy--tours-item-first' : 'appy--tours-item'}>
-                <TourImageCanvas
+                <ImageCanvas
+                    id={this.props.id}
                     recommended={this.props.recommended}
                     brand={this.props.brand}
                     place={this.props.place}
+                    tour={this.props.tour}
                 />
                 <div
                     className={`appy--tours-item-distancebar ${this.props.brand}`}
@@ -35,10 +37,10 @@ class TourItem extends Component {
 
                 <div className="appy--tours-item-info">
                     <h3 className="appy--tours-item-info-title">
-                        {this.props.tour ? this.props.tour.name : "Loading"}
+                        {this.props.tour ? this.props.tour[this.props.id].name : "Loading"}
                     </h3>
                     <p className="appy--tours-item-info-description">
-                        {this.props.tour ? this.props.tour.description : "Loading"}
+                        {this.props.tour ? this.props.tour[this.props.id].description : "Loading"}
                     </p>
                     <div className="appy--tours-item-info-creator">
                         <div className="appy--tours-item-info-creator-icon">

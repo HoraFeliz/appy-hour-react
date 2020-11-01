@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+// import { getPlace } from '../../services/api-client';
 
 class PlaceSchedule extends Component {
+
+
     render() {
+        { console.log(this.props.place ? this.props.place.openingHours : 'Loading') }
         return (
             <div className="appy--place-item-info-schedule">
                 <div className="appy--place-item-info-schedule-container">

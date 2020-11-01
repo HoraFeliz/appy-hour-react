@@ -32,11 +32,17 @@ class ImageCanvas extends Component {
 
         return (
 
-            <div className={this.props.place ? 'appy--image-placeid' : 'appy--tours-item-image'} style={{ backgroundImage: "url('./img/malasana-tour.jpg'" }}>
-                {this.recommended()}
+            <div className={(this.props.place ? 'appy--image-placeid' : 'appy--tours-item-image')}
+                style={{
+                    backgroundImage: `url('${this.props.placeInfo ? this.props.placeInfo.image :
+                        this.props.tour ? this.props.tour[this.props.id].image : null}')`
+                }} >
+                { this.recommended()}
+                {console.log('PlaceInfo:', this.props.placeInfo
+                )}
 
-                <BeerRating place={this.props.place} />
-            </div>
+                < BeerRating place={this.props.place} />
+            </div >
         );
     }
 }

@@ -4,19 +4,18 @@ import PlaceSchedule from "./PlaceSchedule";
 
 class PlaceInfo extends Component {
   render() {
-    console.log(this.props.place);
     return (
       <div className="appy--place-item-info">
-        <h2 className="appy--place-item-info-placename">La Lata de Cascorro</h2>
+        <h2 className="appy--place-item-info-placename">{this.props.placeInfo.name}</h2>
         <p className="appy--place-item-info-address">
-          <strong>Address:</strong> Calle de San Andrés, 4, 28004 Madrid
+          <strong>Address:</strong> {this.props.placeInfo.address}
         </p>
         <p className="appy--place-item-info-address">
           <strong>Schedule:</strong>{" "}
           <span className="appy--place-item-info-address-open">Open Now</span>{" "}
         </p>
 
-        <PlaceSchedule />
+        <PlaceSchedule place={this.props.placeInfo} />
         <hr />
         <div className="appy--place-item-info-rating-container">
           <div className="appy--row">
@@ -26,7 +25,7 @@ class PlaceInfo extends Component {
               </span>
             </div>
             <div className="appy--col-6">
-              <StarRating />
+              <StarRating place={this.props.placeInfo} />
             </div>
           </div>
         </div>

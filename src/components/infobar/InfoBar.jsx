@@ -8,14 +8,14 @@ class InfoBar extends Component {
     render() {
         return (
             <div className="appy--infobar appy--primary-color">
-                <NavLink className="appy--infobar-back appy--primary-color" to={`/tours`}>
+                <NavLink className="appy--infobar-back appy--primary-color" to={!this.props.place ? `/tour/${this.props.tour._id}` : `/tours`}>
                     <div className="appy--infobar-icon">
                         {this.props.back ? <FontAwesomeIcon icon={faChevronLeft} /> :
                             <FontAwesomeIcon icon={faRoute} />
                         }
                     </div>
                     <div className="appy--infobar-title">
-                        <strong>{this.props.tour.name}</strong>
+                        <strong>{!this.props.place ? this.props.tour.name : 'Tours'}</strong>
                     </div>
                 </NavLink>
                 <div className="appy--buttons-info">
