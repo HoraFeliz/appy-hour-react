@@ -6,7 +6,9 @@ class PlaceInfo extends Component {
   render() {
     return (
       <div className="appy--place-item-info">
-        <h2 className="appy--place-item-info-placename">{this.props.placeInfo.name}</h2>
+        <h2 className="appy--place-item-info-placename">
+          {this.props.placeInfo.name}
+        </h2>
         <p className="appy--place-item-info-address">
           <strong>Address:</strong> {this.props.placeInfo.address}
         </p>
