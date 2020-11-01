@@ -8,11 +8,15 @@ const PlaceScheduleItem = (props) => {
           <div className="appy--place-item-info-schedule-days">{props.day}</div>
         </div>
         <div className="appy--col-6">
-          <div className="appy--place-item-info-schedule-hours">
-            <span className="appy--place-item-info-address-close">
+          {props.time.trim() === "Cerrado" ? (
+            <div className="appy--place-item-info-address-close">
               {props.time}
-            </span>
-          </div>
+            </div>
+          ) : (
+            <div className="appy--place-item-info-schedule-hours">
+              {props.time}
+            </div>
+          )}
         </div>
       </div>
     </li>
