@@ -14,6 +14,7 @@ import CreateTour from "./components/create-tour/CreateTour";
 import TourDetail from "./components/tours/TourDetail";
 import Login from "./components/login/Login";
 import AddPlaces from "./components/addplaces/AddPlaces";
+import PlaceMap from "./components/places/placemap/PlaceMap";
 
 function App() {
   return (

@@ -3,6 +3,7 @@ import InfoBar from "../infobar/InfoBar";
 import ImageCanvas from "../common/ImageCanvas";
 import PlaceInfo from "./PlaceInfo";
 import { getPlace, getTourById } from "../../services/api-client";
+import PlaceMap from "./placemap/PlaceMap";
 
 const PlaceId = (props) => {
   const [place, setPlace] = useState([]);
@@ -24,14 +25,16 @@ const PlaceId = (props) => {
     <div>
       <InfoBar back={true} tour={tour} />
       <div className="appy--place-item">
-        <div
-          className="appy--place-item-map"
-          style={{
-            backgroundImage: "url('/img/map-place.png'",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        ></div>
+        {place && place.geometry ? (
+          <PlaceMap
+            name={place.name}
+            latitude={Number(place.geometry.latitude)}
+            longitude={Number(place.geometry.longitude)}
+          />
+        ) : (
+          "Loading map"
+        )}
+
         <ImageCanvas place={true} recommended={true} placeInfo={place} />
         <PlaceInfo place={place} placeInfo={place} />
       </div>
