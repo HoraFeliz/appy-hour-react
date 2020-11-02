@@ -1,36 +1,62 @@
 import React from "react";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 
-const PlaceMap = (props) => {
-  const mapStyles = {
+class PlaceMap extends React.Component {
+  state = {
+    showingInfoWindow: false, // Hides or shows the InfoWindow
+    activeMarker: {}, // Shows the active marker upon click
+    selectedPlace: {}, // Shows the InfoWindow to the selected place upon a marker
+  };
+
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+    });
+
+  onClose = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      });
+    }
+  };
+  mapStyles = {
     width: "100%",
     height: "50%",
     position: "relative",
   };
 
-  return (
-    <React.Fragment>
+  render() {
+    return (
       <Map
-        initialCenter={{ lat: props.lat, lng: props.lng }}
-        google={props.google}
-        style={mapStyles}
-        className={"map"}
-        zoom={12}
+        google={this.props.google}
+        zoom={14}
+        style={this.mapStyles}
+        initialCenter={{ lat: this.props.lat, lng: this.props.lng }}
       >
-        {props.name && props.lat && props.lng ? (
-          <Marker
-            title={props.name}
-            name={props.name}
-            position={{ lat: props.lat, lng: props.lng }}
-          />
-        ) : (
-          "Loading Place Map"
-        )}
+        <Marker
+          onClick={this.onMarkerClick}
+          position={{ lat: this.props.lat, lng: this.props.lng }}
+          name={this.props.name}
+        />
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+          <div>
+            <h1>{this.props.name}</h1>
+            <h4>Hola que tal</h4>
+            <p>Customzar aqui</p>
+          </div>
+        </InfoWindow>
       </Map>
-    </React.Fragment>
-  );
-};
-
+    );
+  }
+}
 export default GoogleApiWrapper({
   apiKey: `${process.env.REACT_APP_MAPS_API_KEY}`,
 })(PlaceMap);
