@@ -38,6 +38,11 @@ class PlaceMap extends React.Component {
         initialCenter={{ lat: this.props.lat, lng: this.props.lng }}
       >
         <Marker
+          icon={{
+            url: "/img/marker-recommended.svg",
+            anchor: this.props.google.maps.Point(17, 46),
+            scaledSize: this.props.google.maps.Size(37, 37),
+          }}
           onClick={this.onMarkerClick}
           position={{ lat: this.props.lat, lng: this.props.lng }}
           name={this.props.name}
