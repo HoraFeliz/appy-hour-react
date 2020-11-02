@@ -3,7 +3,7 @@ import InfoBar from "../infobar/InfoBar";
 import ImageCanvas from "../common/ImageCanvas";
 import PlaceInfo from "./PlaceInfo";
 import { getPlace, getTourById } from "../../services/api-client";
-import PlaceMap from "./placemap/PlaceMap";
+import PlaceMap from "./googlemap/PlaceMap";
 
 const PlaceId = (props) => {
   const [place, setPlace] = useState([]);
@@ -27,9 +27,9 @@ const PlaceId = (props) => {
       <div className="appy--place-item">
         {place && place.geometry ? (
           <PlaceMap
+            lat={place.geometry.latitude}
+            lng={place.geometry.longitude}
             name={place.name}
-            latitude={Number(place.geometry.latitude)}
-            longitude={Number(place.geometry.longitude)}
           />
         ) : (
           "Loading map"
