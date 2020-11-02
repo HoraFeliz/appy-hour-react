@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getPlaces, savePlace } from "../../services/api-client";
+import { getAllPlaces, savePlace } from "../../services/api-client";
 
 let autoComplete;
 
@@ -53,7 +53,7 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
 
 async function handlePlaceSelect(updateQuery) {
   const placeObject = autoComplete.getPlace();
-  const tourId = window.location.href.split("/add/")[1];
+
   updateQuery(placeObject);
   const place = {
     ...placeObject,
@@ -65,14 +65,14 @@ async function handlePlaceSelect(updateQuery) {
     city: placeObject.address_components[2].long_name,
     tags: placeObject.types,
   };
-  savePlace(place, tourId)
+  savePlace(place)
     .then((res) => console.log("New place created", res))
     .catch((err) => console.log("Error creating place", err));
 }
 
-const AddPlaces = (props) => {
+function AddPlaces() {
   const [query, setQuery] = useState("");
-  const [places, setPlaces] = useState([]);
+  const [places, setPlaces] = useState("");
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
@@ -80,15 +80,13 @@ const AddPlaces = (props) => {
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&libraries=places`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
-  }, [props]);
 
-  useEffect(() => {
-    getPlaces(props.match.params.id)
-      .then((places) => {
-        setPlaces(places);
+    getAllPlaces()
+      .then((res) => {
+        setPlaces(res);
       })
       .catch((err) => console.log(err));
-  });
+  }, []);
 
   return (
     <div className="search-location-input">
@@ -96,7 +94,7 @@ const AddPlaces = (props) => {
         ref={autoCompleteRef}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Search place"
-        value={query.name}
+        value={query}
       />
 
       <div>
@@ -108,6 +106,6 @@ const AddPlaces = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default AddPlaces;
