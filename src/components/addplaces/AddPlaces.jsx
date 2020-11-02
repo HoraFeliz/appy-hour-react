@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getAllPlaces, savePlace } from "../../services/api-client";
+import { getPlaces, savePlace } from "../../services/api-client";
 
 let autoComplete;
 
@@ -72,7 +72,7 @@ async function handlePlaceSelect(updateQuery) {
 
 const AddPlaces = (props) => {
   const [query, setQuery] = useState("");
-  const [places, setPlaces] = useState("");
+  const [places, setPlaces] = useState([]);
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
@@ -80,13 +80,15 @@ const AddPlaces = (props) => {
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&libraries=places`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
+  }, [props]);
 
-    getAllPlaces()
-      .then((res) => {
-        setPlaces(res);
+  useEffect(() => {
+    getPlaces(props.match.params.id)
+      .then((places) => {
+        setPlaces(places);
       })
       .catch((err) => console.log(err));
-  }, []);
+  });
 
   return (
     <div className="search-location-input">
@@ -94,8 +96,16 @@ const AddPlaces = (props) => {
         ref={autoCompleteRef}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Search place"
-        value={query}
+        value={query.name}
       />
+
+      <div>
+        {places.length
+          ? places.map((place, key) => (
+              <div key={key}>{JSON.stringify(place.name)}</div>
+            ))
+          : "Loading places"}
+      </div>
     </div>
   );
 };
