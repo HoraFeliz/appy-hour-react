@@ -14,7 +14,7 @@ import CreateTour from "./components/create-tour/CreateTour";
 import TourDetail from "./components/tours/TourDetail";
 import Login from "./components/login/Login";
 import AddPlaces from "./components/addplaces/AddPlaces";
-import PlaceMap from "./components/places/placemap/PlaceMap";
+import PlacesMap from "./components/places/placesmap/PlacesMap";
 
 function App() {
   return (
@@ -39,6 +39,7 @@ function App() {
           <Route exact path="/tour/places/add" component={Tour} />
           <Route exact path="/tour/add/:id" component={AddPlaces} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/map" component={PlacesMap} />
         </Switch>
       </main>
     </div>
