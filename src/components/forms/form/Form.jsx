@@ -54,12 +54,12 @@ class Form extends React.Component {
               <input
                 required
                 name="description"
-                type="textarea"
+                type="text"
                 value={this.state.description}
                 onChange={this.handleInputChange} />
               <label for="input" className="control-label">Description</label><i className="bar"></i>
             </div>
-            {/* <div className="checkbox">
+            <div className="checkbox">
               <label>
                 <input
                   name="recommended"
@@ -68,7 +68,7 @@ class Form extends React.Component {
                   onChange={this.handleInputChange} />
                 <i className="helper"></i>Is Recommended
                         </label>
-            </div> */}
+            </div>
 
           </form>
           <div className="button-container">
