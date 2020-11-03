@@ -23,17 +23,17 @@ const PlaceId = (props) => {
 
   return (
     <div>
-      <InfoBar back={true} tour={tour} />
-      <div className="appy--place-item">
-        {place && place.geometry ? (
-          <PlaceMap
-            lat={place.geometry.latitude}
-            lng={place.geometry.longitude}
-            name={place.name}
-          />
-        ) : (
+      {place && place.geometry ? (
+        <PlaceMap
+          lat={place.geometry.latitude}
+          lng={place.geometry.longitude}
+          name={place.name}
+        />
+      ) : (
           "Loading map"
         )}
+      <InfoBar back={true} tour={tour} />
+      <div className="appy--place-item">
 
         <ImageCanvas place={true} recommended={true} placeInfo={place} />
         <PlaceInfo place={place} placeInfo={place} />

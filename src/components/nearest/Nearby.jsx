@@ -297,7 +297,7 @@ class Nearby extends React.Component {
     map = new window.google.maps.Map(document.getElementById("map"), {
       center: location,
       zoom: 15,
-      styles: mapStyle,
+      // styles: mapStyle,
     });
 
     // Current Location Marker
@@ -525,11 +525,11 @@ class Nearby extends React.Component {
       <React.Fragment>
         <NearbyMap />
 
-        <NearbyList
+        {/* <NearbyList
           placesDetails={this.state.sortedPlacesDetails}
           handleSort={this.handleSort}
           addPlace={this.addPlace}
-        ></NearbyList>
+        ></NearbyList> */}
       </React.Fragment>
     );
   }
