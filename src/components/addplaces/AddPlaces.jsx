@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getAllPlaces, savePlace } from "../../services/api-client";
+import { getPlaces, savePlace } from "../../services/api-client";
 
 let autoComplete;
 
@@ -54,7 +54,7 @@ function handleScriptLoad(updateQuery, autoCompleteRef) {
 async function handlePlaceSelect(updateQuery) {
   const placeObject = autoComplete.getPlace();
 
-  updateQuery(placeObject);
+  updateQuery(placeObject.name);
   const place = {
     ...placeObject,
     geometry: {
@@ -65,14 +65,16 @@ async function handlePlaceSelect(updateQuery) {
     city: placeObject.address_components[2].long_name,
     tags: placeObject.types,
   };
-  savePlace(place)
+
+  savePlace(place, window.location.href.split("/add/")[1])
     .then((res) => console.log("New place created", res))
     .catch((err) => console.log("Error creating place", err));
 }
 
-function AddPlaces() {
+function AddPlaces(props) {
   const [query, setQuery] = useState("");
-  const [places, setPlaces] = useState("");
+  const [places, setPlaces] = useState({ places: [] });
+
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
@@ -80,13 +82,16 @@ function AddPlaces() {
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&libraries=places`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
-
-    getAllPlaces()
-      .then((res) => {
-        setPlaces(res);
-      })
-      .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getPlaces(props.match.params.id);
+      setPlaces(result);
+    };
+
+    fetchData();
+  }, [props, query]);
 
   return (
     <div className="search-location-input">
@@ -96,12 +101,13 @@ function AddPlaces() {
         placeholder="Search place"
         value={query}
       />
+      <button onClick={() => setQuery("")} className="btn btn-danger">
+        +
+      </button>
 
       <div>
         {places.length
-          ? places.map((place, key) => (
-              <div key={key}>{JSON.stringify(place.name)}</div>
-            ))
+          ? places.map((place, key) => <div key={key}>{place.name}</div>)
           : "Loading places"}
       </div>
     </div>
