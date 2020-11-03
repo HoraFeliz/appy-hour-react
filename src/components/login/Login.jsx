@@ -5,26 +5,26 @@ export default class Login extends Component {
     render() {
         return (
 
-            <div class="login-container">
+            <div className="login-container">
                 <form>
                     <h1>Login</h1>
-                    <div class="form-group">
+                    <div className="form-group">
                         <input type="text" required="required" />
-                        <label for="input" class="control-label">User</label><i class="bar"></i>
+                        <label for="input" className="control-label">User</label><i className="bar"></i>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <input type="password" required="required" />
-                        <label for="input" class="control-label">Password</label><i class="bar"></i>
+                        <label for="input" className="control-label">Password</label><i className="bar"></i>
                     </div>
-                    <div class="checkbox">
+                    <div className="checkbox">
                         <label>
-                            <input type="checkbox" /><i class="helper"></i>Remember
+                            <input type="checkbox" /><i className="helper"></i>Remember
                         </label>
                     </div>
 
                 </form>
-                <div class="button-container">
-                    <button type="button" class="button"><span>Submit</span></button>
+                <div className="button-container">
+                    <button type="button" className="button"><span>Submit</span></button>
                 </div>
             </div>
         )

@@ -45,7 +45,7 @@ class PlaceMap extends React.Component {
       <Map
         containerStyle={this.containerStyle}
         google={this.props.google}
-        zoom={14}
+        zoom={16}
         style={this.mapStyles}
         initialCenter={{ lat: this.props.lat, lng: this.props.lng }}
       >

@@ -38,8 +38,6 @@ class ImageCanvas extends Component {
                         this.props.tour ? this.props.tour[this.props.id].image : null}')`
                 }} >
                 { this.recommended()}
-                {console.log('PlaceInfo:', this.props.placeInfo
-                )}
 
                 < BeerRating place={this.props.place} />
             </div >
