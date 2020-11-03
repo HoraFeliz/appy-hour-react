@@ -77,6 +77,7 @@ async function handlePlaceSelect(updateQuery) {
 function AddPlaces(props) {
   const [query, setQuery] = useState("");
   const [places, setPlaces] = useState({ places: [] });
+  const [toogleMap, setToggleMap] = useState(false);
 
   const autoCompleteRef = useRef(null);
 
@@ -96,6 +97,14 @@ function AddPlaces(props) {
     fetchData();
   }, [props, query]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      setToggleMap(true);
+    };
+
+    fetchData();
+  }, [props, query]);
+
   return (
     <div className="search-location-input">
       <input
@@ -110,25 +119,29 @@ function AddPlaces(props) {
       <div>
         {places.length
           ? places.map((place, key) => (
-            <div>
-              <PlaceMap
-                lat={place.geometry.latitude}
-                lng={place.geometry.longitude}
-                name={place.name}
-                address={place.address}
-                isOpen={Math.random() >= 0.5}
-              />
-              <PlaceListItem
-                key={key}
-                type="num"
-                num={key}
-                recommended={false}
-                place={place}
-                tour={null}
-              />
+              <div>
+                {toogleMap === true ? (
+                  <PlaceMap
+                    lat={place.geometry.latitude}
+                    lng={place.geometry.longitude}
+                    name={place.name}
+                    address={place.address}
+                    isOpen={Math.random() >= 0.5}
+                  />
+                ) : (
+                  ""
+                )}
 
-            </div>
-          ))
+                <PlaceListItem
+                  key={key}
+                  type="num"
+                  num={key}
+                  recommended={false}
+                  place={place}
+                  tour={null}
+                />
+              </div>
+            ))
           : ""}
       </div>
     </div>

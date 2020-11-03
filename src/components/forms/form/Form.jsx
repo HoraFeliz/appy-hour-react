@@ -36,8 +36,6 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-
-
         <div className="login-container">
           <form onSubmit={this.handleSubmit}>
             <h1>Create Tour</h1>
@@ -47,8 +45,10 @@ class Form extends React.Component {
                 name="name"
                 type="text"
                 value={this.state.name}
-                onChange={this.handleInputChange} />
-              <label for="input" className="control-label">Name</label><i className="bar"></i>
+                onChange={this.handleInputChange}
+              />
+              <label className="control-label">Name</label>
+              <i className="bar"></i>
             </div>
             <div className="form-group">
               <input
@@ -56,8 +56,10 @@ class Form extends React.Component {
                 name="description"
                 type="text"
                 value={this.state.description}
-                onChange={this.handleInputChange} />
-              <label for="input" className="control-label">Description</label><i className="bar"></i>
+                onChange={this.handleInputChange}
+              />
+              <label className="control-label">Description</label>
+              <i className="bar"></i>
             </div>
             <div className="checkbox">
               <label>
@@ -65,21 +67,23 @@ class Form extends React.Component {
                   name="recommended"
                   type="checkbox"
                   checked={this.state.recommended}
-                  onChange={this.handleInputChange} />
+                  onChange={this.handleInputChange}
+                />
                 <i className="helper"></i>Is Recommended
-                        </label>
+              </label>
             </div>
             <div className="button-container">
-              <button onClick={this.handleTourCreated} type="submit" className="button"><span>Submit</span></button>
+              <button
+                onClick={this.handleTourCreated}
+                type="submit"
+                className="button"
+              >
+                <span>Submit</span>
+              </button>
             </div>
-
           </form>
         </div>
       </div>
-
-
-
-
     );
   }
 }
