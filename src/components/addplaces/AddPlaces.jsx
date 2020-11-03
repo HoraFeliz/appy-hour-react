@@ -120,7 +120,7 @@ function AddPlaces(props) {
         {places.length
           ? places.map((place, key) => (
               <div>
-                {toogleMap === true ? (
+                {toogleMap && key === places.length - 1 ? (
                   <PlaceMap
                     lat={place.geometry.latitude}
                     lng={place.geometry.longitude}
