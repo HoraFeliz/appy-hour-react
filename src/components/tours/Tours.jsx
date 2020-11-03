@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import TourBarInfo from "./TourBarInfo";
 import AppyButton from "../common/AppyButton";
-import MutipleSlidesPerView from "./MutipleSlidesPerView";
-import { NavLink } from "react-router-dom";
 import { getTours } from "../../services/api-client";
+import RecommendedSlider from "./RecommendedSlider";
+import RegularSlider from "./RegularSlider";
 
 const Tours = () => {
   const [tours, setTours] = useState([]);
@@ -22,14 +22,14 @@ const Tours = () => {
         <AppyButton num={tours.length} info={true} recommended={true} />
         {/* <AppyButton type="map" info={true} recommended={true} /> */}
       </TourBarInfo>
-      <MutipleSlidesPerView recommended={true} brand="recommended" />
+      <RecommendedSlider recommended={true} brand="recommended" />
 
       <TourBarInfo>
         <AppyButton num={tours.length} info={true} />
         {/* <AppyButton type="map" info={true} /> */}
       </TourBarInfo>
 
-      <MutipleSlidesPerView recommended={false} brand="primary-bg" />
+      <RegularSlider recommended={false} brand="primary-bg" />
     </div>
   );
 };

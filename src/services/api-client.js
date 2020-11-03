@@ -8,6 +8,14 @@ export const getTours = () => {
   return http.get("/tour/list").then((response) => response.data);
 };
 
+export const getRecommendedTours = () => {
+  return http.get("/tour/list/recommended").then((response) => response.data);
+};
+
+export const getRegularTours = () => {
+  return http.get("/tour/list/regular").then((response) => response.data);
+};
+
 export const getPlaces = (id) => {
   return http.get(`/places/${id}`).then((response) => response.data);
 };
