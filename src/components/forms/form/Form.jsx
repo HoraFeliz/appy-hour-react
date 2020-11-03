@@ -69,11 +69,11 @@ class Form extends React.Component {
                 <i className="helper"></i>Is Recommended
                         </label>
             </div>
+            <div className="button-container">
+              <button onClick={this.handleTourCreated} type="submit" className="button"><span>Submit</span></button>
+            </div>
 
           </form>
-          <div className="button-container">
-            <button onClick={this.handleTourCreated} type="submit" className="button"><span>Submit</span></button>
-          </div>
         </div>
 
         {/* <form onSubmit={this.handleSubmit}>
