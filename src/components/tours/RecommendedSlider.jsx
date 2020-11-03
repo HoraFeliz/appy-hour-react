@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import Swiper from "react-id-swiper";
 import TourItem from "./TourItem";
 import "swiper/swiper.scss";
-import { getTours } from "../../services/api-client";
+import { getRecommendedTours } from "../../services/api-client";
 import { NavLink } from "react-router-dom";
 
-const MutipleSlidesPerView = (props) => {
-  const [tours, setTours] = useState([]);
+const RecommendedSlider = (props) => {
+  const [recommendedTours, setRecommendedTours] = useState([]);
 
   useEffect(() => {
-    getTours()
+    getRecommendedTours()
       .then((res) => {
-        setTours(res);
+        setRecommendedTours(res);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -36,23 +36,23 @@ const MutipleSlidesPerView = (props) => {
   };
   return (
     <Swiper {...params}>
-      {tours.length
-        ? tours.map((tour, key) => (
-          <div key={key}>
+      {recommendedTours.length
+        ? recommendedTours.map((tour, key) => (
+            <div key={key}>
               <NavLink to={`/tour/${tour._id}`}>
                 <TourItem
                   key={key}
                   id={key}
-                  tour={tours}
+                  tour={recommendedTours}
                   recommended={props.recommended}
                   brand={props.brand}
                   first={key === 0 ? true : false}
                 />
               </NavLink>
-          </div>
-        ))
+            </div>
+          ))
         : "Loading"}
     </Swiper>
   );
 };
-export default MutipleSlidesPerView;
+export default RecommendedSlider;

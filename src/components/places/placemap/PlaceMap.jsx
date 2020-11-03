@@ -9,11 +9,18 @@ class PlaceMap extends React.Component {
   };
 
   onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true,
-    });
+    this.setState(
+      {
+        selectedPlace: {
+          ...props,
+          address: this.props.address,
+          isOpen: this.props.isOpen,
+        },
+        activeMarker: marker,
+        showingInfoWindow: true,
+      },
+      console.log("hola", this.state.selectedPlace)
+    );
 
   onClose = (props) => {
     if (this.state.showingInfoWindow) {
@@ -31,17 +38,13 @@ class PlaceMap extends React.Component {
 
   containerStyle = {
     position: "absolute",
-    width: 'calc(100% - 10px',
-    height: '100%',
-    top: '115px'
-  }
-
-
+    width: "calc(100% - 10px",
+    height: "100%",
+    top: "115px",
+  };
 
   render() {
-    { console.log(this.state.selectedPlace) }
     return (
-
       <Map
         containerStyle={this.containerStyle}
         google={this.props.google}
@@ -65,9 +68,15 @@ class PlaceMap extends React.Component {
           onClose={this.onClose}
         >
           <div>
-            <h1 className="appy--place-item-map-infowindow-title">{this.props.name}</h1>
-            <p className="appy--place-item-map-infowindow-address"><strong>Address:</strong> Address</p>
-            <p className="appy--place-item-map-infowindow-address"><strong>IsOpen:</strong> isOpen</p>
+            <h1 className="appy--place-item-map-infowindow-title">
+              {this.props.name}
+            </h1>
+            <p className="appy--place-item-map-infowindow-address">
+              <strong>Address:</strong> Address
+            </p>
+            <p className="appy--place-item-map-infowindow-address">
+              <strong>IsOpen:</strong> isOpen
+            </p>
           </div>
         </InfoWindow>
       </Map>

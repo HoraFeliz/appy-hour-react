@@ -65,6 +65,7 @@ async function handlePlaceSelect(updateQuery) {
     image: placeObject.photos[0].getUrl(),
     city: placeObject.address_components[2].long_name,
     tags: placeObject.types,
+    placeId: placeObject.place_id,
   };
 
   savePlace(place, window.location.href.split("/add/")[1])
@@ -108,16 +109,16 @@ function AddPlaces(props) {
 
       <div>
         {places.length
-          ? places.map((place, key) =>
-            <PlaceListItem
-              key={key}
-              type="num"
-              num={key}
-              recommended={false}
-              place={place}
-              tour={null}
-            />
-          )
+          ? places.map((place, key) => (
+              <PlaceListItem
+                key={key}
+                type="num"
+                num={key}
+                recommended={false}
+                place={place}
+                tour={null}
+              />
+            ))
           : ""}
       </div>
     </div>
