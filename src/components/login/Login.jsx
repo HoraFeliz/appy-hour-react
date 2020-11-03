@@ -7,6 +7,7 @@ export default class Login extends Component {
 
             <div className="login-container">
                 <form>
+                    {/* <img src="/img/logo-appyhour.svg" alt="Appy Hour Tours" /> */}
                     <h1>Login</h1>
                     <div className="form-group">
                         <input type="text" required="required" />

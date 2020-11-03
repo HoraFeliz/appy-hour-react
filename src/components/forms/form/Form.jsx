@@ -75,51 +75,6 @@ class Form extends React.Component {
 
           </form>
         </div>
-
-        {/* <form onSubmit={this.handleSubmit}>
-          <label>
-            Name
-          <input
-              required
-              name="name"
-              type="text"
-              value={this.state.name}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <br />
-          <label>
-            description
-          <input
-              required
-              name="description"
-              type="text"
-              value={this.state.description}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <br />
-
-          <label>
-            Is Recommended
-          <input
-              name="recommended"
-              type="checkbox"
-              checked={this.state.reocommended}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <br />
-
-          <button
-            onClick={this.handleTourCreated}
-            type="submit"
-            className="btn btn-primary"
-          >
-            Submit
-        </button>
-        </form> */}
-
       </div>
 
 

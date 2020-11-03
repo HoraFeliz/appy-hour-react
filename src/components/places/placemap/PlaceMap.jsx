@@ -72,10 +72,10 @@ class PlaceMap extends React.Component {
               {this.props.name}
             </h1>
             <p className="appy--place-item-map-infowindow-address">
-              <strong>Address:</strong> Address
+              <strong>Address:</strong> {this.state.selectedPlace.address}
             </p>
             <p className="appy--place-item-map-infowindow-address">
-              <strong>IsOpen:</strong> isOpen
+              <strong>Schedule:</strong> {this.state.selectedPlace.isOpen ? <span className="appy--place-item-info-address-open">Open Now</span> : <span className="appy--place-item-info-address-close">Closed</span>}
             </p>
           </div>
         </InfoWindow>
