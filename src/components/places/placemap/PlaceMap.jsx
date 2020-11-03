@@ -46,6 +46,7 @@ class PlaceMap extends React.Component {
   render() {
     return (
       <Map
+        gestureHandling="none"
         containerStyle={this.containerStyle}
         google={this.props.google}
         zoom={16}
@@ -75,7 +76,16 @@ class PlaceMap extends React.Component {
               <strong>Address:</strong> {this.state.selectedPlace.address}
             </p>
             <p className="appy--place-item-map-infowindow-address">
-              <strong>Schedule:</strong> {this.state.selectedPlace.isOpen ? <span className="appy--place-item-info-address-open">Open Now</span> : <span className="appy--place-item-info-address-close">Closed</span>}
+              <strong>Schedule:</strong>{" "}
+              {this.state.selectedPlace.isOpen ? (
+                <span className="appy--place-item-info-address-open">
+                  Open Now
+                </span>
+              ) : (
+                <span className="appy--place-item-info-address-close">
+                  Closed
+                </span>
+              )}
             </p>
           </div>
         </InfoWindow>
