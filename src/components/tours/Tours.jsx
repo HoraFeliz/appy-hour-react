@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
 import TourBarInfo from "./TourBarInfo";
 import AppyButton from "../common/AppyButton";
-import { getTours } from "../../services/api-client";
+import { getRecommendedTours, getRegularTours, getTours } from "../../services/api-client";
 import RecommendedSlider from "./RecommendedSlider";
 import RegularSlider from "./RegularSlider";
 
 const Tours = () => {
-  const [tours, setTours] = useState([]);
+  const [recommendedTours, setRecommendedTours] = useState([]);
+  const [regularTours, setRegularTours] = useState([]);
 
   useEffect(() => {
-    getTours()
+    getRecommendedTours()
       .then((res) => {
-        setTours(res);
+        setRecommendedTours(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    getRegularTours()
+      .then((res) => {
+        setRegularTours(res);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -19,13 +28,13 @@ const Tours = () => {
   return (
     <div>
       <TourBarInfo recommended={true}>
-        <AppyButton num={tours.length} info={true} recommended={true} />
+        <AppyButton num={recommendedTours.length} info={true} recommended={true} />
         {/* <AppyButton type="map" info={true} recommended={true} /> */}
       </TourBarInfo>
       <RecommendedSlider recommended={true} brand="recommended" />
 
       <TourBarInfo>
-        <AppyButton num={tours.length} info={true} />
+        <AppyButton num={regularTours.length} info={true} />
         {/* <AppyButton type="map" info={true} /> */}
       </TourBarInfo>
 
