@@ -65,6 +65,13 @@ class NearbyList extends React.Component {
         <div className="places">
           {placesDetails.map((place, index) => (
             <div className="place" key={index}>
+              <button
+                onClick={() => console.log(place)}
+                className="btn btn-danger"
+              >
+                Add to tour
+              </button>
+              {console.log(place)}
               <img
                 src={
                   place.photos

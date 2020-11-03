@@ -47,8 +47,6 @@ class TourDetail extends Component {
     });
   };
   render() {
-    { console.log('this.state.tour', this.state.tour) }
-    { console.log('this.state.place', this.state) }
     return (
       <div>
         <InfoBar back={true} tour={this.state.tour} place={this.state.places} />
@@ -122,16 +120,16 @@ class TourDetail extends Component {
           <hr />
           {this.state.places.length
             ? this.state.places.map((place, key) => (
-              <PlaceListItem
-                key={key}
-                type="num"
-                num={key}
-                total={this.state.places.length}
-                recommended={false}
-                place={place}
-                tour={this.state.tour}
-              />
-            ))
+                <PlaceListItem
+                  key={key}
+                  type="num"
+                  num={key}
+                  total={this.state.places.length}
+                  recommended={false}
+                  place={place}
+                  tour={this.state.tour}
+                />
+              ))
             : "NO PLACES"}
           <hr style={{ marginBottom: "10px" }} />
           <div className="appy--tours-detail-rating-container">
