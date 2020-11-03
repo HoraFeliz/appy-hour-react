@@ -4,8 +4,21 @@ const http = axios.create({
   baseURL: "http://localhost:3010",
 });
 
+const placesHttp = axios.create({
+  baseURL: "https://maps.googleapis.com/maps/api/place/details/json",
+});
+
 export const getTours = () => {
   return http.get("/tour/list").then((response) => response.data);
+};
+
+export const getIsPlaceOpen = (id) => {
+  return placesHttp
+    .get(`?placeId=${id}&key=${process.env.REACT_APP_MAPS_API_KEY}`)
+    .then((response) => {
+      console.log("RES", response);
+      return response.data;
+    });
 };
 
 export const getRecommendedTours = () => {

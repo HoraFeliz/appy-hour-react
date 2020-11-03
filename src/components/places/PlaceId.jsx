@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import InfoBar from "../infobar/InfoBar";
 import ImageCanvas from "../common/ImageCanvas";
 import PlaceInfo from "./PlaceInfo";
-import { getPlace, getTourById } from "../../services/api-client";
+import {
+  getIsPlaceOpen,
+  getPlace,
+  getTourById,
+} from "../../services/api-client";
 import PlaceMap from "./placemap/PlaceMap";
 
 const PlaceId = (props) => {
   const [place, setPlace] = useState([]);
   const [tour, setTour] = useState([]);
+  // const [isOpen, setIsOpen] = useState("");
 
   useEffect(() => {
     getPlace(props.match.params.id).then((place) => {
@@ -21,6 +26,12 @@ const PlaceId = (props) => {
     });
   }, [props]);
 
+  // useEffect(() => {
+  //   getIsPlaceOpen(place.placeId).then((openNow) => {
+  //     setIsOpen(openNow);
+  //   });
+  // });
+
   return (
     <div>
       {place && place.geometry ? (
@@ -28,13 +39,14 @@ const PlaceId = (props) => {
           lat={place.geometry.latitude}
           lng={place.geometry.longitude}
           name={place.name}
+          address={place.address}
+          isOpen={Math.random() >= 0.5}
         />
       ) : (
-          "Loading map"
-        )}
+        "Loading map"
+      )}
       <InfoBar back={true} tour={tour} />
       <div className="appy--place-item">
-
         <ImageCanvas place={true} placeInfo={place} />
         <PlaceInfo place={place} placeInfo={place} />
       </div>
