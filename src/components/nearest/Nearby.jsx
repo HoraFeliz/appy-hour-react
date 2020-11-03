@@ -14,7 +14,7 @@ class Nearby extends React.Component {
     sortedPlacesDetails: [],
     lat: 40.416775,
     lng: -3.70379,
-    zoom: 17,
+    zoom: 15,
   };
 
   componentDidMount() {

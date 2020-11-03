@@ -36,8 +36,12 @@ class PlaceMap extends React.Component {
     top: '115px'
   }
 
+
+
   render() {
+    { console.log(this.state.selectedPlace) }
     return (
+
       <Map
         containerStyle={this.containerStyle}
         google={this.props.google}
@@ -47,7 +51,7 @@ class PlaceMap extends React.Component {
       >
         <Marker
           icon={{
-            url: "/img/marker-recommended.svg",
+            url: "/img/marker-default.svg",
             anchor: this.props.google.maps.Point(17, 46),
             scaledSize: this.props.google.maps.Size(37, 37),
           }}
@@ -62,7 +66,8 @@ class PlaceMap extends React.Component {
         >
           <div>
             <h1 className="appy--place-item-map-infowindow-title">{this.props.name}</h1>
-            <p className="appy--place-item-map-infowindow-address">Customzar aqui</p>
+            <p className="appy--place-item-map-infowindow-address"><strong>Address:</strong> Address</p>
+            <p className="appy--place-item-map-infowindow-address"><strong>IsOpen:</strong> isOpen</p>
           </div>
         </InfoWindow>
       </Map>

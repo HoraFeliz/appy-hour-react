@@ -35,7 +35,7 @@ const PlaceId = (props) => {
       <InfoBar back={true} tour={tour} />
       <div className="appy--place-item">
 
-        <ImageCanvas place={true} recommended={true} placeInfo={place} />
+        <ImageCanvas place={true} placeInfo={place} />
         <PlaceInfo place={place} placeInfo={place} />
       </div>
     </div>

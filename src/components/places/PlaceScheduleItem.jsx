@@ -4,7 +4,7 @@ const PlaceScheduleItem = (props) => {
     <div className="appy--row">
       {props.id < 4 ? (
         <React.Fragment>
-          <div className="appy--col-6">
+          <div className="appy--col-12">
             <ul className="appy--ul">
               <li>
                 <div className="appy--row">
@@ -14,7 +14,7 @@ const PlaceScheduleItem = (props) => {
                     </div>
                   </div>
                   <div className="appy--col-6">
-                    {props.time.trim() === "Cerrado" ? (
+                    {props.time.trim() === "Closed" ? (
                       <div className="appy--place-item-info-schedule-hours">
                         <span className="appy--place-item-info-address-close">{props.time}</span>
                       </div>
@@ -31,7 +31,7 @@ const PlaceScheduleItem = (props) => {
         </React.Fragment>
       ) : (
           <React.Fragment>
-            <div className="appy--col-6 ">
+            <div className="appy--col-12 ">
               <ul className="appy--ul">
                 <li>
                   <div className="appy--row">

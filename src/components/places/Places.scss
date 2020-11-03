@@ -27,17 +27,21 @@
 
                     &-title {
                         font-size: 14px;
+                        text-align: left;
+                        margin-bottom: 0px;
                     }
 
                     &-address {
                         font-size: 10px;
+                        text-align: left;
+                        margin-bottom: 0px;
                     }
                 }
 
             }
 
             &-info {
-                padding: 10px 10px 15px 10px;
+                padding: 10px 10px 80px 10px;
                 text-align: left;
 
                 &-placename {
