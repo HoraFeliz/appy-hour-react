@@ -108,7 +108,7 @@ function AddPlaces(props) {
       <div>
         {places.length
           ? places.map((place, key) => <div key={key}>{place.name}</div>)
-          : "Loading places"}
+          : ""}
       </div>
     </div>
   );
