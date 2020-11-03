@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getPlaces, savePlace } from "../../services/api-client";
 import PlaceListItem from "../places/PlaceListItem";
+import PlaceMap from "../places/placemap/PlaceMap";
 
 let autoComplete;
 
@@ -106,10 +107,17 @@ function AddPlaces(props) {
       <button onClick={() => setQuery("")} className="btn btn-danger">
         +
       </button>
-
       <div>
         {places.length
           ? places.map((place, key) => (
+            <div>
+              <PlaceMap
+                lat={place.geometry.latitude}
+                lng={place.geometry.longitude}
+                name={place.name}
+                address={place.address}
+                isOpen={Math.random() >= 0.5}
+              />
               <PlaceListItem
                 key={key}
                 type="num"
@@ -118,7 +126,9 @@ function AddPlaces(props) {
                 place={place}
                 tour={null}
               />
-            ))
+
+            </div>
+          ))
           : ""}
       </div>
     </div>
