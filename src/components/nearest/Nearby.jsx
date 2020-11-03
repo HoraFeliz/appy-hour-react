@@ -277,11 +277,11 @@ class Nearby extends React.Component {
       <React.Fragment>
         <NearbyMap />
 
-        {/* <NearbyList
+        <NearbyList
           placesDetails={this.state.sortedPlacesDetails}
           handleSort={this.handleSort}
           addPlace={this.addPlace}
-        ></NearbyList> */}
+        ></NearbyList>
       </React.Fragment>
     );
   }
