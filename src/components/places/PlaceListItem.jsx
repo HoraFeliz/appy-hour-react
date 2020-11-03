@@ -21,7 +21,7 @@ class PlaceListItem extends Component {
     };
 
     return (
-      <NavLink to={`/place/${this.props.place._id}/${this.props.tour._id}`}>
+      <NavLink to={this.props.tour === null ? `/place/${this.props.place._id}` : `/place/${this.props.place._id}/${this.props.tour._id}`}> {/*/${this.props.tour._id}*/}
         <div className="row appy--place-list-item">
           <div className="col-3 appy--place-list-item-img-col">
             <div

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31.661" height="43.711" viewBox="0 0 31.661 43.711">
+  <g id="maps-and-flags" transform="translate(-70.573)">
+    <g id="Grupo_1050" data-name="Grupo 1050" transform="translate(70.573)">
+      <g id="Grupo_1051" data-name="Grupo 1051">
+        <path id="Trazado_1961" data-name="Trazado 1961" d="M86.4,0a15.848,15.848,0,0,0-15.83,15.83c0,10.833,14.167,26.736,14.77,27.408a1.426,1.426,0,0,0,2.121,0c.6-.672,14.77-16.575,14.77-27.408A15.849,15.849,0,0,0,86.4,0Z" transform="translate(-70.573)" fill="#9208ac"/>
+        <circle id="Elipse_151" data-name="Elipse 151" cx="8.5" cy="8.5" r="8.5" transform="translate(7.403 7.856)" fill="#fff"/>
+        <path id="info-solid" d="M.508,10.785h.508V7.113H.508A.508.508,0,0,1,0,6.6V5.39a.508.508,0,0,1,.508-.508H3.356a.508.508,0,0,1,.508.508v5.4h.508a.508.508,0,0,1,.508.508v1.214a.508.508,0,0,1-.508.508H.508A.508.508,0,0,1,0,12.508V11.294A.508.508,0,0,1,.508,10.785ZM2.441,0a1.83,1.83,0,1,0,1.83,1.83A1.83,1.83,0,0,0,2.441,0Z" transform="translate(13.445 10.113)" fill="#9208ac"/>
+      </g>
+    </g>
+  </g>
+</svg>

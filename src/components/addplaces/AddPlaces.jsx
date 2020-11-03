@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getPlaces, savePlace } from "../../services/api-client";
+import PlaceListItem from "../places/PlaceListItem";
 
 let autoComplete;
 
@@ -107,7 +108,16 @@ function AddPlaces(props) {
 
       <div>
         {places.length
-          ? places.map((place, key) => <div key={key}>{place.name}</div>)
+          ? places.map((place, key) =>
+            <PlaceListItem
+              key={key}
+              type="num"
+              num={key}
+              recommended={false}
+              place={place}
+              tour={null}
+            />
+          )
           : ""}
       </div>
     </div>

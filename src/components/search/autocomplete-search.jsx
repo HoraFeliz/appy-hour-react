@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAllPlaces, savePlace } from "../../services/api-client";
+import PlaceInfo from "../places/PlaceInfo";
+import PlaceListItem from "../places/PlaceListItem";
 
 let autoComplete;
 
@@ -100,8 +102,8 @@ function AutocompleteSearch() {
       <div>
         {places.length
           ? places.map((place, key) => (
-              <div key={key}>{JSON.stringify(place.name)}</div>
-            ))
+            <div key={key}>{JSON.stringify(place.name)}</div>
+          ))
           : "Loading places"}
       </div>
     </div>

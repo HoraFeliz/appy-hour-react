@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 
 class PlaceMap extends React.Component {
   state = {
-    showingInfoWindow: false, // Hides or shows the InfoWindow
+    showingInfoWindow: true, // Hides or shows the InfoWindow
     activeMarker: {}, // Shows the active marker upon click
     selectedPlace: {}, // Shows the InfoWindow to the selected place upon a marker
   };
@@ -25,13 +25,25 @@ class PlaceMap extends React.Component {
   };
   mapStyles = {
     width: "100%",
-    height: "50%",
+    height: "240px",
     position: "relative",
   };
 
+  containerStyle = {
+    position: "absolute",
+    width: 'calc(100% - 10px',
+    height: '100%',
+    top: '115px'
+  }
+
+
+
   render() {
+    { console.log(this.state.selectedPlace) }
     return (
+
       <Map
+        containerStyle={this.containerStyle}
         google={this.props.google}
         zoom={14}
         style={this.mapStyles}
@@ -39,7 +51,7 @@ class PlaceMap extends React.Component {
       >
         <Marker
           icon={{
-            url: "/img/marker-recommended.svg",
+            url: "/img/marker-default.svg",
             anchor: this.props.google.maps.Point(17, 46),
             scaledSize: this.props.google.maps.Size(37, 37),
           }}
@@ -53,9 +65,9 @@ class PlaceMap extends React.Component {
           onClose={this.onClose}
         >
           <div>
-            <h1>{this.props.name}</h1>
-            <h4>Hola que tal</h4>
-            <p>Customzar aqui</p>
+            <h1 className="appy--place-item-map-infowindow-title">{this.props.name}</h1>
+            <p className="appy--place-item-map-infowindow-address"><strong>Address:</strong> Address</p>
+            <p className="appy--place-item-map-infowindow-address"><strong>IsOpen:</strong> isOpen</p>
           </div>
         </InfoWindow>
       </Map>

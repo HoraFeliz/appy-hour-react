@@ -19,8 +19,12 @@ class InfoBar extends Component {
                     </div>
                 </NavLink>
                 <div className="appy--buttons-info">
-                    <AppyButton num="6" info={true} />
-                    <AppyButton type="start" info={true} />
+                    {this.props.place &&
+                        <AppyButton num={this.props.place.length} info={true} />
+                    }
+                    {this.props.place &&
+                        <AppyButton type="start" info={true} />
+                    }
                 </div>
             </div>
         );

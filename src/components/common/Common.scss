@@ -57,6 +57,11 @@
         max-width: 83.333333%;
     }
 
+    &col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
     &second-col div.appy--place-item-info-schedule-hours {
         margin-right: 5px;
     }
@@ -230,4 +235,10 @@
 
 .slick-dots li button:before {
     color: $primary-color !important;
+}
+
+// Maps
+
+.gm-style-mtc {
+    display: none;
 }
