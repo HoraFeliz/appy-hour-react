@@ -10,11 +10,7 @@ import {
   faWalking,
 } from "@fortawesome/free-solid-svg-icons";
 import BeerRating from "../common/BeerRating";
-import {
-  getAllPlaces,
-  getPlaces,
-  getTourById,
-} from "../../services/api-client";
+import { getPlaces, getTourById } from "../../services/api-client";
 import AppyButton from "../common/AppyButton";
 
 class TourDetail extends Component {
@@ -30,6 +26,7 @@ class TourDetail extends Component {
   }
   fetchPlaces = () => {
     getPlaces(this.props.match.params.id).then((places) => {
+      localStorage.setItem("places", JSON.stringify(places));
       this.setState({ places });
     });
   };
@@ -41,12 +38,6 @@ class TourDetail extends Component {
     });
   };
 
-  fetchAllPlaces = () => {
-    getAllPlaces().then((places) => {
-      console.log(places);
-      this.setState({ places });
-    });
-  };
   render() {
     return (
       <div>
