@@ -48,7 +48,7 @@ const MapWithADirectionsRenderer = compose(
                   strokeWeight: 6,
                 },
                 markerOptions: {
-                  icon: "/img/logo-mahou.svg",
+                  icon: "/img/marker-default.svg",
                   markerLabel: {
                     text: "Hello",
                     color: "#ffffff",

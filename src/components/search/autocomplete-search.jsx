@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getAllPlaces, savePlace } from "../../services/api-client";
-import PlaceInfo from "../places/PlaceInfo";
-import PlaceListItem from "../places/PlaceListItem";
 
 let autoComplete;
 
