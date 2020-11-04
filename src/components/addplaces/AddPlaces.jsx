@@ -1,5 +1,9 @@
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect, useRef } from "react";
 import { getPlaces, savePlace } from "../../services/api-client";
+import AppyButton from "../common/AppyButton";
+import InfoBar from "../infobar/InfoBar";
 import PlaceListItem from "../places/PlaceListItem";
 import PlaceMap from "../places/placemap/PlaceMap";
 
@@ -106,44 +110,69 @@ function AddPlaces(props) {
   }, [props, query]);
 
   return (
-    <div className="search-location-input">
-      <input
-        ref={autoCompleteRef}
-        onChange={(event) => setQuery(event.target.value)}
-        placeholder="Search place"
-        value={query}
-      />
-      <button onClick={() => setQuery("")} className="btn btn-danger">
-        +
-      </button>
-      <div className="appy--addplace">
-        {places.length
-          ? places.map((place, key) => (
-            <div>
-              {toogleMap && key === places.length - 1 ? (
-                <PlaceMap
-                  lat={place.geometry.latitude}
-                  lng={place.geometry.longitude}
-                  name={place.name}
-                  address={place.address}
-                  isOpen={Math.random() >= 0.5}
-                />
-              ) : (
-                  ""
-                )}
-              <PlaceListItem
-                key={key}
-                type="num"
-                num={key}
-                recommended={false}
-                place={place}
-                tour={null}
-              />
+    <div>
+      <div className="appy--infobar appy--primary-color">
+        <input
+          ref={autoCompleteRef}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search place"
+          value={query}
+          className="appy--search-input appy--search-place"
+        />
+        <div className="appy--buttons-info ">
+          <button className="appy--button appy--button-info appy--primary-color" style={{
+            backgroundColor: 'white', fontWeight: 'bold'
+          }} onClick={() => setQuery("")}>
+            <FontAwesomeIcon className="appy--button-icon" icon={faPlus} style={{ paddingRight: '5px' }} /> Add
+        </button>
+          {places.length ?
+            <div class="appy--tours-barinfo-info">
+              <div class="appy--button null">
+                <p class="appy--button-num"><strong>{places.length}</strong></p>
+              </div>
             </div>
-          ))
-          : ""}
+            :
+            <div class="appy--tours-barinfo-info">
+              <div class="appy--button null">
+                <p class="appy--button-num"><strong>0</strong></p>
+              </div>
+            </div>
+          }
+
+        </div>
+      </div>
+      <PlaceMap default={true} />
+      <div className="search-location-input">
+        <div className="appy--addplace">
+          {places.length
+            ? places.map((place, key) => (
+              <div>
+                {toogleMap && key === places.length - 1 ? (
+                  <PlaceMap
+                    lat={place.geometry.latitude}
+                    lng={place.geometry.longitude}
+                    name={place.name}
+                    address={place.address}
+                    isOpen={Math.random() >= 0.5}
+                  />
+                ) : (
+                    ""
+                  )}
+                <PlaceListItem
+                  key={key}
+                  type="num"
+                  num={key}
+                  recommended={false}
+                  place={place}
+                  tour={null}
+                />
+              </div>
+            ))
+            : ""}
+        </div>
       </div>
     </div>
+
   );
 }
 

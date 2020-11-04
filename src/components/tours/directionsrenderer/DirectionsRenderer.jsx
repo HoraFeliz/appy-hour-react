@@ -17,6 +17,7 @@ const drawingOptions = {
     strokeWeight: 6,
   },
   markerOptions: {
+    icon: "/img/marker-default.svg",
     markerLabel: {
       text: "Hello",
       color: "#ffffff",

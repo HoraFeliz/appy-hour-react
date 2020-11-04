@@ -12,6 +12,7 @@ import {
 import BeerRating from "../common/BeerRating";
 import { getPlaces, getTourById } from "../../services/api-client";
 import AppyButton from "../common/AppyButton";
+import { NavLink } from "react-router-dom";
 
 class TourDetail extends Component {
   state = {
@@ -101,16 +102,16 @@ class TourDetail extends Component {
           <hr />
           {this.state.places.length
             ? this.state.places.map((place, key) => (
-                <PlaceListItem
-                  key={key}
-                  type="num"
-                  num={key}
-                  total={this.state.places.length}
-                  recommended={false}
-                  place={place}
-                  tour={this.state.tour}
-                />
-              ))
+              <PlaceListItem
+                key={key}
+                type="num"
+                num={key}
+                total={this.state.places.length}
+                recommended={false}
+                place={place}
+                tour={this.state.tour}
+              />
+            ))
             : "NO PLACES"}
           <hr style={{ marginBottom: "10px" }} />
           <div className="appy--tours-detail-rating-container">
@@ -136,7 +137,9 @@ class TourDetail extends Component {
                 </div>
                 <div className="appy--col-6">
                   <div className="appy--tours-detail-share-buttons">
-                    <AppyButton type="whatsapp" />
+                    <a href={`whatsapp://send?text=${window.location.href}`}>
+                      <AppyButton type="whatsapp" />
+                    </a>
                     <AppyButton type="facebook" />
                     <AppyButton type="twitter" />
                   </div>

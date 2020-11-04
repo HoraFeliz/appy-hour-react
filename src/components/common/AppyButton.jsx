@@ -6,7 +6,6 @@ import '../infobar/InfoBar'
 class AppyButton extends Component {
     render() {
         return (
-
             <div className={this.props.type ?
                 `appy--button appy--button-info  
                 ${this.props.recommended ? 'recommended-btn' :
