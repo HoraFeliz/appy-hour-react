@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import InfoBar from "../infobar/InfoBar";
-import MapWithADirectionsRenderer from "./directionsrenderer";
+import MapWithADirectionsRenderer from "./directionsrenderer/DirectionsRenderer";
 import PlaceListItem from "../places/PlaceListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -51,15 +51,8 @@ class TourDetail extends Component {
     return (
       <div>
         <InfoBar back={true} tour={this.state.tour} place={this.state.places} />
-        <div className="appy--tours-detail">   
-        {
-          this.state.places && this.state.places.length ?
-          <div places={this.state.places} className="appy--tours-detail-map">
-            <MapWithADirectionsRenderer/>
-          </div>
-          : ""
-        }      
-
+        <div className="appy--tours-detail">
+          <MapWithADirectionsRenderer />
         </div>
 
         {/*  Image Canvas */}

@@ -11,7 +11,6 @@ const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env
 const red = "rgb(200,16,46)";
 const MapWithADirectionsRenderer = compose(
   withProps({
-    places,
     googleMapURL: googleMapsUrl,
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `400px` }} />,
@@ -22,12 +21,14 @@ const MapWithADirectionsRenderer = compose(
   lifecycle({
     componentDidMount() {
       const DirectionsService = new window.google.maps.DirectionsService();
-    console.log('places', places);
       DirectionsService.route(
         {
           origin: new window.google.maps.LatLng(40.4123173, -3.7094858),
-          destination: new window.google.maps.LatLng( 40.4082958, -3.6991266),
-          waypoints: [{location :"40.4106789,-3.7067981", stopover: true},{location:"40.4082958,-3.6991266", stopover: true},],   
+          destination: new window.google.maps.LatLng(40.4082958, -3.6991266),
+          waypoints: [
+            { location: "40.4106789,-3.7067981", stopover: true },
+            { location: "40.4082958,-3.6991266", stopover: true },
+          ],
           travelMode: window.google.maps.TravelMode.WALKING,
           optimizeWaypoints: true,
         },
@@ -52,7 +53,7 @@ const MapWithADirectionsRenderer = compose(
 )((props) => (
   <GoogleMap
     defaultZoom={7}
-    defaultCenter={new window.google.maps.LatLng(40.41831,  -3.70275)}
+    defaultCenter={new window.google.maps.LatLng(40.41831, -3.70275)}
   >
     {props.directions && (
       <DirectionsRenderer
