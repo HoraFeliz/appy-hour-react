@@ -1,4 +1,5 @@
-import React, { Children } from "react";
+import React from "react";
+import { getTourById } from "../../../services/api-client";
 const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,
@@ -9,6 +10,20 @@ const {
 
 const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`;
 const red = "rgb(200,16,46)";
+
+const drawingOptions = {
+  polylineOptions: {
+    strokeColor: red,
+    strokeWeight: 6,
+  },
+  markerOptions: {
+    markerLabel: {
+      text: "Hello",
+      color: "#ffffff",
+      fontSize: "30px",
+    },
+  },
+};
 
 const MapWithADirectionsRenderer = compose(
   withProps({
@@ -21,80 +36,54 @@ const MapWithADirectionsRenderer = compose(
   withGoogleMap,
   lifecycle({
     componentDidMount() {
-      const DirectionsService = new window.google.maps.DirectionsService();
-      let waypts = [];
+      const tourId = window.location.href.split("tour/")[1];
+      let places = [];
+      getTourById(tourId).then((tour) => {
+        places = tour.places;
+        const DirectionsService = new window.google.maps.DirectionsService();
+        let waypts = [];
 
-      let originLat;
-      let originLong;
-      let destinationLong;
-      let destinationLat;
-
-      const newPlaces = this.props.places;
-
-      if (newPlaces.length <= 2) {
-        originLat = 40.41831;
-        originLong = -3.70275;
-        destinationLat = 40.41831;
-        destinationLong = -3.70275;
-      } else {
-        const origin = newPlaces.pop();
-        originLat = origin.geometry.latitude;
-        originLong = origin.geometry.longitude;
-        if (newPlaces.length >= 1) {
-          const destination = newPlaces.shift();
-          destinationLat = destination.geometry.latitude;
-          destinationLong = destination.geometry.longitude;
-        } else {
-          destinationLat = 40.41831;
-          destinationLong = -3.70275;
+        const origin = places.shift();
+        let destination;
+        if (places.length) {
+          destination = places.pop();
         }
-      }
 
-      newPlaces.forEach((place) => {
-        let waypoint = {
-          location: `${place.geometry.latitude}, ${place.geometry.longitude}`,
-          stopover: true,
-        };
-        console.log("waypoints", waypts);
-        waypts.push(waypoint);
-      });
+        places.forEach((place) => {
+          let waypoint = {
+            location: `${place.geometry.latitude}, ${place.geometry.longitude}`,
+            stopover: true,
+          };
+          waypts.push(waypoint);
+        });
 
-      DirectionsService.route(
-        {
-          origin: new window.google.maps.LatLng(originLat, originLong),
-          destination: new window.google.maps.LatLng(
-            destinationLat,
-            destinationLong
-          ),
-          waypoints: waypts,
-          travelMode: window.google.maps.TravelMode.WALKING,
-          optimizeWaypoints: true,
-        },
-        (result, status) => {
-          if (status === window.google.maps.DirectionsStatus.OK) {
-            this.setState({
-              places: this.props.places,
-              directions: result,
-              options: {
-                polylineOptions: {
-                  strokeColor: red,
-                  strokeWeight: 6,
-                },
-                markerOptions: {
-                  icon: "/img/logo-mahou.svg",
-                  markerLabel: {
-                    text: "Hello",
-                    color: "#ffffff",
-                    fontSize: "30px",
-                  },
-                },
-              },
-            });
-          } else {
-            console.error(`error fetching directions ${result}`);
+        DirectionsService.route(
+          {
+            origin: new window.google.maps.LatLng(
+              origin.geometry.latitude,
+              origin.geometry.longitude
+            ),
+            destination: destination
+              ? new window.google.maps.LatLng(
+                  destination.geometry.latitude,
+                  destination.geometry.longitude
+                )
+              : "",
+            waypoints: waypts || "",
+            travelMode: window.google.maps.TravelMode.WALKING,
+            optimizeWaypoints: true,
+          },
+          (result, status) => {
+            if (status === window.google.maps.DirectionsStatus.OK) {
+              this.setState({
+                places: this.props.places,
+                directions: result,
+                options: drawingOptions,
+              });
+            }
           }
-        }
-      );
+        );
+      });
     },
   })
 )((props) => (
@@ -106,7 +95,6 @@ const MapWithADirectionsRenderer = compose(
       <DirectionsRenderer
         options={props.options}
         directions={props.directions}
-        places={props.places}
       />
     )}
   </GoogleMap>
