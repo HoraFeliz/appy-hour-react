@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,
@@ -22,25 +22,58 @@ const MapWithADirectionsRenderer = compose(
   lifecycle({
     componentDidMount() {
       const DirectionsService = new window.google.maps.DirectionsService();
-      //const places = JSON.parse(localStorage.getItem("places"));
+      let waypts = [];
 
-      // const wp1Lat = places[0].geometry.latitude;
-      // const wp1Long = places[0].geometry.longitude;
-      //console.log(`${wp1Lat},${wp1Long}`);
+      let originLat;
+      let originLong;
+      let destinationLong;
+      let destinationLat;
+
+      const newPlaces = this.props.places;
+
+      if (newPlaces.length <= 2) {
+        originLat = 40.41831;
+        originLong = -3.70275;
+        destinationLat = 40.41831;
+        destinationLong = -3.70275;
+      } else {
+        const origin = newPlaces.pop();
+        originLat = origin.geometry.latitude;
+        originLong = origin.geometry.longitude;
+        if (newPlaces.length >= 1) {
+          const destination = newPlaces.shift();
+          destinationLat = destination.geometry.latitude;
+          destinationLong = destination.geometry.longitude;
+        } else {
+          destinationLat = 40.41831;
+          destinationLong = -3.70275;
+        }
+      }
+
+      newPlaces.forEach((place) => {
+        let waypoint = {
+          location: `${place.geometry.latitude}, ${place.geometry.longitude}`,
+          stopover: true,
+        };
+        console.log("waypoints", waypts);
+        waypts.push(waypoint);
+      });
+
       DirectionsService.route(
         {
-          origin: new window.google.maps.LatLng(40.4123173, -3.7094858),
-          destination: new window.google.maps.LatLng(40.4082958, -3.6991266),
-          waypoints: [
-            // { location: `${wp1Lat},${wp1Long}`, stopover: true },
-            { location: "40.4082958,-3.6991266", stopover: true },
-          ],
+          origin: new window.google.maps.LatLng(originLat, originLong),
+          destination: new window.google.maps.LatLng(
+            destinationLat,
+            destinationLong
+          ),
+          waypoints: waypts,
           travelMode: window.google.maps.TravelMode.WALKING,
           optimizeWaypoints: true,
         },
         (result, status) => {
           if (status === window.google.maps.DirectionsStatus.OK) {
             this.setState({
+              places: this.props.places,
               directions: result,
               options: {
                 polylineOptions: {
@@ -73,6 +106,7 @@ const MapWithADirectionsRenderer = compose(
       <DirectionsRenderer
         options={props.options}
         directions={props.directions}
+        places={props.places}
       />
     )}
   </GoogleMap>
