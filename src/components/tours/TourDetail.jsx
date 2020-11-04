@@ -26,35 +26,24 @@ class TourDetail extends Component {
   }
   fetchPlaces = () => {
     getPlaces(this.props.match.params.id).then((places) => {
-      if (localStorage.getItem("places")) {
-        localStorage.clear();
-      }
-      localStorage.setItem("places", JSON.stringify(places));
       this.setState({ places });
     });
   };
 
   fetchTour = () => {
     getTourById(this.props.match.params.id).then((tour) => {
-      console.log(tour);
       this.setState({ tour });
     });
   };
-
-  componentWillUnmount() {
-    console.log("un");
-  }
 
   render() {
     return (
       <div>
         <InfoBar back={true} tour={this.state.tour} place={this.state.places} />
         <div className="appy--tours-detail">
-          <MapWithADirectionsRenderer places={this.state.places} />
+          <MapWithADirectionsRenderer />
         </div>
 
-        {/*  Image Canvas */}
-        {/* <ImageCanvas place={true} recommended={true} /> */}
         <div className="appy--tours-detail-info">
           <h2 className="appy--tours-detail-info-placename">
             {this.state.tour.name}
