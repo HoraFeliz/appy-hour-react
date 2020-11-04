@@ -8,12 +8,12 @@ const PlaceScheduleItem = (props) => {
             <ul className="appy--ul">
               <li>
                 <div className="appy--row">
-                  <div className="appy--col-6">
+                  <div className="appy--col-4">
                     <div className="appy--place-item-info-schedule-days">
                       {props.day}
                     </div>
                   </div>
-                  <div className="appy--col-6">
+                  <div className="appy--col-8">
                     {props.time.trim() === "Closed" ? (
                       <div className="appy--place-item-info-schedule-hours">
                         <span className="appy--place-item-info-address-close">{props.time}</span>
@@ -35,12 +35,12 @@ const PlaceScheduleItem = (props) => {
               <ul className="appy--ul">
                 <li>
                   <div className="appy--row">
-                    <div className="appy--col-6">
+                    <div className="appy--col-4">
                       <div className="appy--place-item-info-schedule-days">
                         {props.day}
                       </div>
                     </div>
-                    <div className="appy--col-6">
+                    <div className="appy--col-8">
                       {props.time.trim() === "Cerrado" ? (
                         <div className="appy--place-item-info-schedule-hours">
                           <span className="appy--place-item-info-address-close">{props.time}</span>

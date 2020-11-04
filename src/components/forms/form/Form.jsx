@@ -36,10 +36,10 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <div className="login-container">
+        <div className="create-style login-container">
           <form onSubmit={this.handleSubmit}>
             <h1>Create Tour</h1>
-            <div className="form-group">
+            <div className="create-style form-group">
               <input
                 required
                 name="name"
@@ -47,10 +47,10 @@ class Form extends React.Component {
                 value={this.state.name}
                 onChange={this.handleInputChange}
               />
-              <label className="control-label">Name</label>
-              <i className="bar"></i>
+              <label className="create-style control-label">Name</label>
+              <i className="create-style bar"></i>
             </div>
-            <div className="form-group">
+            <div className="create-style form-group">
               <input
                 required
                 name="description"
@@ -58,10 +58,10 @@ class Form extends React.Component {
                 value={this.state.description}
                 onChange={this.handleInputChange}
               />
-              <label className="control-label">Description</label>
-              <i className="bar"></i>
+              <label className="create-style control-label">Description</label>
+              <i className="create-style bar"></i>
             </div>
-            <div className="checkbox">
+            <div className="create-style checkbox">
               <label>
                 <input
                   name="recommended"
@@ -69,10 +69,10 @@ class Form extends React.Component {
                   checked={this.state.recommended}
                   onChange={this.handleInputChange}
                 />
-                <i className="helper"></i>Is Recommended
+                <i className="create-style helper"></i>Is Recommended
               </label>
             </div>
-            <div className="button-container">
+            <div className="create-style button-container">
               <button
                 onClick={this.handleTourCreated}
                 type="submit"

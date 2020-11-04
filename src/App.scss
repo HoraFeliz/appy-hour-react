@@ -4,7 +4,9 @@
 @import './components/common/Common.scss';
 @import './components/infobar/InfoBar.scss';
 @import './components/places/Places.scss';
-// @import './components/login/Login.scss';
+@import './components/addplaces/Addplaces.scss';
+@import './components/login/Login.scss';
+@import './components/create-tour/CreateTour.scss';
 
 * {
   outline: none !important;
@@ -50,6 +52,11 @@ a {
 
 .App-main {
   padding: 60px 5px 65px 5px;
+}
+
+.App-main-login {
+  padding: 50px 5px 5px 5px;
+  background-color: $primary-color;
 }
 
 @keyframes App-logo-spin {

@@ -38,7 +38,6 @@ body *::before {
   position: relative;
   max-width: 40rem;
   margin: 1rem auto;
-  background: #fff;
   width: 100%;
   padding: 10px 15px 0;
   border-radius: 1px;
@@ -163,7 +162,7 @@ fieldset {
   left: 50%;
   bottom: -0.0625rem;
   position: absolute;
-  background: $primary-color;
+  background: $white-color;
   -webkit-transition: left 0.28s ease, width 0.28s ease;
   transition: left 0.28s ease, width 0.28s ease;
   z-index: 2;
@@ -202,7 +201,7 @@ fieldset {
 .form-group textarea:valid,
 .form-group textarea.form-file,
 .form-group textarea.has-value {
-  color: #333;
+  color: $white-color;
 }
 
 .form-group select~.control-label,
@@ -215,7 +214,7 @@ fieldset {
 .form-group textarea.form-file~.control-label,
 .form-group textarea.has-value~.control-label {
   font-size: 0.8rem;
-  color: gray;
+  color: $white-color;
   top: -1rem;
   left: 0;
 }
@@ -229,7 +228,7 @@ fieldset {
 .form-group select:focus~.control-label,
 .form-group input:focus~.control-label,
 .form-group textarea:focus~.control-label {
-  color: $primary-color;
+  color: $white-color;
 }
 
 .form-group select:focus~.bar::before,
@@ -337,7 +336,7 @@ fieldset {
   position: absolute;
   height: 0;
   width: 0.2rem;
-  background-color: $primary-color;
+  background-color: $white-color;
   display: block;
   -webkit-transform-origin: left top;
   transform-origin: left top;
@@ -353,7 +352,7 @@ fieldset {
   left: 0.38rem;
   -webkit-transform: rotate(-135deg);
   transform: rotate(-135deg);
-  box-shadow: 0 0 0 0.0625rem #fff;
+  // box-shadow: 0 0 0 0.0625rem #fff;
 }
 
 .checkbox .helper::after {
@@ -364,11 +363,11 @@ fieldset {
 }
 
 .checkbox label:hover .helper {
-  color: $primary-color;
+  color: $white-color;
 }
 
 .checkbox input:checked~.helper {
-  color: $primary-color;
+  color: $white-color;
 }
 
 .checkbox input:checked~.helper::after,
@@ -395,7 +394,7 @@ fieldset {
 
 .has-error .legend.legend,
 .has-error.form-group .control-label.control-label {
-  color: $primary-color;
+  color: $white-color;
 }
 
 .has-error.form-group .form-help,
@@ -406,11 +405,11 @@ fieldset {
 .has-error.radio .helper,
 .has-error.form-radio .form-help,
 .has-error.form-radio .helper {
-  color: $primary-color;
+  color: $white-color;
 }
 
 .has-error .bar::before {
-  background: $primary-color;
+  background: $white-color;
   left: 0;
   width: 100%;
 }
@@ -420,7 +419,7 @@ fieldset {
   background: currentColor;
   border: 1px solid currentColor;
   font-size: 1.1rem;
-  color: $primary-color;
+  color: $white-color;
   margin: 2rem 0;
   padding: 0.75rem 3rem;
   cursor: pointer;
@@ -431,7 +430,7 @@ fieldset {
 }
 
 .button span {
-  color: #fff;
+  color: $primary-color;
   position: relative;
   z-index: 1;
 }
@@ -454,7 +453,7 @@ fieldset {
 }
 
 .button:hover {
-  color: $text-open;
+  color: $white-color;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
 
@@ -467,6 +466,7 @@ fieldset {
   -webkit-transform: translate(-50%, -50%) scale(1);
   transform: translate(-50%, -50%) scale(1);
   opacity: 0;
+  color: $white-color;
 }
 
 .button:focus {

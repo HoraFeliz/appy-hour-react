@@ -15,6 +15,8 @@ import TourDetail from "./components/tours/TourDetail";
 import Login from "./components/login/Login";
 import AddPlaces from "./components/addplaces/AddPlaces";
 import Nearby from "./components/nearest/Nearby";
+import LoginLayout from "./components/layouts/LoginLayout.tsx";
+import DefaultLayout from "./components/layouts/DefaultLayout.tsx";
 
 function App() {
   return (
@@ -24,8 +26,13 @@ function App() {
         <NavbarMenu />
         <FooterNavbar />
       </header>
-      <main className="App-main">
-        <Switch>
+      <Switch>
+        <Route path={['/login']}>
+          <LoginLayout>
+            <Route path='/login' component={Login} />
+          </LoginLayout>
+        </Route>
+        <DefaultLayout>
           <Route exact path="/" component={Tours}></Route>
           <Route exact path="/place" component={PlaceId}></Route>
           <Route exact path="/place/:id/:tour" component={PlaceId}></Route>
@@ -38,10 +45,10 @@ function App() {
           <Route exact path="/tour/:id" component={TourDetail} />
           <Route exact path="/tour/places/add" component={Tour} />
           <Route exact path="/tour/add/:id" component={AddPlaces} />
-          <Route exact path="/login" component={Login} />
           <Route exact path="/nearby" component={Nearby} />
-        </Switch>
-      </main>
+        </DefaultLayout>
+      </Switch>
+
     </div>
   );
 }

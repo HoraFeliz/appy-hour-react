@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './Login.scss'
 
 export default class Login extends Component {
     render() {
@@ -7,8 +6,8 @@ export default class Login extends Component {
 
             <div className="login-container">
                 <form>
-                    {/* <img src="/img/logo-appyhour.svg" alt="Appy Hour Tours" /> */}
-                    <h1>Login</h1>
+                    <img src="/img/logo-appyhour-2.svg" alt="Appy Hour Tours" />
+                    {/* <h1>Login</h1> */}
                     <div className="form-group">
                         <input type="text" required="required" />
                         <label for="input" className="control-label">User</label><i className="bar"></i>
@@ -19,7 +18,7 @@ export default class Login extends Component {
                     </div>
                     <div className="checkbox">
                         <label>
-                            <input type="checkbox" /><i className="helper"></i>Remember
+                            <input type="checkbox" /><i className="helper"></i><span className="appy--white-color"> Remember</span>
                         </label>
                     </div>
 

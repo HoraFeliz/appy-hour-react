@@ -116,32 +116,31 @@ function AddPlaces(props) {
       <button onClick={() => setQuery("")} className="btn btn-danger">
         +
       </button>
-      <div>
+      <div className="appy--addplace">
         {places.length
           ? places.map((place, key) => (
-              <div>
-                {toogleMap && key === places.length - 1 ? (
-                  <PlaceMap
-                    lat={place.geometry.latitude}
-                    lng={place.geometry.longitude}
-                    name={place.name}
-                    address={place.address}
-                    isOpen={Math.random() >= 0.5}
-                  />
-                ) : (
+            <div>
+              {toogleMap && key === places.length - 1 ? (
+                <PlaceMap
+                  lat={place.geometry.latitude}
+                  lng={place.geometry.longitude}
+                  name={place.name}
+                  address={place.address}
+                  isOpen={Math.random() >= 0.5}
+                />
+              ) : (
                   ""
                 )}
-
-                <PlaceListItem
-                  key={key}
-                  type="num"
-                  num={key}
-                  recommended={false}
-                  place={place}
-                  tour={null}
-                />
-              </div>
-            ))
+              <PlaceListItem
+                key={key}
+                type="num"
+                num={key}
+                recommended={false}
+                place={place}
+                tour={null}
+              />
+            </div>
+          ))
           : ""}
       </div>
     </div>
