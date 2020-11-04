@@ -19,7 +19,6 @@ class PlaceMap extends React.Component {
         activeMarker: marker,
         showingInfoWindow: true,
       },
-      console.log("hola", this.state.selectedPlace)
     );
 
   onClose = (props) => {

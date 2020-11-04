@@ -9,12 +9,26 @@ const {
 } = require("react-google-maps");
 
 const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`;
-const red = "rgb(200,16,46)";
+const red = "#C8102E";
+const lineSymbol = {
+  path: "M 1,0 1,0",
+  strokeOpacity: 1,
+  scale: 1,
+  strokeWeight: 5,
+};
 
 const drawingOptions = {
   polylineOptions: {
     strokeColor: red,
-    strokeWeight: 6,
+    strokeWeight: 3,
+    strokeOpacity: 0,
+    icons: [
+      {
+        icon: lineSymbol,
+        offset: "1",
+        repeat: "10px",
+      },
+    ],
   },
   markerOptions: {
     icon: "/img/marker-default.svg",
@@ -66,9 +80,9 @@ const MapWithADirectionsRenderer = compose(
             ),
             destination: destination
               ? new window.google.maps.LatLng(
-                  destination.geometry.latitude,
-                  destination.geometry.longitude
-                )
+                destination.geometry.latitude,
+                destination.geometry.longitude
+              )
               : "",
             waypoints: waypts || "",
             travelMode: window.google.maps.TravelMode.WALKING,
