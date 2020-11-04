@@ -18,6 +18,12 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 .App {
   text-align: center;
   min-height: 100vh;
@@ -57,6 +63,8 @@ a {
 .App-main-login {
   padding: 50px 5px 5px 5px;
   background-color: $primary-color;
+  min-height: 100vh;
+  display: flex;
 }
 
 @keyframes App-logo-spin {

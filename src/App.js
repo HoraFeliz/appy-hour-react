@@ -21,11 +21,6 @@ import DefaultLayout from "./components/layouts/DefaultLayout.tsx";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Navbar />
-        <NavbarMenu />
-        <FooterNavbar />
-      </header>
       <Switch>
         <Route path={['/login']}>
           <LoginLayout>
