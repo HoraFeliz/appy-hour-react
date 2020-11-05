@@ -6,174 +6,174 @@ import AppyButton from "../common/AppyButton";
 import InfoBar from "../infobar/InfoBar";
 import PlaceListItem from "../places/PlaceListItem";
 import PlaceMap from "../places/placemap/PlaceMap";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+  getDetails,
+} from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
+import { GoogleApiWrapper } from "google-maps-react";
 
-let autoComplete;
+const PlacesAutocomplete = (props) => {
+  const [places, setPlaces] = useState([]);
+  const [toogleMap, setToggleMap] = useState(false);
+  const [query, setQuery] = useState(false);
 
-const loadScript = (url, callback) => {
-  let script = document.createElement("script");
-  script.type = "text/javascript";
-
-  if (script.readyState) {
-    script.onreadystatechange = function () {
-      if (script.readyState === "loaded" || script.readyState === "complete") {
-        script.onreadystatechange = null;
-        callback();
-      }
+  useEffect(() => {
+    const fetchData = async () => {
+      const placesFromApi = await getPlaces(props.match.params.id);
+      setPlaces(placesFromApi);
     };
-  } else {
-    script.onload = () => callback();
-  }
+    fetchData();
+  }, [toogleMap, props]);
+  // const fetchData = async () => {
+  //   const placesFromApi = await getPlaces(props.match.params.id);
+  //   setPlaces(placesFromApi);
+  // };
 
-  script.src = url;
-  document.getElementsByTagName("head")[0].appendChild(script);
-};
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setToggleMap((prevState) => !prevState);
+  //   };
 
-function handleScriptLoad(updateQuery, autoCompleteRef) {
-  const completeFields = [
-    "address_components",
-    "place_id",
-    "geometry",
-    "icon",
-    "name",
-    "photos",
-    "types",
-    "formatted_address",
-    "name",
-    "rating",
-    "formatted_phone_number",
-    "reviews",
-    "website",
-    "opening_hours",
-    "price_level",
-    "types",
-  ];
-  autoComplete = new window.google.maps.places.Autocomplete(
-    autoCompleteRef.current,
-    { types: ["establishment"], componentRestrictions: { country: "es" } }
-  );
-  autoComplete.setFields(completeFields);
-  autoComplete.addListener("place_changed", () =>
-    handlePlaceSelect(updateQuery)
-  );
-}
-
-async function handlePlaceSelect(updateQuery) {
-  const placeObject = autoComplete.getPlace();
-
-  updateQuery(placeObject.name);
-  const place = {
-    ...placeObject,
-    geometry: {
-      longitude: placeObject.geometry.location.lng(),
-      latitude: placeObject.geometry.location.lat(),
+  //   fetchData();
+  // }, [places]);
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      /* Define search scope here */
     },
-    image: placeObject.photos[0].getUrl(),
-    city: placeObject.address_components[2].long_name,
-    tags: placeObject.types,
-    placeId: placeObject.place_id,
+    debounce: 300,
+  });
+  const ref = useOnclickOutside(() => {
+    // When user clicks outside of the component, we can dismiss
+    // the searched suggestions by calling this method
+    clearSuggestions();
+  });
+
+  const handleInput = (e) => {
+    // Update the keyword of the input element
+    setValue(e.target.value);
   };
 
-  savePlace(place, window.location.href.split("/add/")[1])
-    .then((res) => console.log("New place created", res))
-    .catch((err) => console.log("Error creating place", err));
-}
+  const handleSelect = ({ description }) => () => {
+    // When user selects a place, we can replace the keyword without request data from API
+    // by setting the second parameter to "false"
+    setValue(description, false);
+    clearSuggestions();
 
-function AddPlaces(props) {
-  const [query, setQuery] = useState("");
-  const [places, setPlaces] = useState({ places: [] });
-  const [toogleMap, setToggleMap] = useState(false);
+    // Get latitude and longitude via utility functions
+    getGeocode({ address: description })
+      .then((results) => getDetails(results[0]))
+      .then((data) => {
+        console.log("📍 Coordinates: ", data);
+        const place = {
+          ...data,
+          geometry: {
+            longitude: data.geometry.location.lng(),
+            latitude: data.geometry.location.lat(),
+          },
+          image: data.photos[0].getUrl(),
+          city: data.address_components[2].long_name,
+          tags: data.types,
+          placeId: data.place_id,
+        };
+        savePlace(place, window.location.href.split("/add/")[1])
+          .then((res) => console.log("New place created", res))
+          .catch((err) => console.log("Error creating place", err));
 
-  const autoCompleteRef = useRef(null);
+        setToggleMap((prevState) => !prevState);
 
-  useEffect(() => {
-    loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&libraries=places`,
-      () => handleScriptLoad(setQuery, autoCompleteRef)
-    );
-  }, []);
+        setValue("");
+      })
+      .catch((error) => {
+        console.log("😱 Error: ", error);
+      });
+  };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getPlaces(props.match.params.id);
-      setPlaces(result);
-    };
+  const renderSuggestions = () =>
+    data.map((suggestion) => {
+      const {
+        id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
 
-    fetchData();
-  }, [props, query]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setToggleMap(true);
-    };
-
-    fetchData();
-  }, [props, query]);
+      return (
+        <li key={id} onClick={handleSelect(suggestion)}>
+          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        </li>
+      );
+    });
 
   return (
-    <div>
-      <div className="appy--infobar appy--primary-color">
+    <React.Fragment>
+      <div ref={ref}>
         <input
-          ref={autoCompleteRef}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search place"
-          value={query}
-          className="appy--search-input appy--search-place"
+          value={value}
+          onChange={handleInput}
+          disabled={!ready}
+          placeholder="Where are you going?"
         />
-        <div className="appy--buttons-info ">
-          <button className="appy--button appy--button-info appy--primary-color" style={{
-            backgroundColor: 'white', fontWeight: 'bold'
-          }} onClick={() => setQuery("")}>
-            <FontAwesomeIcon className="appy--button-icon" icon={faPlus} style={{ paddingRight: '5px' }} /> Add
-        </button>
-          {places.length ?
-            <div class="appy--tours-barinfo-info">
-              <div class="appy--button null">
-                <p class="appy--button-num"><strong>{places.length}</strong></p>
-              </div>
-            </div>
-            :
-            <div class="appy--tours-barinfo-info">
-              <div class="appy--button null">
-                <p class="appy--button-num"><strong>0</strong></p>
-              </div>
-            </div>
-          }
-
-        </div>
+        {/* We can use the "status" to decide whether we should display the dropdown or not */}
+        {status === "OK" && <ul>{renderSuggestions()}</ul>}
       </div>
-      <PlaceMap default={true} />
+
+      {places.length ? (
+        <div class="appy--tours-barinfo-info">
+          <div class="appy--button null">
+            <p class="appy--button-num">
+              <strong>{places.length}</strong>
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div class="appy--tours-barinfo-info">
+          <div class="appy--button null">
+            <p class="appy--button-num">
+              <strong>0</strong>
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="search-location-input">
         <div className="appy--addplace">
           {places.length
             ? places.map((place, key) => (
-              <div>
-                {toogleMap && key === places.length - 1 ? (
-                  <PlaceMap
-                    lat={place.geometry.latitude}
-                    lng={place.geometry.longitude}
-                    name={place.name}
-                    address={place.address}
-                    isOpen={Math.random() >= 0.5}
-                  />
-                ) : (
+                <div>
+                  {key === places.length - 1 ? (
+                    <PlaceMap
+                      lat={place.geometry.latitude}
+                      lng={place.geometry.longitude}
+                      name={place.name}
+                      address={place.address}
+                      isOpen={Math.random() >= 0.5}
+                    />
+                  ) : (
                     ""
                   )}
-                <PlaceListItem
-                  key={key}
-                  type="num"
-                  num={key}
-                  recommended={false}
-                  place={place}
-                  tour={null}
-                />
-              </div>
-            ))
+                  <PlaceListItem
+                    key={key}
+                    type="num"
+                    num={key}
+                    recommended={false}
+                    place={place}
+                    tour={null}
+                  />
+                </div>
+              ))
             : ""}
         </div>
       </div>
-    </div>
-
+    </React.Fragment>
   );
-}
+};
 
-export default AddPlaces;
+export default GoogleApiWrapper({
+  apiKey: `${process.env.REACT_APP_MAPS_API_KEY}`,
+})(PlacesAutocomplete);
