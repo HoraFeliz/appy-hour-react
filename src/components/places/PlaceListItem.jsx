@@ -157,11 +157,12 @@ class PlaceListItem extends Component {
                         </p>
                       )}
                     </div>
+
                     <div className="appy--col-7 appy--place-list-item-time">
                       <div className="appy--place-list-item-time-info">
                         <FontAwesomeIcon icon={faWalking} />
                         <h3 className="appy--place-list-item-time-title">
-                          7 Min.
+                          {this.props.directions?.duration.text}
                         </h3>
                       </div>
                       <hr className="appy--place-list-item-time-hr" />
@@ -172,7 +173,7 @@ class PlaceListItem extends Component {
                             className="appy--col-5 appy--place-list-item-schedule-price-schedule-info"
                             style={{ color: "#707070" }}
                           >
-                            300 m.
+                            {this.props.directions?.distance.text}
                           </div>
                         </div>
                       </div>
