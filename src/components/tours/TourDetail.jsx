@@ -22,13 +22,11 @@ class TourDetail extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
     this.fetchPlaces();
     this.fetchTour();
   }
 
   calculateDistance = (...places) => {
-    debugger;
     const service = new window.google.maps.DistanceMatrixService();
 
     const addresOrigin = [...places].pop();
