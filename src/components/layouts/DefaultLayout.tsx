@@ -1,14 +1,15 @@
 import React from 'react';
-import FooterNavbarContainer from '../navbar/FooterNavbarContainer';
-import Navbar from '../navbar/Navbar';
-import NavbarMenu from '../navbar/NavbarMenu';
+import FooterNavbar from '../navigation/FooterNavbar';
+import Navbar from '../navigation/Navbar';
+import NavbarMenu from '../navigation/NavbarMenu';
+
 
 const DefaultLayout: React.FC = ({ children }) => (
     <div>
         <header className="App-header">
             <Navbar />
             <NavbarMenu />
-            <FooterNavbarContainer />
+            <FooterNavbar />
         </header>
         <main className="App-main">
             {children}
