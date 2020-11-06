@@ -12,7 +12,6 @@ import {
 import BeerRating from "../common/BeerRating";
 import { getPlaces, getTourById } from "../../services/api-client";
 import AppyButton from "../common/AppyButton";
-import { NavLink } from "react-router-dom";
 
 class TourDetail extends Component {
   state = {
@@ -89,7 +88,6 @@ class TourDetail extends Component {
           <MapWithADirectionsRenderer />
         </div>
 
-        <div>{JSON.stringify(this.state.directions)}</div>
         <div className="appy--tours-detail-info">
           <h2 className="appy--tours-detail-info-placename">
             {this.state.tour.name}
@@ -154,6 +152,7 @@ class TourDetail extends Component {
                   total={this.state.places.length}
                   recommended={false}
                   place={place}
+                  directions={this.state.directions[key]}
                   tour={this.state.tour}
                 />
               ))

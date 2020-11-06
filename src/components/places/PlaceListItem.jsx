@@ -1,9 +1,13 @@
-import { faMapMarkerAlt, faStar, faWalking } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AppyButton from '../common/AppyButton';
-import React, { Component } from 'react';
-import Price from '../common/Price';
-import { textLength } from '../../services/textLength'
+import {
+  faMapMarkerAlt,
+  faStar,
+  faWalking,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AppyButton from "../common/AppyButton";
+import React, { Component } from "react";
+import Price from "../common/Price";
+import { textLength } from "../../services/textLength";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -20,18 +24,24 @@ class PlaceListItem extends Component {
       arrows: false,
     };
 
-
-    console.log(this.props.place)
+    console.log(this.props.directions);
 
     return (
-      <NavLink to={this.props.tour === null ? `/place/${this.props.place._id}` : `/place/${this.props.place._id}/${this.props.tour._id}`}> {/*/${this.props.tour._id}*/}
+      <NavLink
+        to={
+          this.props.tour === null
+            ? `/place/${this.props.place._id}`
+            : `/place/${this.props.place._id}/${this.props.tour._id}`
+        }
+      >
         <div className="row appy--place-list-item">
           <div className="col-3 appy--place-list-item-img-col">
             <div
               className="appy--place-list-item-img"
               style={{
-                backgroundImage: `url("${this.props.place ? this.props.place.image : "Loading"
-                  }")`,
+                backgroundImage: `url("${
+                  this.props.place ? this.props.place.image : "Loading"
+                }")`,
               }}
             >
               {this.props.recommended && (
@@ -40,8 +50,9 @@ class PlaceListItem extends Component {
                 </div>
               )}
               <div
-                className={`appy--place-list-item-rating ${this.props.recommended && "recommended"
-                  }`}
+                className={`appy--place-list-item-rating ${
+                  this.props.recommended && "recommended"
+                }`}
                 style={{ borderRadius: "0px 0px 0px 4px" }}
               >
                 <span className="appy--place-list-item-rating-num">
@@ -52,36 +63,36 @@ class PlaceListItem extends Component {
                 ) : this.props.place.rating >= 0.5 ? (
                   <img src="/img/star-white-half.svg" alt="1" />
                 ) : (
-                      <img src="/img/star-off.svg" alt="1" />
-                    )}
+                  <img src="/img/star-off.svg" alt="1" />
+                )}
                 {this.props.place.rating >= 2 ? (
                   <img src="/img/star-white-on.svg" alt="1" />
                 ) : this.props.place.rating >= 1.5 ? (
                   <img src="/img/star-white-half.svg" alt="1" />
                 ) : (
-                      <img src="/img/star-off.svg" alt="2" />
-                    )}
+                  <img src="/img/star-off.svg" alt="2" />
+                )}
                 {this.props.place.rating >= 3 ? (
                   <img src="/img/star-white-on.svg" alt="1" />
                 ) : this.props.place.rating >= 2.5 ? (
                   <img src="/img/star-white-half.svg" alt="1" />
                 ) : (
-                      <img src="/img/star-off.svg" alt="3" />
-                    )}
+                  <img src="/img/star-off.svg" alt="3" />
+                )}
                 {this.props.place.rating >= 4 ? (
                   <img src="/img/star-white-on.svg" alt="1" />
                 ) : this.props.place.rating >= 3.5 ? (
                   <img src="/img/star-white-half.svg" alt="1" />
                 ) : (
-                      <img src="/img/star-off.svg" alt="4" />
-                    )}
+                  <img src="/img/star-off.svg" alt="4" />
+                )}
                 {this.props.place.rating >= 5 ? (
                   <img src="/img/star-white-on.svg" alt="1" />
                 ) : this.props.place.rating >= 4.5 ? (
                   <img src="/img/star-white-half.svg" alt="1" />
                 ) : (
-                      <img src="/img/star-off.svg" alt="5" />
-                    )}
+                  <img src="/img/star-off.svg" alt="5" />
+                )}
               </div>
             </div>
           </div>
@@ -103,12 +114,7 @@ class PlaceListItem extends Component {
                         : "Loading"}
                     </p>
                     <div className="row appy--place-list-item-schedule-price">
-                      {/* <div className="appy--col-1 appy--place-list-item-schedule-price-open-icon">
-                                            <FontAwesomeIcon icon={faMapMarkerAlt} />
-                                        </div>
-                                        <div className="appy--col-5 appy--place-list-item-schedule-price-schedule-info">{this.props.place ? textLength(this.props.place.city, 6, 10, 15) : 'Loading'}</div> */}
                       <div className="appy--col-2 appy--place-list-item-schedule-price-price-icon">
-                        {/* <img src="/img/price-icon.svg" alt="Price" /> */}
                         <span>Price: </span>
                       </div>
                       <div className="appy--col-5 appy--place-list-item-schedule-price-price-info">
@@ -128,10 +134,10 @@ class PlaceListItem extends Component {
                         {this.props ? this.props.num + 1 : "Loading"}
                       </p>
                     ) : (
-                        <p className="appy--place-list-item-position-num">
-                          <AppyButton type="delete" />
-                        </p>
-                      )}
+                      <p className="appy--place-list-item-position-num">
+                        <AppyButton type="delete" />
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -146,10 +152,10 @@ class PlaceListItem extends Component {
                           {this.props ? this.props.num + 1 : "Loading"}
                         </p>
                       ) : (
-                          <p className="appy--place-list-item-position-num">
-                            <AppyButton type="delete" />
-                          </p>
-                        )}
+                        <p className="appy--place-list-item-position-num">
+                          <AppyButton type="delete" />
+                        </p>
+                      )}
                     </div>
                     <div className="appy--col-7 appy--place-list-item-time">
                       <div className="appy--place-list-item-time-info">
@@ -158,7 +164,6 @@ class PlaceListItem extends Component {
                           7 Min.
                         </h3>
                       </div>
-                      {/* <p className="appy--place-list-item-info-description">{this.props.place ? this.props.place.address : 'Loading'}</p> */}
                       <hr className="appy--place-list-item-time-hr" />
                       <div className="row appy--place-list-item-schedule-price">
                         <div className="col-12 appy--place-list-item-schedule-price-open-icon">
@@ -181,10 +186,10 @@ class PlaceListItem extends Component {
                           {this.props ? this.props.num + 2 : "Loading"}
                         </p>
                       ) : (
-                          <p className="appy--place-list-item-position-num">
-                            <AppyButton type="delete" />
-                          </p>
-                        )}
+                        <p className="appy--place-list-item-position-num">
+                          <AppyButton type="delete" />
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
