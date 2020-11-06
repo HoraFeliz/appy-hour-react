@@ -24,8 +24,6 @@ class PlaceListItem extends Component {
       arrows: false,
     };
 
-    console.log(this.props.directions);
-
     return (
       <NavLink
         to={

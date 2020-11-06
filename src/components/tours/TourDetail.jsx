@@ -18,6 +18,8 @@ class TourDetail extends Component {
     places: [],
     tour: {},
     directions: [],
+    totalDistance: "",
+    totalDuration: "",
   };
 
   componentDidMount() {
@@ -30,7 +32,6 @@ class TourDetail extends Component {
 
     const addresOrigin = [...places].pop();
     const origin2 = addresOrigin.address;
-    console.log("origin2", origin2);
     const restOfPlaces = [...places];
 
     let destinations = [];
@@ -48,19 +49,34 @@ class TourDetail extends Component {
         unitSystem: window.google.maps.UnitSystem.METRIC,
       },
       (response, status) => {
-        console.log("res", response);
         if (status !== "OK") {
           console.log("Error was: " + status);
         } else {
           const originList = response.originAddresses;
-          console.log("origin", originList);
           for (let i = 0; i < originList.length; i++) {
             const results = response.rows[i].elements;
-            console.log(`Direcciones tramo ${i}: ${JSON.stringify(results)}`);
             this.setState({ directions: [...results] });
-            for (let j = 0; j < results.length; j++) {
-              console.log(`Direcciones tramo ${i}: ${JSON.stringify(results)}`);
-            }
+
+            const directions = this.state.directions;
+
+            // Removes last item from the directions arr
+            directions.pop();
+
+            let totalDistanceArr = [];
+            directions.forEach((direction) => {
+              totalDistanceArr.push(direction.distance.value);
+            });
+
+            const totalDistance = totalDistanceArr.reduce((a, b) => a + b, 0);
+            this.setState({ totalDistance: totalDistance });
+
+            let totalDurationArr = [];
+            directions.forEach((direction) => {
+              totalDurationArr.push(direction.duration.value);
+            });
+
+            const totalDuration = totalDurationArr.reduce((a, b) => a + b, 0);
+            this.setState({ totalDuration: totalDuration });
           }
         }
       }
@@ -116,7 +132,7 @@ class TourDetail extends Component {
                 className="appy--tours-item-distancebar-text"
                 style={{ color: "#707070" }}
               >
-                12 Km.
+                {(this.state.totalDistance / 1000).toFixed(2)} Km
               </div>
             </div>
             <div className="appy--tours-item-distancebar-distante-tour">
@@ -127,7 +143,7 @@ class TourDetail extends Component {
                 className="appy--tours-item-distancebar-text"
                 style={{ color: "#707070" }}
               >
-                30 Min.
+                {(this.state.totalDuration / 60).toFixed(2)} min
               </div>
             </div>
             <div className="appy--tours-item-distancebar-distante-nearby">
