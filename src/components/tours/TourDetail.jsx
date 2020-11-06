@@ -18,6 +18,7 @@ class TourDetail extends Component {
   state = {
     places: [],
     tour: {},
+    directions: [],
   };
 
   componentDidMount() {
@@ -25,8 +26,52 @@ class TourDetail extends Component {
     this.fetchPlaces();
     this.fetchTour();
   }
+
+  calculateDistance = (...places) => {
+    debugger;
+    const service = new window.google.maps.DistanceMatrixService();
+
+    const addresOrigin = [...places].pop();
+    const origin2 = addresOrigin.address;
+    console.log("origin2", origin2);
+    const restOfPlaces = [...places];
+
+    let destinations = [];
+    restOfPlaces.forEach((place) => {
+      destinations.push(place.address);
+    });
+
+    console.log("destinations", destinations);
+
+    service.getDistanceMatrix(
+      {
+        origins: [origin2],
+        destinations: [destinations.join()],
+        travelMode: window.google.maps.TravelMode.WALKING,
+        unitSystem: window.google.maps.UnitSystem.METRIC,
+      },
+      (response, status) => {
+        if (status !== "OK") {
+          console.log("Error was: " + status);
+        } else {
+          const originList = response.originAddresses;
+          console.log("origin", originList);
+          for (let i = 0; i < originList.length; i++) {
+            const results = response.rows[i].elements;
+            console.log(`Direcciones tramo ${i}: ${JSON.stringify(results)}`);
+            this.setState({ directions: [...results] });
+            for (let j = 0; j < results.length; j++) {
+              console.log(`Direcciones tramo ${i}: ${JSON.stringify(results)}`);
+            }
+          }
+        }
+      }
+    );
+  };
+
   fetchPlaces = () => {
-    getPlaces(this.props.match.params.id).then((places) => {
+    getPlaces(this.props.match.params.id).then((places, i) => {
+      this.calculateDistance(...places);
       this.setState({ places });
     });
   };
@@ -45,6 +90,7 @@ class TourDetail extends Component {
           <MapWithADirectionsRenderer />
         </div>
 
+        <div>{JSON.stringify(this.state.directions)}</div>
         <div className="appy--tours-detail-info">
           <h2 className="appy--tours-detail-info-placename">
             {this.state.tour.name}
@@ -102,16 +148,16 @@ class TourDetail extends Component {
           <hr />
           {this.state.places.length
             ? this.state.places.map((place, key) => (
-              <PlaceListItem
-                key={key}
-                type="num"
-                num={key}
-                total={this.state.places.length}
-                recommended={false}
-                place={place}
-                tour={this.state.tour}
-              />
-            ))
+                <PlaceListItem
+                  key={key}
+                  type="num"
+                  num={key}
+                  total={this.state.places.length}
+                  recommended={false}
+                  place={place}
+                  tour={this.state.tour}
+                />
+              ))
             : "NO PLACES"}
           <hr style={{ marginBottom: "10px" }} />
           <div className="appy--tours-detail-rating-container">
@@ -140,15 +186,21 @@ class TourDetail extends Component {
                     <a href={`whatsapp://send?text=${window.location.href}`}>
                       <AppyButton type="whatsapp" />
                     </a>
-                    <a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&amp;src=sdkpreparse`} class="fb-xfbml-parse-ignore">
+                    <a
+                      target="_blank"
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&amp;src=sdkpreparse`}
+                      class="fb-xfbml-parse-ignore"
+                    >
                       <AppyButton type="facebook" />
                     </a>
-                    <a target="_blank" href={`https://twitter.com/intent/tweet?text=${window.location.href}`}>
+                    <a
+                      target="_blank"
+                      href={`https://twitter.com/intent/tweet?text=${window.location.href}`}
+                    >
                       <AppyButton type="twitter" />
                     </a>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
