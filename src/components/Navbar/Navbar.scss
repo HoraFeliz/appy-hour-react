@@ -37,7 +37,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             flex-direction: column;
-            padding: 50px 20px 20px 30px;
+            padding: 50px 30px 20px 30px;
 
 
 
@@ -75,6 +75,7 @@
                     display: flex;
                     align-items: flex-start;
                     padding: 15px 0px;
+                    font-weight: 300;
 
                     &>a {
                         color: $white-color;
@@ -176,6 +177,7 @@
 
             &-text {
                 padding-left: 10px;
+                font-weight: 300;
 
                 &:first-letter {
                     text-transform: capitalize

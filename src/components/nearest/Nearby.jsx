@@ -12,8 +12,8 @@ class Nearby extends React.Component {
   state = {
     placesDetails: [],
     sortedPlacesDetails: [],
-    lat: 40.416775,
-    lng: -3.70379,
+    // lat: 40.416775,
+    // lng: -3.70379,
     zoom: 15,
   };
 
@@ -63,7 +63,7 @@ class Nearby extends React.Component {
     var request = {
       location: location,
       radius: 800,
-      type: ["restaurant"],
+      types: ["restaurant"],
     };
 
     infowindow = new window.google.maps.InfoWindow();

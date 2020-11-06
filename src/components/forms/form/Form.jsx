@@ -38,7 +38,7 @@ class Form extends React.Component {
       <div>
         <div className="create-style login-container">
           <form onSubmit={this.handleSubmit}>
-            <h1>Create Tour</h1>
+            <h1 style={{ fontWeight: '300' }}>Create Tour</h1>
             <div className="create-style form-group">
               <input
                 required

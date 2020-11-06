@@ -29,13 +29,13 @@ const Tours = () => {
     <div>
       <TourBarInfo recommended={true}>
         <AppyButton num={recommendedTours.length} info={true} recommended={true} />
-        {/* <AppyButton type="map" info={true} recommended={true} /> */}
+        <AppyButton type="map" info={true} recommended={true} />
       </TourBarInfo>
       <RecommendedSlider recommended={true} brand="recommended" />
 
       <TourBarInfo>
         <AppyButton num={regularTours.length} info={true} />
-        {/* <AppyButton type="map" info={true} /> */}
+        <AppyButton type="map" info={true} />
       </TourBarInfo>
 
       <RegularSlider recommended={false} brand="primary-bg" />
