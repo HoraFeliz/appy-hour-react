@@ -39,16 +39,17 @@ class TourDetail extends Component {
       destinations.push(place.address);
     });
 
-    console.log("destinations", destinations);
+    console.log("destinations", destinations.join());
 
     service.getDistanceMatrix(
       {
         origins: [origin2],
-        destinations: [destinations.join()],
+        destinations: destinations,
         travelMode: window.google.maps.TravelMode.WALKING,
         unitSystem: window.google.maps.UnitSystem.METRIC,
       },
       (response, status) => {
+        console.log("res", response);
         if (status !== "OK") {
           console.log("Error was: " + status);
         } else {
