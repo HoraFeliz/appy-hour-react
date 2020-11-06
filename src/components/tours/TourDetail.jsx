@@ -20,6 +20,7 @@ class TourDetail extends Component {
     directions: [],
     totalDistance: "",
     totalDuration: "",
+    totalRating: 0
   };
 
   componentDidMount() {
@@ -86,6 +87,7 @@ class TourDetail extends Component {
   fetchPlaces = () => {
     getPlaces(this.props.match.params.id).then((places, i) => {
       this.calculateDistance(...places);
+      this.ratingAppyHour(...places)
       this.setState({ places });
     });
   };
@@ -95,6 +97,18 @@ class TourDetail extends Component {
       this.setState({ tour });
     });
   };
+
+  ratingAppyHour = (...places) => {
+    let totalRatingSum = 0
+    const placesArray = [...places]
+
+    placesArray && placesArray.map(place =>
+      totalRatingSum += place.rating
+    )
+
+    console.log('totalRatingSum', totalRatingSum / placesArray.length)
+    this.setState({ totalRating: (totalRatingSum / placesArray.length).toFixed(1) })
+  }
 
   render() {
     return (
@@ -143,7 +157,7 @@ class TourDetail extends Component {
                 className="appy--tours-item-distancebar-text"
                 style={{ color: "#707070" }}
               >
-                {(this.state.totalDuration / 60).toFixed(2)} min
+                {(this.state.totalDuration / 60).toFixed(0)} min
               </div>
             </div>
             <div className="appy--tours-item-distancebar-distante-nearby">
@@ -161,17 +175,17 @@ class TourDetail extends Component {
           <hr />
           {this.state.places.length
             ? this.state.places.map((place, key) => (
-                <PlaceListItem
-                  key={key}
-                  type="num"
-                  num={key}
-                  total={this.state.places.length}
-                  recommended={false}
-                  place={place}
-                  directions={this.state.directions[key]}
-                  tour={this.state.tour}
-                />
-              ))
+              <PlaceListItem
+                key={key}
+                type="num"
+                num={key}
+                total={this.state.places.length}
+                recommended={false}
+                place={place}
+                directions={this.state.directions[key]}
+                tour={this.state.tour}
+              />
+            ))
             : "NO PLACES"}
           <hr style={{ marginBottom: "10px" }} />
           <div className="appy--tours-detail-rating-container">
@@ -182,7 +196,7 @@ class TourDetail extends Component {
                 </span>
               </div>
               <div className="appy--col-6">
-                <BeerRating type="tour-detail" />
+                <BeerRating type="tour-detail" rating={this.state.totalRating} />
               </div>
             </div>
           </div>
