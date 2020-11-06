@@ -9,17 +9,18 @@ const {
 } = require("react-google-maps");
 
 const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`;
-const red = "#C8102E";
+const primary = "#C8102E";
 const lineSymbol = {
   path: "M 1,0 1,0",
-  strokeOpacity: 1,
+  strokeOpacity: .7,
   scale: 1,
   strokeWeight: 5,
 };
 
+
 const drawingOptions = {
   polylineOptions: {
-    strokeColor: red,
+    strokeColor: primary,
     strokeWeight: 3,
     strokeOpacity: 0,
     icons: [

@@ -82,10 +82,11 @@ fieldset {
 .form-radio,
 .form-group {
   position: relative;
-  margin-top: 2.25rem;
-  margin-bottom: 2.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
   text-align: left;
 }
+
 
 .form-inline>.form-group,
 .form-inline>.btn {
@@ -312,7 +313,7 @@ fieldset {
 }
 
 .checkbox {
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -420,13 +421,14 @@ fieldset {
   border: 1px solid currentColor;
   font-size: 1.1rem;
   color: $white-color;
-  margin: 2rem 0;
+  margin: 5px 0;
   padding: 0.75rem 3rem;
   cursor: pointer;
   -webkit-transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
   transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
   overflow: hidden;
   border-radius: 4px;
+  width: 100%;
 }
 
 .button span {
@@ -471,4 +473,10 @@ fieldset {
 
 .button:focus {
   outline: none;
+}
+
+.google-brand {
+  width: 20px;
+  margin-right: 10px;
+  margin-top: -4px;
 }

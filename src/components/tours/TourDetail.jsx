@@ -140,10 +140,15 @@ class TourDetail extends Component {
                     <a href={`whatsapp://send?text=${window.location.href}`}>
                       <AppyButton type="whatsapp" />
                     </a>
-                    <AppyButton type="facebook" />
-                    <AppyButton type="twitter" />
+                    <a target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&amp;src=sdkpreparse`} class="fb-xfbml-parse-ignore">
+                      <AppyButton type="facebook" />
+                    </a>
+                    <a target="_blank" href={`https://twitter.com/intent/tweet?text=${window.location.href}`}>
+                      <AppyButton type="twitter" />
+                    </a>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>

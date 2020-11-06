@@ -38,15 +38,22 @@ class Nearby extends React.Component {
     // Initialize Map
     map = new window.google.maps.Map(document.getElementById("map"), {
       center: location,
-      zoom: 15,
+      zoom: 16,
       // styles: mapStyle,
     });
+
 
     // Current Location Marker
     let marker = new window.google.maps.Marker({
       position: location,
       map: map,
       title: "You're Here!",
+      icon: {
+        url:
+          "/img/marker-user.svg",
+        anchor: new window.google.maps.Point(10, 10),
+        // scaledSize: new window.google.maps.Size(20, 20),
+      },
     });
 
     // Ask for user location
@@ -55,7 +62,7 @@ class Nearby extends React.Component {
     // Request Info: It will be used for Google Places API `PlacesServices` to get certain places that match our criteria
     var request = {
       location: location,
-      radius: 500,
+      radius: 800,
       type: ["restaurant"],
     };
 
@@ -123,9 +130,9 @@ class Nearby extends React.Component {
       title: place.name,
       icon: {
         url:
-          "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "/img/marker-add.svg",
         anchor: new window.google.maps.Point(10, 10),
-        scaledSize: new window.google.maps.Size(20, 20),
+        // scaledSize: new window.google.maps.Size(20, 20),
       },
       position: place.geometry.location,
     });
@@ -141,12 +148,12 @@ class Nearby extends React.Component {
         : "https://via.placeholder.com/300";
 
       let content = `
-        <h2>${place.name}</h2>
-        <img src=${placePicture}>
-        <ul>
+        <h4 style="text-align: left;">${place.name}</h4>
+        <ul style="text-align: left; list-style: none; padding-left: 0px">
           <li>${place.formatted_address}</li>
           <li>${place.formatted_phone_number}</li>
         </ul>
+        <button class="btn appy--primary-bg appy--white-color mb-3" >Add</button>
       `;
       infowindow.setContent(content);
       infowindow.open(map, marker);

@@ -1,10 +1,13 @@
 import React from "react";
+import PlaceListItem from "../places/PlaceListItem";
+import PlaceListItemNearBy from "../places/PlaceListItemNearBy";
 import "./NearbyList.scss";
 
 class NearbyList extends React.Component {
   state = {
     selectedPlace: 0,
   };
+
 
   addPlace = () => {
     // User Input
@@ -63,77 +66,18 @@ class NearbyList extends React.Component {
     return (
       <div className="sidebar">
         <div className="places">
-          {placesDetails.map((place, index) => (
-            <div className="place" key={index}>
-              <button
-                onClick={() => console.log(place)}
-                className="btn btn-danger"
-              >
-                Add to tour
-              </button>
-              {console.log(place)}
-              <img
-                src={
-                  place.photos
-                    ? place.photos[0].getUrl({ maxWidth: 300, maxHeight: 300 })
-                    : "https://via.placeholder.com/300"
-                }
-                alt={place.name}
-              />
-              <div className="details">
-                <h2 className="name">{place.name}</h2>
-                <div className="review">
-                  <ul className={"stars rate-" + Math.round(place.rating)}>
-                    <li>
-                      <i className="fas fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fas fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fas fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fas fa-star"></i>
-                    </li>
-                    <li>
-                      <i className="fas fa-star"></i>
-                    </li>
-                  </ul>
-                  <strong>{Math.round(place.rating)}</strong>
-                  <span
-                    className="all-reviews"
-                    onClick={() =>
-                      this.updateSelectedPlace("all-reviews", index)
-                    }
-                  >
-                    ({place.user_ratings_total})
-                  </span>
-                  <span
-                    className="add-review"
-                    onClick={() =>
-                      this.updateSelectedPlace("add-review", index)
-                    }
-                  >
-                    Add Review
-                  </span>
-                  {/* <span className="add-review" onClick={(e) => openReviewModal(index)}>Add Review</span> */}
-                </div>
-                <ul className="info">
-                  <li>
-                    <i className="fas fa-phone-alt"></i>
-                    <a href={"tel:" + place.formatted_phone_number}>
-                      {place.formatted_phone_number}
-                    </a>
-                  </li>
-                  <li>
-                    <i className="fas fa-map-marker-alt"></i>{" "}
-                    {place.formatted_address}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          ))}
+          {placesDetails.length ? placesDetails.map((place, index) => (
+            <PlaceListItemNearBy
+              key={index}
+              type="num"
+              num={index}
+              recommended={false}
+              place={place}
+              tour={null}
+            />
+          )
+          ) : null
+          }
         </div>
       </div>
     );

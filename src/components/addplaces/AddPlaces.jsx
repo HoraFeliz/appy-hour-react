@@ -1,4 +1,4 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect, useRef } from "react";
 import { getPlaces, savePlace } from "../../services/api-client";
@@ -8,6 +8,7 @@ import PlaceListItem from "../places/PlaceListItem";
 import PlaceMap from "../places/placemap/PlaceMap";
 
 let autoComplete;
+
 
 const loadScript = (url, callback) => {
   let script = document.createElement("script");
@@ -139,9 +140,17 @@ function AddPlaces(props) {
             </div>
           }
 
+          {places.length > 0 &&
+            <button className="appy--button appy--button-info appy--primary-color" style={{
+              backgroundColor: 'white', fontWeight: 'bold'
+            }}>
+              <FontAwesomeIcon className="appy--button-icon" icon={faPen} style={{ paddingRight: '5px' }} /> Edit
+        </button>
+          }
+
         </div>
       </div>
-      <PlaceMap default={true} />
+      {/* <PlaceMap default={true} /> */}
       <div className="search-location-input">
         <div className="appy--addplace">
           {places.length

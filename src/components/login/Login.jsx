@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { Component } from 'react'
+
 
 export default class Login extends Component {
     render() {
@@ -24,7 +26,10 @@ export default class Login extends Component {
 
                 </form>
                 <div className="button-container">
-                    <button type="button" className="button"><span>Submit</span></button>
+                    <button type="button" className="button"><span>Log In</span></button>
+                </div>
+                <div className="button-container">
+                    <button type="button" className="button"><img className="google-brand" src="/img/google-brands.svg" alt="" /><span>Google Login</span></button>
                 </div>
             </div>
         )

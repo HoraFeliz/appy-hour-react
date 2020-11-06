@@ -2,10 +2,12 @@ import React from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 
 class PlaceMap extends React.Component {
+
   state = {
-    showingInfoWindow: true, // Hides or shows the InfoWindow
+    showingInfoWindow: false, // Hides or shows the InfoWindow
     activeMarker: {}, // Shows the active marker upon click
     selectedPlace: {}, // Shows the InfoWindow to the selected place upon a marker
+    mapDefault: ''
   };
 
   onMarkerClick = (props, marker, e) =>
@@ -43,9 +45,13 @@ class PlaceMap extends React.Component {
   };
 
   render() {
+
+
+    console.log('this.state.showingInfoWindow', this.state.showingInfoWindow)
+
     return (
       <div>
-        {this.props.default &&
+        {/* {this.props.default &&
           <Map
             gestureHandling="none"
             containerStyle={this.containerStyle}
@@ -54,7 +60,7 @@ class PlaceMap extends React.Component {
             style={this.mapStyles}
             initialCenter={{ lat: '40.416775', lng: '-3.703790' }}
           ></Map>
-        }
+        } */}
         <Map
           gestureHandling="none"
           containerStyle={this.containerStyle}
@@ -100,7 +106,7 @@ class PlaceMap extends React.Component {
             </div>
           </InfoWindow>
         </Map>
-      </div>
+      </div >
     );
   }
 }

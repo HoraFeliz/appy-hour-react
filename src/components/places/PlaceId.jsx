@@ -26,6 +26,10 @@ const PlaceId = (props) => {
     });
   }, [props]);
 
+  // Scroll Arriba
+  window.scrollTo(0, 0)
+
+
   // useEffect(() => {
   //   getIsPlaceOpen(place.placeId).then((openNow) => {
   //     setIsOpen(openNow);
@@ -43,9 +47,9 @@ const PlaceId = (props) => {
           isOpen={Math.random() >= 0.5}
         />
       ) : (
-        "Loading map"
-      )}
-      <InfoBar back={true} tour={tour} />
+          "Loading map"
+        )}
+      {tour && <InfoBar back={true} tour={tour} />}
       <div className="appy--place-item">
         <ImageCanvas place={true} placeInfo={place} />
         <PlaceInfo place={place} placeInfo={place} />

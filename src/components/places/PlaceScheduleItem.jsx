@@ -14,7 +14,7 @@ const PlaceScheduleItem = (props) => {
                     </div>
                   </div>
                   <div className="appy--col-8">
-                    {props.time.trim() === "Closed" ? (
+                    {props.time.trim() === "Cerrado" ? (
                       <div className="appy--place-item-info-schedule-hours">
                         <span className="appy--place-item-info-address-close">{props.time}</span>
                       </div>
@@ -60,4 +60,5 @@ const PlaceScheduleItem = (props) => {
     </div>
   );
 };
+
 export default PlaceScheduleItem;

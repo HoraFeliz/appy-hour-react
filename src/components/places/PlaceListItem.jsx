@@ -20,6 +20,9 @@ class PlaceListItem extends Component {
       arrows: false,
     };
 
+
+    console.log(this.props.place)
+
     return (
       <NavLink to={this.props.tour === null ? `/place/${this.props.place._id}` : `/place/${this.props.place._id}/${this.props.tour._id}`}> {/*/${this.props.tour._id}*/}
         <div className="row appy--place-list-item">

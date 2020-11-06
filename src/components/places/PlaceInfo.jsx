@@ -1,6 +1,8 @@
 import React from "react";
+import Price from "../common/Price";
 import StarRating from "../common/StarRating";
 import PlaceSchedule from "./PlaceSchedule";
+
 
 const PlaceInfo = (props) => {
   return (
@@ -21,7 +23,26 @@ const PlaceInfo = (props) => {
       <div className="appy--place-item-info-rating-container">
         <div className="appy--row">
           <div className="appy--col-6">
-            <span className="appy--place-item-info-rating-text">
+            <span className="appy--place-item-info-rating-text" style={{ marginTop: '3px' }}>
+              Price
+            </span>
+          </div>
+          <div className="appy--col-6" style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '20px' }}>
+            <Price
+              rating={
+                props.placeInfo
+                  ? props.placeInfo.priceLevel
+                  : "Loading"
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <hr style={{ marginTop: '14px' }} />
+      <div className="appy--place-item-info-rating-container">
+        <div className="appy--row">
+          <div className="appy--col-6">
+            <span className="appy--place-item-info-rating-text" style={{ marginTop: '4px' }}>
               Google Rating
             </span>
           </div>
