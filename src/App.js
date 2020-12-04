@@ -1,14 +1,11 @@
 import React from "react";
 import "./App.scss";
 import { Switch, Route } from "react-router-dom";
-// import Navbar from "./components/navbar/Navbar";
 import Tours from "./components/tours/Tours";
 import RecordTour from "./components/RecordTour";
 import Tour from "./components/tour/Tour";
 import Profile from "./components/Profile";
 import Options from "./components/Options";
-// import NavbarMenu from "./components/navbar/NavbarMenu";
-// import FooterNavbar from "./components/navbar/FooterNavbar";
 import PlaceId from "./components/places/PlaceId";
 import CreateTour from "./components/create-tour/CreateTour";
 import TourDetail from "./components/tours/TourDetail";
@@ -22,9 +19,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path={['/login']}>
+        <Route path={["/login"]}>
           <LoginLayout>
-            <Route path='/login' component={Login} />
+            <Route path="/login" component={Login} />
           </LoginLayout>
         </Route>
         <DefaultLayout>
@@ -43,7 +40,6 @@ function App() {
           <Route exact path="/nearby" component={Nearby} />
         </DefaultLayout>
       </Switch>
-
     </div>
   );
 }

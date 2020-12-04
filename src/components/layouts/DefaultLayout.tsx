@@ -1,7 +1,8 @@
 import React from 'react';
-import FooterNavbar from '../navbar/FooterNavbar';
-import Navbar from '../navbar/Navbar';
-import NavbarMenu from '../navbar/NavbarMenu';
+import FooterNavbar from '../navigation/FooterNavbar';
+import Navbar from '../navigation/Navbar';
+import NavbarMenu from '../navigation/NavbarMenu';
+
 
 const DefaultLayout: React.FC = ({ children }) => (
     <div>
