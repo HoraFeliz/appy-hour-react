@@ -147,6 +147,7 @@
             background-repeat: no-repeat;
             padding: 7px 0 0 7px;
             position: relative;
+            transition: all .3s;
 
             &-rating {
                 display: flex;
@@ -172,7 +173,52 @@
                     color: $primary-color;
                     font-weight: bold;
                 }
+
+
             }
+
+            &-plus {
+                // max-height: 130px;
+                display: flex;
+                align-items: flex-start;
+                height: inherit;
+                color: #ffffff;
+                font-size: 20px;
+                transition: all .3s;
+                border: 2px solid white;
+                width: 24px;
+                height: 24px;
+                border-radius: 27px;
+                transition: all .3s;
+
+                &-click {
+                    border: transparent;
+                    transition: all .3s;
+                }
+
+                &-icon {
+                    border: 2px solid $primary-color;
+                    border-radius: 20px;
+                    background-color: $primary-color;
+                    transition: all .3s;
+
+                    &-minus {
+                        transition: all .3s;
+                        color: transparent;
+                        background-color: transparent !important;
+                        border: 5px solid transparent;
+                        width: 30px;
+                        border-radius: 27px;
+                        transition: all .3s;
+                    }
+                }
+            }
+
+            &-zoom {
+                min-height: 270px;
+                transition: all .3s;
+            }
+
 
             &-recommended {
                 display: flex;

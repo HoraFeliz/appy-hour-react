@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const http = axios.create({
-  baseURL: "https://appy-hour-api.herokuapp.com",
+  baseURL: "http://localhost:3010", //"https://appy-hour-api.herokuapp.com",
 });
 
 const placesHttp = axios.create({

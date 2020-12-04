@@ -1,9 +1,9 @@
-import { faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect, useRef } from "react";
 import { getPlaces, savePlace } from "../../services/api-client";
-import AppyButton from "../common/AppyButton";
-import InfoBar from "../infobar/InfoBar";
+// import AppyButton from "../common/AppyButton";
+// import InfoBar from "../infobar/InfoBar";
 import PlaceListItem from "../places/PlaceListItem";
 import PlaceMap from "../places/placemap/PlaceMap";
 
@@ -111,7 +111,7 @@ function AddPlaces(props) {
   }, [props, query]);
 
   return (
-    <div>
+    <>
       <div className="appy--infobar appy--primary-color">
         <input
           ref={autoCompleteRef}
@@ -140,13 +140,13 @@ function AddPlaces(props) {
             </div>
           }
 
-          {places.length > 0 &&
+          {/* {places.length > 0 &&
             <button className="appy--button appy--button-info appy--primary-color" style={{
               backgroundColor: 'white', fontWeight: 'bold'
             }}>
               <FontAwesomeIcon className="appy--button-icon" icon={faPen} style={{ paddingRight: '5px' }} /> Edit
         </button>
-          }
+          } */}
 
         </div>
       </div>
@@ -180,7 +180,7 @@ function AddPlaces(props) {
             : ""}
         </div>
       </div>
-    </div>
+    </>
 
   );
 }

@@ -3,7 +3,6 @@ import InfoBar from "../infobar/InfoBar";
 import ImageCanvas from "../common/ImageCanvas";
 import PlaceInfo from "./PlaceInfo";
 import {
-  getIsPlaceOpen,
   getPlace,
   getTourById,
 } from "../../services/api-client";
@@ -38,17 +37,19 @@ const PlaceId = (props) => {
 
   return (
     <div>
-      {place && place.geometry ? (
-        <PlaceMap
-          lat={place.geometry.latitude}
-          lng={place.geometry.longitude}
-          name={place.name}
-          address={place.address}
-          isOpen={Math.random() >= 0.5}
-        />
-      ) : (
-          "Loading map"
-        )}
+      <div className="appy--place-item-map-canvas">
+        {place && place.geometry ? (
+          <PlaceMap
+            lat={place.geometry.latitude}
+            lng={place.geometry.longitude}
+            name={place.name}
+            address={place.address}
+            isOpen={Math.random() >= 0.5}
+          />
+        ) : (
+            <h1>Loading map</h1>
+          )}
+      </div>
       {tour && <InfoBar back={true} tour={tour} />}
       <div className="appy--place-item">
         <ImageCanvas place={true} placeInfo={place} />

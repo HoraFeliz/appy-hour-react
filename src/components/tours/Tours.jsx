@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TourBarInfo from "./TourBarInfo";
 import AppyButton from "../common/AppyButton";
-import { getRecommendedTours, getRegularTours, getTours } from "../../services/api-client";
+import { getRecommendedTours, getRegularTours } from "../../services/api-client";
 import RecommendedSlider from "./RecommendedSlider";
 import RegularSlider from "./RegularSlider";
 
@@ -24,6 +24,7 @@ const Tours = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
 
   return (
     <div>

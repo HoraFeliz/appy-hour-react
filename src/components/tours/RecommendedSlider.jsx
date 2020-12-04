@@ -5,7 +5,7 @@ import "swiper/swiper.scss";
 import { getRecommendedTours } from "../../services/api-client";
 import { NavLink } from "react-router-dom";
 
-const RecommendedSlider = (props) => {
+const RecommendedSlider = ({recommended, brand}) => {
   const [recommendedTours, setRecommendedTours] = useState([]);
 
   useEffect(() => {
@@ -35,24 +35,28 @@ const RecommendedSlider = (props) => {
     // }
   };
   return (
-    <Swiper {...params}>
-      {recommendedTours.length
-        ? recommendedTours.map((tour, key) => (
-            <div key={key}>
-              <NavLink to={`/tour/${tour._id}`}>
-                <TourItem
-                  key={key}
-                  id={key}
-                  tour={recommendedTours}
-                  recommended={props.recommended}
-                  brand={props.brand}
-                  first={key === 0 ? true : false}
-                />
-              </NavLink>
-            </div>
-          ))
-        : "Loading"}
-    </Swiper>
+    <>
+      {recommendedTours.length ?
+        <Swiper {...params}>
+          {recommendedTours.map((tour, key) => (
+              <div key={key}>
+                <NavLink to={`/tour/${tour._id}`}>
+                  <TourItem
+                    key={key}
+                    id={key}
+                    tour={recommendedTours}
+                    recommended={recommended}
+                    brand={brand}
+                    first={key === 0 ? true : false}
+                  />
+                </NavLink>
+              </div>
+            ))}
+        </Swiper>
+
+        : <h1>Loading</h1>
+      }
+    </>
   );
 };
 export default RecommendedSlider;

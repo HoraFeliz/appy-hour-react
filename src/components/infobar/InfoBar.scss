@@ -5,7 +5,7 @@
     &infobar {
         height: 50px;
         background-color: $white-color;
-        border-bottom: 1px solid $light-grey;
+        // border-bottom: 1px solid $light-grey;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -15,6 +15,9 @@
         top: 60px;
         padding: 0px 5px;
         z-index: 500;
+        -webkit-box-shadow: $-webkit-box-shadow;
+        -moz-box-shadow: $-moz-box-shadow;
+        box-shadow: $box-shadow;
 
 
         &-title {

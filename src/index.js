@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { BrowserView, MobileView } from "react-device-detect";
 
 ReactDOM.render(
-  <React.Fragment>
+  <>
     <BrowserView>
       <div className="appy--browser-view">
         <h1>Hello Browser</h1>
@@ -17,6 +17,6 @@ ReactDOM.render(
         <App />
       </Router>
     </MobileView>
-  </React.Fragment>,
+  </>,
   document.getElementById("root")
 );

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearchLocation, faBars, faCircle, faPlus, faUser, faMapMarkerAlt, faRoute } from '@fortawesome/free-solid-svg-icons'
+import { faSearchLocation, faBars, faCircle, faPlus, faMapMarkerAlt, faRoute } from '@fortawesome/free-solid-svg-icons'
 
 class Navbar extends React.Component {
 

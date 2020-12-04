@@ -31,8 +31,11 @@ class TourDetail extends Component {
   calculateDistance = (...places) => {
     const service = new window.google.maps.DistanceMatrixService();
 
-    const addresOrigin = [...places].pop();
-    const origin2 = addresOrigin.address;
+    const addresOrigin = [...places]
+    const origin = [addresOrigin[0].address];
+    // const destinations = [addresOrigin.address];
+    const origin2 = [addresOrigin[1].address];
+    const destinations2 = [addresOrigin[2].address];
     const restOfPlaces = [...places];
 
     let destinations = [];
@@ -40,11 +43,17 @@ class TourDetail extends Component {
       destinations.push(place.address);
     });
 
-    console.log("destinations", destinations.join());
+    destinations.shift()
+
+    console.log("destinations", destinations);
+    console.log('addresOrigin', addresOrigin);
+    console.log('origin', origin);
+    console.log('origin2', origin2);
+    console.log('restOfPlaces', restOfPlaces);
 
     service.getDistanceMatrix(
       {
-        origins: [origin2],
+        origins: origin,
         destinations: destinations,
         travelMode: window.google.maps.TravelMode.WALKING,
         unitSystem: window.google.maps.UnitSystem.METRIC,
@@ -61,7 +70,7 @@ class TourDetail extends Component {
             const directions = this.state.directions;
 
             // Removes last item from the directions arr
-            directions.pop();
+            // directions.pop();
 
             let totalDistanceArr = [];
             directions.forEach((direction) => {
@@ -83,6 +92,7 @@ class TourDetail extends Component {
       }
     );
   };
+
 
   fetchPlaces = () => {
     getPlaces(this.props.match.params.id).then((places, i) => {
@@ -216,13 +226,15 @@ class TourDetail extends Component {
                     </a>
                     <a
                       target="_blank"
+                      rel="noopener noreferrer"
                       href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&amp;src=sdkpreparse`}
-                      class="fb-xfbml-parse-ignore"
+                      className="fb-xfbml-parse-ignore"
                     >
                       <AppyButton type="facebook" />
                     </a>
                     <a
                       target="_blank"
+                      rel="noopener noreferrer"
                       href={`https://twitter.com/intent/tweet?text=${window.location.href}`}
                     >
                       <AppyButton type="twitter" />

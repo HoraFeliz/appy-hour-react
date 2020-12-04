@@ -28,11 +28,9 @@ const PlaceInfo = (props) => {
             </span>
           </div>
           <div className="appy--col-6" style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '20px' }}>
+
             <Price
-              rating={
-                props.placeInfo
-                  ? props.placeInfo.priceLevel
-                  : "Loading"
+              rating={props.placeInfo?.priceLevel
               }
             />
           </div>
