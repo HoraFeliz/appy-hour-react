@@ -9,6 +9,9 @@ const Tours = () => {
   const [recommendedTours, setRecommendedTours] = useState([]);
   const [regularTours, setRegularTours] = useState([]);
 
+  // Set 0 Image Zoom Helper
+  localStorage.setItem('imageZoom', 'active')
+
   useEffect(() => {
     getRecommendedTours()
       .then((res) => {
@@ -30,13 +33,13 @@ const Tours = () => {
     <div>
       <TourBarInfo recommended={true}>
         <AppyButton num={recommendedTours.length} info={true} recommended={true} />
-        <AppyButton type="map" info={true} recommended={true} />
+        <AppyButton num='info' type="map" info={true} recommended={true} />
       </TourBarInfo>
       <RecommendedSlider recommended={true} brand="recommended" />
 
       <TourBarInfo>
         <AppyButton num={regularTours.length} info={true} />
-        <AppyButton type="map" info={true} />
+        <AppyButton num='info' type="map" info={true} />
       </TourBarInfo>
 
       <RegularSlider recommended={false} brand="primary-bg" />

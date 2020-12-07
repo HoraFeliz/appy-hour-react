@@ -51,7 +51,7 @@ class Navbar extends React.Component {
                     </ul>
                 </div>
                 <nav className="appy--navbar">
-                    <Link className="appy--navbar-brand" onClick={this.handleClickMenu}><FontAwesomeIcon icon={faBars} /></Link>
+                    <Link to="" className="appy--navbar-brand" onClick={this.handleClickMenu}><FontAwesomeIcon icon={faBars} /></Link>
 
                     <form className="appy--search-form">
                         <input className="appy--search-input" type="search" placeholder="Search Tours" aria-label="Search" />

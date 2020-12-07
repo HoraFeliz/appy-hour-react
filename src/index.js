@@ -9,7 +9,8 @@ ReactDOM.render(
   <>
     <BrowserView>
       <div className="appy--browser-view">
-        <h1>Hello Browser</h1>
+        <h3>Para Visualizar la App</h3>
+        <h5>Active Modo Móvil</h5>
       </div>
     </BrowserView>
     <MobileView>

@@ -4,11 +4,11 @@ class BeerRating extends Component {
     render() {
         return (
             <div>
-                {this.props.rating &&
+                {
                     <div className={this.props.place ? 'appy--image-placeid-rating' :
                         this.props.type === 'tour-detail' ? 'appy--tours-detail-rating' : 'appy--tours-item-rating'}>
                         {this.props.place &&
-                            <span className="appy--image-placeid-rating-num">0</span>
+                            <span className="appy--image-placeid-rating-num">{this.props.rating}</span>
                         }
                         {this.props.type &&
                             <span className="appy--tours-detail-rating-num">{this.props.rating}</span>

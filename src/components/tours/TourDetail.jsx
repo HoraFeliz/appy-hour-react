@@ -35,7 +35,7 @@ class TourDetail extends Component {
     const origin = [addresOrigin[0].address];
     // const destinations = [addresOrigin.address];
     const origin2 = [addresOrigin[1].address];
-    const destinations2 = [addresOrigin[2].address];
+    // const destinations2 = [addresOrigin[2].address];
     const restOfPlaces = [...places];
 
     let destinations = [];
@@ -222,7 +222,7 @@ class TourDetail extends Component {
                 <div className="appy--col-6">
                   <div className="appy--tours-detail-share-buttons">
                     <a href={`whatsapp://send?text=${window.location.href}`}>
-                      <AppyButton type="whatsapp" />
+                      <AppyButton num='info' type="whatsapp" />
                     </a>
                     <a
                       target="_blank"
@@ -230,14 +230,14 @@ class TourDetail extends Component {
                       href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&amp;src=sdkpreparse`}
                       className="fb-xfbml-parse-ignore"
                     >
-                      <AppyButton type="facebook" />
+                      <AppyButton num='info' type="facebook" />
                     </a>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
                       href={`https://twitter.com/intent/tweet?text=${window.location.href}`}
                     >
-                      <AppyButton type="twitter" />
+                      <AppyButton num='info' type="twitter" />
                     </a>
                   </div>
                 </div>

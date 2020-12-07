@@ -44,7 +44,7 @@ class Nearby extends React.Component {
 
 
     // Current Location Marker
-    let marker = new window.google.maps.Marker({
+    new window.google.maps.Marker({
       position: location,
       map: map,
       title: "You're Here!",
