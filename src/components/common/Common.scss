@@ -135,6 +135,10 @@
                 position: relative;
                 color: $white-color;
                 font-size: 10px;
+
+                &-loading {
+                    background-color: $grey;
+                }
             }
         }
 
@@ -148,6 +152,10 @@
             padding: 7px 0 0 7px;
             position: relative;
             transition: all .3s;
+
+            &-loading {
+                min-height: 0px;
+            }
 
             &-rating {
                 display: flex;
@@ -173,8 +181,6 @@
                     color: $primary-color;
                     font-weight: bold;
                 }
-
-
             }
 
             &-plus {
@@ -268,6 +274,11 @@
                     transition: all .3s;
                 }
             }
+        }
+
+        &-loading {
+            border-radius: 5px 5px 0 0;
+            background-color: $light-grey;
         }
     }
 

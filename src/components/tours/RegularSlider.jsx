@@ -35,9 +35,10 @@ const RegularSlider = (props) => {
     // }
   };
   return (
-    <Swiper {...params}>
-      {regularTours.length
-        ? regularTours.map((tour, key) => (
+    <>
+      {regularTours.length ?
+        <Swiper {...params}>
+          {regularTours.map((tour, key) => (
             <div key={key}>
               <NavLink to={`/tour/${tour._id}`}>
                 <TourItem
@@ -50,9 +51,24 @@ const RegularSlider = (props) => {
                 />
               </NavLink>
             </div>
-          ))
-        : "Loading"}
-    </Swiper>
+          ))}
+        </Swiper>
+
+        :
+
+        // Loading
+        <>
+          <div className="container-items d-flex">
+            <TourItem loading={true} />
+            <TourItem loading={true} />
+
+          </div>
+
+        </>
+
+
+      }
+    </>
   );
 };
 export default RegularSlider;
