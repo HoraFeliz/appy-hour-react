@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faImage, faPlusCircle, faStar } from '@fortawesome/free-solid-svg-icons'
 import BeerRating from './BeerRating';
+import ImageZoom from './ImageZoom';
+// import { getPlaces } from '../../services/api-client';
 
 
-class ImageCanvas extends Component {
+export default function ImageCanvas({ place, recommended, brand, placeInfo, tour, id }) {
 
-    recommended = () => {
-        if (this.props.place && this.props.recommended) {
+    const handleZoom = () => {
+        const image = document.getElementById('place-image')
+        const plus = document.querySelector('.appy--image-placeid-plus')
+        const plusIcon = document.querySelector('.appy--image-placeid-plus-icon')
+        const plusText = document.querySelector('.appy--image-placeid-image-zoom')
+        image.classList.toggle('appy--image-placeid-zoom')
+        plusIcon.classList.toggle('appy--image-placeid-plus-icon-minus')
+        plusText.classList.toggle('appy--image-placeid-image-zoom-minus')
+        plus.classList.toggle('appy--image-placeid-plus-click')
+        // this.setState({ imageZoom: false })
+        localStorage.setItem('imageZoom', 'inactive')
+    }
+
+    const Recommended = () => {
+        if (place && recommended) {
             return (
                 <div className="appy--image-placeid-recommended">
                     <FontAwesomeIcon icon={faStar} />
@@ -16,36 +31,37 @@ class ImageCanvas extends Component {
             )
         }
 
-        if (this.props.recommended) {
+        if (recommended) {
             return (
-                <div className={`appy--image-tours-recommended ${this.props.brand}`}>
-                    {(this.props.brand === 'mahou') ? <img src="../../img/logo-mahou.svg" alt="Mahou" /> :
-                        (this.props.brand === 'estrella') ? <img src="../../img/logo-estrella.svg" alt="Estrella" /> :
-                            (this.props.brand === 'recommended') ? <FontAwesomeIcon icon={faStar} /> : null
+                <div className={`appy--image-tours-recommended ${brand}`}>
+                    {(brand === 'mahou') ? <img src="../../img/logo-mahou.svg" alt="Mahou" /> :
+                        (brand === 'estrella') ? <img src="../../img/logo-estrella.svg" alt="Estrella" /> :
+                            (brand === 'recommended') ? <FontAwesomeIcon icon={faStar} /> : null
                     }
                 </div>
             )
         }
     }
 
-    render() {
 
-        return (
+    // this.state.imageZoom = localStorage.getItem('imageZoom');
+    // console.log(this.state.imageZoom);
 
-            <div className={(this.props.place ? 'appy--image-placeid' : 'appy--tours-item-image')}
-                style={{
-                    backgroundImage: `url('${this.props.placeInfo ? this.props.placeInfo.image :
-                        this.props.tour ? this.props.tour[this.props.id].image : null}')`
-                }} >
-                { this.recommended()}
+    return (
 
-                < BeerRating place={this.props.place} />
-            </div >
-        );
-    }
+
+        <div id="place-image" onClick={placeInfo && handleZoom} className={(place ? 'appy--image-placeid' : 'appy--tours-item-image')}
+            style={{
+                backgroundImage: `url('${placeInfo ? placeInfo.image :
+                    tour ? tour[id].image : null}')`
+            }} >
+
+            { Recommended()}
+
+            < BeerRating place={place} rating={Math.floor(Math.random() * 3) + 3} />
+            {!tour &&
+                <ImageZoom zoom={localStorage.getItem('imageZoom')} />
+            }
+        </div >
+    );
 }
-
-
-
-
-export default ImageCanvas;

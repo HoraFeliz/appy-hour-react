@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearchLocation, faBars, faCircle, faPlus, faUser, faMapMarkerAlt, faRoute } from '@fortawesome/free-solid-svg-icons'
+import { faSearchLocation, faBars, faCircle, faPlus, faMapMarkerAlt, faRoute } from '@fortawesome/free-solid-svg-icons'
 
 class Navbar extends React.Component {
 
@@ -51,7 +51,7 @@ class Navbar extends React.Component {
                     </ul>
                 </div>
                 <nav className="appy--navbar">
-                    <Link className="appy--navbar-brand" onClick={this.handleClickMenu}><FontAwesomeIcon icon={faBars} /></Link>
+                    <Link to="" className="appy--navbar-brand" onClick={this.handleClickMenu}><FontAwesomeIcon icon={faBars} /></Link>
 
                     <form className="appy--search-form">
                         <input className="appy--search-input" type="search" placeholder="Search Tours" aria-label="Search" />

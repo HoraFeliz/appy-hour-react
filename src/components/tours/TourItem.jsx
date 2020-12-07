@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faWalking,
@@ -6,20 +6,21 @@ import {
     faStopwatch,
 } from "@fortawesome/free-solid-svg-icons";
 import ImageCanvas from "../common/ImageCanvas";
+import { textLength } from '../../services/textLength'
 
-class TourItem extends Component {
-    render() {
-        return (
-            <div className={this.props.first ? 'appy--tours-item appy--tours-item-first' : 'appy--tours-item'}>
+export default function TourItem({ id, recommended, brand, place, tour, first }) {
+    return (
+        <>
+            <div className={first ? 'appy--tours-item appy--tours-item-first' : 'appy--tours-item'}>
                 <ImageCanvas
-                    id={this.props.id}
-                    recommended={this.props.recommended}
-                    brand={this.props.brand}
-                    place={this.props.place}
-                    tour={this.props.tour}
+                    id={id}
+                    recommended={recommended}
+                    brand={brand}
+                    place={place}
+                    tour={tour}
                 />
                 <div
-                    className={`appy--tours-item-distancebar ${this.props.brand}`}
+                    className={`appy--tours-item-distancebar ${brand}`}
                 >
                     <div className="appy--tours-item-distancebar-distante-tour">
                         <div className="appy--tours-item-distancebar-icon">
@@ -37,10 +38,10 @@ class TourItem extends Component {
 
                 <div className="appy--tours-item-info">
                     <h3 className="appy--tours-item-info-title">
-                        {this.props.tour ? this.props.tour[this.props.id].name : "Loading"}
+                        {tour ? tour[id].name : "Loading"}
                     </h3>
                     <p className="appy--tours-item-info-description">
-                        {this.props.tour ? this.props.tour[this.props.id].description : "Loading"}
+                        {tour ? textLength(tour[id].description, 60, 72, 94) : "Loading"}
                     </p>
                     <div className="appy--tours-item-info-creator">
                         <div className="appy--tours-item-info-creator-icon">
@@ -52,8 +53,6 @@ class TourItem extends Component {
                     </div>
                 </div>
             </div>
-        );
-    }
+        </>
+    );
 }
-
-export default TourItem;

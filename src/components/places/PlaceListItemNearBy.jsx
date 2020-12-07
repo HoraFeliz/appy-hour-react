@@ -7,7 +7,6 @@ import { textLength } from '../../services/textLength'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { NavLink } from "react-router-dom";
 
 class PlaceListItemNearBy extends Component {
 
@@ -16,7 +15,7 @@ class PlaceListItemNearBy extends Component {
   }
 
   componentDidMount() {
-    const photoPlace = []
+    // const photoPlace = []
     if (this.props.place.photos) {
       // this.props.place.photos.map(photo => photoPlace.push(photo.getUrl({ maxWidth: 300, maxHeight: 300 })))
       this.setState({ photo: this.props.place.photos[0].getUrl({ maxWidth: 300, maxHeight: 300 }) })

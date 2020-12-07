@@ -1,5 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { Component } from 'react'
+import { NavLink } from "react-router-dom";
 
 
 export default class Login extends Component {
@@ -26,7 +27,9 @@ export default class Login extends Component {
 
                 </form>
                 <div className="button-container">
-                    <button type="button" className="button"><span>Log In</span></button>
+                    <NavLink to="/">
+                        <button type="button" className="button"><span>Log In</span></button>
+                    </NavLink>
                 </div>
                 <div className="button-container">
                     <button type="button" className="button"><img className="google-brand" src="/img/google-brands.svg" alt="" /><span>Google Login</span></button>

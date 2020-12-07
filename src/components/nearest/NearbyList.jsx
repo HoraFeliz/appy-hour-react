@@ -1,5 +1,5 @@
 import React from "react";
-import PlaceListItem from "../places/PlaceListItem";
+// import PlaceListItem from "../places/PlaceListItem";
 import PlaceListItemNearBy from "../places/PlaceListItemNearBy";
 import "./NearbyList.scss";
 

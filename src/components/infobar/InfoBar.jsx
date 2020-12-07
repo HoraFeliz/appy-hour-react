@@ -23,7 +23,7 @@ class InfoBar extends Component {
                         <AppyButton num={this.props.place.length} info={true} />
                     }
                     {this.props.place &&
-                        <AppyButton type="start" info={true} />
+                        <AppyButton num='info' type="start" info={true} />
                     }
                 </div>
             </div>
