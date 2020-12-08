@@ -156,11 +156,11 @@
                     padding-right: 7px;
 
                     &-loading {
-                        background-color: $grey-text;
+                        background-color: $light-grey;
                         border-radius: 10px;
                         margin: 8px;
                         padding: 6px;
-                        width: 80px;
+                        width: 17vw;
                     }
                 }
 
@@ -169,7 +169,10 @@
                 }
 
                 &-loading {
-                    background-color: $grey;
+                    background-color: $white-color;
+                    border-right: 1px solid $light-grey;
+                    border-left: 1px solid $light-grey;
+                    border-bottom: 1px solid $light-grey;
                 }
             }
 
@@ -184,7 +187,7 @@
                     margin-bottom: 3px;
 
                     &-loading {
-                        background-color: $grey-text;
+                        background-color: $light-grey;
                         border-radius: 10px;
                         margin-top: 3px;
                         padding: 6px;
@@ -226,7 +229,7 @@
                         font-size: $text-creator;
 
                         &-loading {
-                            background-color: $grey;
+                            background-color: $light-grey;
                         }
                     }
 
