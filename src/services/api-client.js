@@ -8,7 +8,7 @@ const http = axios.create({
 //   baseURL: "http://localhost:3010",
 // });
 
-http: const placesHttp = axios.create({
+const placesHttp = axios.create({
   baseURL: "https://maps.googleapis.com/maps/api/place/details/json",
 });
 
