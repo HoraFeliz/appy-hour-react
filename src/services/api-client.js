@@ -1,7 +1,9 @@
 const axios = require("axios");
 
 const http = axios.create({
-  baseURL: "http://localhost:3010", //"https://appy-hour-api.herokuapp.com",
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:3010",
+  withCredentials: true
+  //"https://appy-hour-api.herokuapp.com",
 });
 
 const placesHttp = axios.create({
@@ -54,3 +56,16 @@ export const savePlace = (body, tourId) => {
     .post(`/place/new/${tourId}`, body)
     .then((response) => response.data);
 };
+
+export const loginGoogle = (user) => {
+  return http.post(`/user/add`, user).then((response) => response.data);
+};
+
+export const loginUser = (user) => {
+  return http.post(`/login`, user).then((response) => response.data);
+};
+
+export const createUser = (user) => {
+  return http.post(`/user/create`, user).then((response) => response.data);
+};
+
