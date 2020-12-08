@@ -156,7 +156,8 @@
                     padding-right: 7px;
 
                     &-loading {
-                        background-color: $light-grey;
+                        background-color: $loading-color;
+                        ;
                         border-radius: 10px;
                         margin: 8px;
                         padding: 6px;
@@ -170,9 +171,12 @@
 
                 &-loading {
                     background-color: $white-color;
-                    border-right: 1px solid $light-grey;
-                    border-left: 1px solid $light-grey;
-                    border-bottom: 1px solid $light-grey;
+                    border-right: 1px solid $loading-color;
+                    ;
+                    border-left: 1px solid $loading-color;
+                    ;
+                    border-bottom: 1px solid $loading-color;
+                    ;
                 }
             }
 
@@ -187,7 +191,8 @@
                     margin-bottom: 3px;
 
                     &-loading {
-                        background-color: $light-grey;
+                        background-color: $loading-color;
+                        ;
                         border-radius: 10px;
                         margin-top: 3px;
                         padding: 6px;
@@ -204,7 +209,7 @@
                     line-height: 12px;
 
                     &-loading {
-                        background-color: $light-grey;
+                        background-color: $loading-color;
                         border-radius: 10px;
                         margin-top: 2px;
                         padding: 4px;
@@ -229,7 +234,7 @@
                         font-size: $text-creator;
 
                         &-loading {
-                            background-color: $light-grey;
+                            background-color: $loading-color;
                         }
                     }
 
@@ -239,7 +244,8 @@
                         padding-left: 7px;
 
                         &-loading {
-                            background-color: $light-grey;
+                            background-color: $loading-color;
+                            ;
                             border-radius: 10px;
                             margin-top: 2px;
                             padding: 4px;
