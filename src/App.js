@@ -13,7 +13,6 @@ import Login from './components/login/Login';
 import AddPlaces from './components/addplaces/AddPlaces';
 import Nearby from './components/nearest/Nearby';
 import LoginLayout from './components/layouts/LoginLayout.tsx';
-import DefaultLayout from './components/layouts/DefaultLayout.tsx';
 import CreateUser from './components/createuser/CreateUser';
 import { AuthenticatedRoute, NotAuthenticatedRoute } from './components/authenticated-route/Authenticated-route';
 
@@ -23,15 +22,15 @@ function App() {
 			<Switch>
 				<Route path={[ '/login' ]}>
 					<LoginLayout>
-						<NotAuthenticatedRoute path="/login" component={Login} />
+						<NotAuthenticatedRoute exact path="/login" component={Login} />
 					</LoginLayout>
 				</Route>
 				<Route path={[ '/signup' ]}>
 					<LoginLayout>
-						<NotAuthenticatedRoute path="/signup" component={CreateUser} />
+						<NotAuthenticatedRoute exact path="/signup" component={CreateUser} />
 					</LoginLayout>
 				</Route>
-				<DefaultLayout>
+			
 					<AuthenticatedRoute exact path="/" component={Tours} />
 					<AuthenticatedRoute exact path="/place/:id/:tour" component={PlaceId} />
 					<AuthenticatedRoute exact path="/create" component={CreateTour} />
@@ -44,8 +43,10 @@ function App() {
 					<AuthenticatedRoute exact path="/tour/places/add" component={Tour} />
 					<AuthenticatedRoute exact path="/tour/add/:id" component={AddPlaces} />
 					<AuthenticatedRoute exact path="/nearby" component={Nearby} />
-					<Redirect to="/login" />
-				</DefaultLayout>
+					<Route>
+						<Redirect to="/login" />
+					</Route>
+			
 			</Switch>
 		</div>
 	);
