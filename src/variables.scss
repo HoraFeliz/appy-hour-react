@@ -1,5 +1,4 @@
 // Colors
-
 $primary-color: #C8102E;
 $secundary-color: #FFCB38;
 $recommended-color: #298888;
@@ -12,6 +11,9 @@ $text-open: green;
 $text-close: red;
 $mahou: #C8102E;
 $estrella: #000000;
+$loading-color: #ddd;
+$shine-color: #e8e8e8;
+
 
 // Shadow
 $-webkit-box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.16);
@@ -37,7 +39,8 @@ $text-info-address: 12px;
 $text-button: 16px;
 $icon-button: 14px;
 
-// Colors
+// Animation
+$animation-loading-duration: 1.6s;
 
 .appy-- {
 

@@ -27,13 +27,13 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
                 {loading ?
 
                     <div
-                        className={`appy--tours-item-distancebar appy--tours-item-distancebar-loading `}
+                        className={`appy--tours-item-distancebar appy--tours-item-distancebar-loading  `}
                     >
                         <div className="appy--tours-item-distancebar-distante-tour">
-                            <div className="appy--tours-item-distancebar-text appy--tours-item-distancebar-text-loading"></div>
+                            <div className="appy--tours-item-distancebar-text appy--tours-item-distancebar-text-loading background-loading-gradient"></div>
                         </div>
                         <div className="appy--tours-item-distancebar-distante-tour">
-                            <div className="appy--tours-item-distancebar-text appy--tours-item-distancebar-text-loading"></div>
+                            <div className="appy--tours-item-distancebar-text appy--tours-item-distancebar-text-loading background-loading-gradient"></div>
                         </div>
 
 
@@ -64,17 +64,17 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
                     <h3 className="appy--tours-item-info-title">
                         {tour ? tour[id].name :
 
-                            <div className="appy--tours-item-info-title appy--tours-item-info-title-loading"></div>
+                            <div className="appy--tours-item-info-title appy--tours-item-info-title-loading background-loading-gradient"></div>
 
                         }
                     </h3>
                     <p className="appy--tours-item-info-description">
-                        {tour ? textLength(tour[id].description, 60, 72, 94) :
+                        {tour ? textLength(tour[id].description, 65, 72, 94) :
 
                             <>
-                                <div className="appy--tours-item-info-description-loading"></div>
-                                <div className="appy--tours-item-info-description-loading"></div>
-                                <div className="appy--tours-item-info-description-loading" style={{ width: '60%' }}></div>
+                                <div className="appy--tours-item-info-description-loading background-loading-gradient"></div>
+                                <div className="appy--tours-item-info-description-loading background-loading-gradient"></div>
+                                <div className="appy--tours-item-info-description-loading background-loading-gradient" style={{ width: '60%' }}></div>
                             </>
 
                         }
@@ -82,9 +82,9 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
 
                     {loading ?
                         <div className="appy--tours-item-info-creator">
-                            <div className="appy--tours-item-info-creator-icon appy--tours-item-info-creator-icon-loading">
+                            <div className="appy--tours-item-info-creator-icon appy--tours-item-info-creator-icon-loading background-loading-gradient">
                             </div>
-                            <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading">
+                            <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading background-loading-gradient">
                             </div>
                         </div>
                         :

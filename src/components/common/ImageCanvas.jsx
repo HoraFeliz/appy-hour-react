@@ -49,7 +49,7 @@ export default function ImageCanvas({ place, recommended, brand, placeInfo, tour
     return (
         loading ?
 
-            <div className='appy--image-placeid appy--image-placeid-loading appy--image-loading' style={{ marginRight: '5px' }} >
+            <div className='appy--image-placeid appy--image-placeid-loading appy--image-loading background-loading-gradient' style={{ marginRight: '5px' }} >
                 <div class="appy--image-tours-recommended appy--image-tours-recommended-loading"></div>
                 < BeerRating loading={true} />
             </div>
