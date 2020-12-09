@@ -36,26 +36,31 @@ const PlaceId = (props) => {
   // });
 
   return (
-    <div>
-      <div className="appy--place-item-map-canvas">
-        {place && place.geometry ? (
-          <PlaceMap
-            lat={place.geometry.latitude}
-            lng={place.geometry.longitude}
-            name={place.name}
-            address={place.address}
-            isOpen={Math.random() >= 0.5}
-          />
-        ) : (
-            <h1>Loading map</h1>
-          )}
+    <>
+      <div className="appy--tours-detail">
+        <div className="appy--place-item-map-canvas">
+          {place && place.geometry ? (
+            <PlaceMap
+              lat={place.geometry.latitude}
+              lng={place.geometry.longitude}
+              name={place.name}
+              address={place.address}
+              isOpen={Math.random() >= 0.5}
+            />
+          ) : (
+              <h1>Loading map</h1>
+            )}
+        </div>
+
       </div>
       {tour && <InfoBar back={true} tour={tour} />}
       <div className="appy--place-item">
-        <ImageCanvas place={true} placeInfo={place} />
+        <div className="appy--tours-detail appy--place-item-photo">
+          <ImageCanvas place={true} placeInfo={place} />
+        </div>
         <PlaceInfo place={place} placeInfo={place} />
       </div>
-    </div>
+    </>
   );
 };
 

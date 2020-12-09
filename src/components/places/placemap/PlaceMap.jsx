@@ -39,9 +39,9 @@ class PlaceMap extends React.Component {
 
   containerStyle = {
     position: "absolute",
-    width: "calc(100% - 10px",
+    width: "100%",
     height: "100%",
-    top: "115px",
+    top: "110px",
   };
 
   render() {

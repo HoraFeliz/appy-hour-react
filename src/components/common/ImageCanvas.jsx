@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage, faPlusCircle, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import BeerRating from './BeerRating';
-import ImageZoom from './ImageZoom';
+import ImageZoom from '../helpers/ImageZoom';
 // import { getPlaces } from '../../services/api-client';
 
 
-export default function ImageCanvas({ place, recommended, brand, placeInfo, tour, id }) {
+export default function ImageCanvas({ place, recommended, brand, placeInfo, tour, id, loading }) {
 
     const handleZoom = () => {
         const image = document.getElementById('place-image')
@@ -17,7 +17,6 @@ export default function ImageCanvas({ place, recommended, brand, placeInfo, tour
         plusIcon.classList.toggle('appy--image-placeid-plus-icon-minus')
         plusText.classList.toggle('appy--image-placeid-image-zoom-minus')
         plus.classList.toggle('appy--image-placeid-plus-click')
-        // this.setState({ imageZoom: false })
         localStorage.setItem('imageZoom', 'inactive')
     }
 
@@ -48,20 +47,29 @@ export default function ImageCanvas({ place, recommended, brand, placeInfo, tour
     // console.log(this.state.imageZoom);
 
     return (
+        loading ?
+
+            <div className='appy--image-placeid appy--image-placeid-loading appy--image-loading background-loading-gradient' style={{ marginRight: '5px' }} >
+                <div class="appy--image-tours-recommended appy--image-tours-recommended-loading"></div>
+                < BeerRating loading={true} />
+            </div>
+
+            :
+
+            <div id="place-image" onClick={placeInfo && handleZoom} className={(place ? 'appy--image-placeid' : 'appy--tours-item-image')}
+                style={{
+                    backgroundImage: `url('${placeInfo ? placeInfo.image :
+                        tour ? tour[id].image : null}')`
+                }} >
+
+                {Recommended()}
+
+                < BeerRating place={place} rating={Math.floor(Math.random() * 3) + 3} />
+                {!tour &&
+                    <ImageZoom zoom={localStorage.getItem('imageZoom')} />
+                }
+            </div >
 
 
-        <div id="place-image" onClick={placeInfo && handleZoom} className={(place ? 'appy--image-placeid' : 'appy--tours-item-image')}
-            style={{
-                backgroundImage: `url('${placeInfo ? placeInfo.image :
-                    tour ? tour[id].image : null}')`
-            }} >
-
-            { Recommended()}
-
-            < BeerRating place={place} rating={Math.floor(Math.random() * 3) + 3} />
-            {!tour &&
-                <ImageZoom zoom={localStorage.getItem('imageZoom')} />
-            }
-        </div >
     );
 }

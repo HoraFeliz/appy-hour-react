@@ -1,10 +1,13 @@
 const axios = require("axios");
 
+
 const http = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:3010",
   withCredentials: true
   //"https://appy-hour-api.herokuapp.com",
-});
+})
+
+
 
 const placesHttp = axios.create({
   baseURL: "https://maps.googleapis.com/maps/api/place/details/json",

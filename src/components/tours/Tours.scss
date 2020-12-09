@@ -154,10 +154,29 @@
                     color: $white-color;
                     padding-left: 7px;
                     padding-right: 7px;
+
+                    &-loading {
+                        background-color: $loading-color;
+                        ;
+                        border-radius: 10px;
+                        margin: 8px;
+                        padding: 6px;
+                        width: 17vw;
+                    }
                 }
 
                 &-recommended {
                     background-color: $recommended-color;
+                }
+
+                &-loading {
+                    background-color: $white-color;
+                    border-right: 1px solid $loading-color;
+                    ;
+                    border-left: 1px solid $loading-color;
+                    ;
+                    border-bottom: 1px solid $loading-color;
+                    ;
                 }
             }
 
@@ -170,6 +189,16 @@
                 &-title {
                     font-size: $text-title;
                     margin-bottom: 3px;
+
+                    &-loading {
+                        background-color: $loading-color;
+                        ;
+                        border-radius: 10px;
+                        margin-top: 3px;
+                        padding: 6px;
+                        width: 60%;
+                        margin-bottom: 8px;
+                    }
                 }
 
                 &-description {
@@ -178,6 +207,14 @@
                     margin-bottom: 8px;
                     height: 40px;
                     line-height: 12px;
+
+                    &-loading {
+                        background-color: $loading-color;
+                        border-radius: 10px;
+                        margin-top: 2px;
+                        padding: 4px;
+                        width: 100%;
+                    }
                 }
 
                 &-creator {
@@ -195,12 +232,26 @@
                         position: relative;
                         color: $white-color;
                         font-size: $text-creator;
+
+                        &-loading {
+                            background-color: $loading-color;
+                        }
                     }
 
                     &-text {
                         font-size: $text-description;
                         color: $grey-text;
                         padding-left: 7px;
+
+                        &-loading {
+                            background-color: $loading-color;
+                            ;
+                            border-radius: 10px;
+                            margin-top: 2px;
+                            padding: 4px;
+                            width: 50%;
+                            margin-left: 5px;
+                        }
                     }
                 }
             }
