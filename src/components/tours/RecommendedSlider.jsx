@@ -18,7 +18,7 @@ const RecommendedSlider = ({ recommended, brand }) => {
 
   const params = {
     slidesPerView: 2,
-    spaceBetween: 5,
+    spaceBetween: 7,
     freeMode: true,
     // freeModeMinimumVelocity: 0.7,
     followFinger: true,
