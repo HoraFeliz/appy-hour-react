@@ -18,7 +18,7 @@ const RecommendedSlider = ({ recommended, brand }) => {
 
   const params = {
     slidesPerView: 2,
-    spaceBetween: 7,
+    spaceBetween: 6,
     freeMode: true,
     // freeModeMinimumVelocity: 0.7,
     followFinger: true,
@@ -46,7 +46,7 @@ const RecommendedSlider = ({ recommended, brand }) => {
                   id={key}
                   tour={recommendedTours}
                   recommended={recommended}
-                  brand={'recommended'}
+                  brand={brand}
                   first={key === 0 ? true : false}
                 />
               </NavLink>

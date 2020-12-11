@@ -9,7 +9,7 @@ const Tours = () => {
   const [recommendedTours, setRecommendedTours] = useState([]);
   const [regularTours, setRegularTours] = useState([]);
 
-  // Set 0 Image Zoom Helper
+  // Set active Image Zoom Helper
   localStorage.setItem('imageZoom', 'active')
 
   useEffect(() => {

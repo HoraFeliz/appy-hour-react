@@ -5,7 +5,7 @@ import "swiper/swiper.scss";
 import { getRegularTours } from "../../services/api-client";
 import { NavLink } from "react-router-dom";
 
-const RegularSlider = (props) => {
+const RegularSlider = ({ recommended, brand }) => {
   const [regularTours, setRegularTours] = useState([]);
 
   useEffect(() => {
@@ -45,8 +45,8 @@ const RegularSlider = (props) => {
                   key={key}
                   id={key}
                   tour={regularTours}
-                  recommended={props.recommended}
-                  brand={props.brand}
+                  recommended={recommended}
+                  brand={brand}
                   first={key === 0 ? true : false}
                 />
               </NavLink>
