@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const http = axios.create({
   baseURL:
-    process.env.REACT_APP_API_URL || "https://appyhour-api.herokuapp.com/",
+    process.env.REACT_APP_API_URL || "http://localhost:3010",
   withCredentials: true,
   //"https://appy-hour-api.herokuapp.com",
 });
