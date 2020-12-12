@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage, faPlusCircle, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import BeerRating from './BeerRating';
 import ImageZoom from './ImageZoom';
 // import { getPlaces } from '../../services/api-client';
