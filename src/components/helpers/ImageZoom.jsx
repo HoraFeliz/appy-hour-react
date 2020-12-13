@@ -1,10 +1,10 @@
 import { faExpand, faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 export default function ImageZoom({ zoom }) {
 
-    const localImageZoom = localStorage.getItem('imageZoom');
+    // const localImageZoom = localStorage.getItem('imageZoom');
 
 
     useEffect(() => {
