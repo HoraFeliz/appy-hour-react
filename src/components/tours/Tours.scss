@@ -107,7 +107,7 @@
 
             &-image {
                 min-height: 70px;
-                height: calc(47.7vh - 240px);
+                height: calc(47.7vh - 225px);
                 width: 100%;
                 background-size: cover;
                 background-position: center;
@@ -213,7 +213,7 @@
                     font-size: $text-description;
                     color: $grey;
                     margin-bottom: 8px;
-                    height: 40px;
+                    height: 4vh;
                     line-height: 12px;
 
                     &-loading {

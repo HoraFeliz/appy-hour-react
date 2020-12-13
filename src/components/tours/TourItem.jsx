@@ -71,7 +71,7 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
                         }
                     </h3>
                     <div className="appy--tours-item-info-description">
-                        {tour ? textLength(tour[id].description, 65, 72, 94) :
+                        {tour ? textLength(tour[id].description, 40, 55, 65) :
 
                             <>
                                 <div className="appy--tours-item-info-description-loading background-loading-gradient"></div>
