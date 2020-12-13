@@ -66,6 +66,11 @@ export const loginUser = (user) => {
   return http.post(`/login`, user).then((response) => response.data);
 };
 
+
+export const logOut = () => {
+  return http.post(`/logout`).then((response) => response.data);
+};
+
 export const createUser = (user) => {
   return http.post(`/user/create`, user).then((response) => response.data);
 };
