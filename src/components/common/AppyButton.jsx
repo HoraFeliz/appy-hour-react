@@ -20,9 +20,9 @@ export default function AppyButton({ type, recommended, num, info }) {
                             (type === 'map') ? <FontAwesomeIcon className="appy--button-icon" icon={faMapMarkerAlt} /> :
                                 (type === 'delete') ? <FontAwesomeIcon className="appy--button-icon" icon={faTrashAlt} /> :
                                     (type === 'start') ? <FontAwesomeIcon className="appy--button-icon" icon={faPlay} /> :
-                                        (type === 'whatsapp') ? <img className="appy--button-brand-whatsapp" src="/img/whatsapp-brands.svg" alt="Whatsapp" /> :
-                                            (type === 'facebook') ? <img className="appy--button-brand" src="/img/facebook-f-brands.svg" alt="Facebook" /> :
-                                                (type === 'twitter') ? <img className="appy--button-brand-twitter" src="/img/twitter-brands.svg" alt="Twitter" /> : null
+                                        (type === 'whatsapp') ? <img className="appy--button-brand-whatsapp" name='whatsapp' src="/img/whatsapp-brands.svg" alt="Whatsapp" /> :
+                                            (type === 'facebook') ? <img className="appy--button-brand" name='facebook' src="/img/facebook-f-brands.svg" alt="Facebook" /> :
+                                                (type === 'twitter') ? <img className="appy--button-brand-twitter" name='twitter' src="/img/twitter-brands.svg" alt="Twitter" /> : null
             }
 
             {

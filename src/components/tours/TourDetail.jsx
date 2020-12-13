@@ -120,6 +120,17 @@ class TourDetail extends Component {
     this.setState({ totalRating: (totalRatingSum / placesArray.length).toFixed(1) })
   }
 
+
+  // share social network
+
+  shareMessage = (e) => {
+
+    const { name } = e.target;
+    const message = 'hla';
+    console.log(name)
+
+  }
+
   render() {
     return (
       <div>
@@ -221,9 +232,9 @@ class TourDetail extends Component {
                 </div>
                 <div className="appy--col-6">
                   <div className="appy--tours-detail-share-buttons">
-                    <a href={`whatsapp://send?text=${window.location.href}`}>
+                    <button name='whatsapp' onClick={this.shareMessage} >
                       <AppyButton num='info' type="whatsapp" />
-                    </a>
+                    </button>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
