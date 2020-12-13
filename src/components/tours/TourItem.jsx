@@ -11,9 +11,11 @@ import { textLength } from '../../services/textLength'
 export default function TourItem({ id, recommended, brand, place, tour, first, loading }) {
     return (
         <>
-            <div className={first ? 'appy--tours-item appy--tours-item-first' : 'appy--tours-item'} style={loading && { marginRight: '8px' }}>
+
+            <div className={loading ? `appy--tours-item ${first && 'first-item-loading'}` : 'appy--tours-item'} >
                 {loading ?
                     <ImageCanvas loading={true} />
+
                     :
                     <ImageCanvas
                         id={id}
@@ -68,7 +70,7 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
 
                         }
                     </h3>
-                    <p className="appy--tours-item-info-description">
+                    <div className="appy--tours-item-info-description">
                         {tour ? textLength(tour[id].description, 65, 72, 94) :
 
                             <>
@@ -78,7 +80,7 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
                             </>
 
                         }
-                    </p>
+                    </div>
 
                     {loading ?
                         <div className="appy--tours-item-info-creator">

@@ -50,6 +50,10 @@
     &col-9 {
         flex: 0 0 75%;
         max-width: 75%;
+
+        &-place-list-item {
+            padding: 0 5px 0 15px;
+        }
     }
 
     &col-10 {
@@ -184,9 +188,10 @@
 
                 &-loading {
                     background-color: $white-color;
-                    padding: 10px 6px;
-                    width: 20vw;
+                    padding: 6px;
+                    width: 17vw;
                     margin: 0px 6px 6px 0;
+                    border-radius: 10px;
                 }
             }
 
@@ -328,6 +333,15 @@
     background-image: linear-gradient(90deg, $loading-color 0px, $shine-color 40px, $loading-color 80px);
     background-size: 600px;
     animation: shine-loading 1.6s infinite linear;
+    border: none;
+}
+
+.button-info {
+    width: 60px;
+}
+
+.first-item-loading {
+    margin-right: 10px;
 }
 
 

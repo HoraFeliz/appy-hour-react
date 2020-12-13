@@ -1,34 +1,30 @@
 import { faChevronLeft, faRoute } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AppyButton from '../common/AppyButton';
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from "react-router-dom";
 
-class InfoBar extends Component {
-    render() {
-        return (
-            <div className="appy--infobar appy--primary-color">
-                <NavLink className="appy--infobar-back appy--primary-color" to={!this.props.place ? `/tour/${this.props.tour._id}` : `/tours`}>
-                    <div className="appy--infobar-icon">
-                        {this.props.back ? <FontAwesomeIcon icon={faChevronLeft} /> :
-                            <FontAwesomeIcon icon={faRoute} />
-                        }
-                    </div>
-                    <div className="appy--infobar-title">
-                        <strong>{!this.props.place ? this.props.tour.name : 'Tours'}</strong>
-                    </div>
-                </NavLink>
-                <div className="appy--buttons-info">
-                    {this.props.place &&
-                        <AppyButton num={this.props.place.length} info={true} />
-                    }
-                    {this.props.place &&
-                        <AppyButton num='info' type="start" info={true} />
+export default function InfoBar({ tour, place, back }) {
+    return (
+        <div className="appy--infobar appy--primary-color">
+            <NavLink className="appy--infobar-back appy--primary-color" to={!place ? `/tour/${tour._id}` : `/tours`}>
+                <div className="appy--infobar-icon">
+                    {back ? <FontAwesomeIcon icon={faChevronLeft} /> :
+                        <FontAwesomeIcon icon={faRoute} />
                     }
                 </div>
+                <div className="appy--infobar-title">
+                    <strong>{!place ? tour.name : 'Tours'}</strong>
+                </div>
+            </NavLink>
+            <div className="appy--buttons-info">
+                {place &&
+                    <AppyButton num={place.length} info={true} />
+                }
+                {place &&
+                    <AppyButton num='info' type="start" info={true} />
+                }
             </div>
-        );
-    }
+        </div>
+    );
 }
-
-export default InfoBar;

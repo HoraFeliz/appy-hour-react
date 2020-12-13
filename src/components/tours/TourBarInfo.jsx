@@ -1,24 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faRoute } from '@fortawesome/free-solid-svg-icons'
 
-class TourBarInfo extends Component {
+export default function TourBarInfo({ recommended, children, loading }) {
 
-    render() {
+    return (
 
-
-        return (
-            <div className="appy--tours-barinfo" style={this.props.recommended ? { marginTop: '15px' } : { marginTop: '25px' }}>
-                <div className={`appy--tours-barinfo-title ${(this.props.recommended) && 'recommended-color'}`}>
-                    <FontAwesomeIcon className={`appy--tours-barinfo-title-icon ${this.props.recommended && 'recommended'}`} icon={(this.props.recommended) ? faStar : faRoute} />
-                    <h5 className="appy--tours-barinfo-title-title">{(this.props.recommended) ? 'Recommended' : 'Near Tours'}</h5>
+        loading ?
+            <div className="appy--tours-barinfo" style={recommended ? { marginTop: '15px' } : { marginTop: '25px' }}>
+                <div className={`appy--tours-barinfo-title ${(recommended) && 'recommended-color'}`}>
+                    <FontAwesomeIcon className={`appy--tours-barinfo-title-icon background-loading-gradient ${recommended && 'recommended'}`} icon={(recommended) ? faStar : faRoute} />
+                    <div className="appy--tours-barinfo-title-loading background-loading-gradient"></div>
                 </div>
                 <div className="appy--tours-barinfo-info">
-                    {this.props.children}
+                    {children}
                 </div>
             </div>
-        );
-    }
+            :
+            <>
+                <div className="appy--tours-barinfo" style={recommended ? { marginTop: '15px' } : { marginTop: '25px' }}>
+                    <div className={`appy--tours-barinfo-title ${(recommended) && 'recommended-color'}`}>
+                        <FontAwesomeIcon className={`appy--tours-barinfo-title-icon ${recommended && 'recommended'}`} icon={(recommended) ? faStar : faRoute} />
+                        <h5 className="appy--tours-barinfo-title-title">{(recommended) ? 'Recommended' : 'Near Tours'}</h5>
+                    </div>
+                    <div className="appy--tours-barinfo-info">
+                        {children}
+                    </div>
+                </div>
+            </>
+    );
 }
-
-export default TourBarInfo;

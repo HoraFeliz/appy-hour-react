@@ -98,7 +98,7 @@ class PlaceListItemNearBy extends Component {
             </div>
           </div>
         </div>
-        <div className="col-9">
+        <div className="appy--col-9 appy--col-9-place-list-item">
           {/* Slider */}
           <Slider {...settings}>
             {/* Slide #1 */}

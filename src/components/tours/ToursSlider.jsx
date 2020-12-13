@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Swiper from "react-id-swiper";
 import TourItem from "./TourItem";
 import "swiper/swiper.scss";
-import { getRegularTours } from "../../services/api-client";
 import { NavLink } from "react-router-dom";
 
-const RegularSlider = ({ recommended, brand }) => {
-  const [regularTours, setRegularTours] = useState([]);
-
-  useEffect(() => {
-    getRegularTours()
-      .then((res) => {
-        setRegularTours(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+const ToursSlider = ({ recommended, brand, tours }) => {
 
   const params = {
     slidesPerView: 2,
-    spaceBetween: 5,
+    spaceBetween: 6,
     freeMode: true,
     // freeModeMinimumVelocity: 0.7,
     followFinger: true,
@@ -36,15 +26,15 @@ const RegularSlider = ({ recommended, brand }) => {
   };
   return (
     <>
-      {regularTours.length ?
+      {tours.length ?
         <Swiper {...params}>
-          {regularTours.map((tour, key) => (
+          {tours.map((tour, key) => (
             <div key={key}>
               <NavLink to={`/tour/${tour._id}`}>
                 <TourItem
                   key={key}
                   id={key}
-                  tour={regularTours}
+                  tour={tours}
                   recommended={recommended}
                   brand={brand}
                   first={key === 0 ? true : false}
@@ -53,22 +43,20 @@ const RegularSlider = ({ recommended, brand }) => {
             </div>
           ))}
         </Swiper>
-
         :
 
         // Loading
         <>
           <div className="container-items d-flex">
-            <TourItem loading={true} />
+            <TourItem loading={true} first={true} />
             <TourItem loading={true} />
 
           </div>
 
         </>
 
-
       }
     </>
   );
 };
-export default RegularSlider;
+export default ToursSlider;
