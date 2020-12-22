@@ -164,8 +164,8 @@ class TourDetail extends Component {
 
 	render() {
 		const { name, description, id, image } = this.state.tour;
-		const url = `${process.env.REACT_APP_URL}/tour/${id}`;
-		//const url = 'https://www.google.es/';
+		//const url = `${process.env.REACT_APP_URL}/tour/${id}`;
+		const url = 'https://www.google.es/';
 		console.log(url);
 		return (
 			<div>
