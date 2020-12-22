@@ -246,23 +246,9 @@ class TourDetail extends Component {
 										<button name="whatsapp" onClick={this.shareMessage}>
 											<AppyButton num="info" type="whatsapp" />
 										</button>
-										{/* <button
-											name="facebook"
-											onClick={this.shareMessage}
-											className="fb-xfbml-parse-ignore"
-										>
+										
+										<FacebookShareButton url={url} hashtag='#appyhour'>
 											<AppyButton num="info" type="facebook" />
-										</button> */}
-										{/* 										
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											href={`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${name}`}
-										>
-											Share
-										</a> */}
-										<FacebookShareButton url={url} quote='hola' hashtag='#appyhour'>
-										<AppyButton num="info" type="facebook" />
 										</FacebookShareButton>
 
 										<a
