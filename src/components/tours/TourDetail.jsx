@@ -160,7 +160,9 @@ class TourDetail extends Component {
 	};
 
 	render() {
-		const { name, description, id, image } = this.state.tour;
+		const { id } = this.state.tour;
+		const hashtag = [ 'appyhour', 'beer', 'enjoywithfriend' ];
+		const title = 'Appy Hour Tours';
 		const url = `${process.env.REACT_APP_URL}/tour/${id}`;
 		console.log(url);
 		return (
@@ -243,21 +245,16 @@ class TourDetail extends Component {
 								</div>
 								<div className="appy--col-6">
 									<div className="appy--tours-detail-share-buttons">
-										<button name="whatsapp" onClick={this.shareMessage}>
+										<WhatsappShareButton url={url} title={title}>
 											<AppyButton num="info" type="whatsapp" />
-										</button>
-										
-										<FacebookShareButton url={url} hashtag='#appyhour'>
+										</WhatsappShareButton>
+
+										<FacebookShareButton url={url} hashtag="#AppyHour">
 											<AppyButton num="info" type="facebook" />
 										</FacebookShareButton>
-
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											href={`https://twitter.com/intent/tweet?text=${window.location.href}`}
-										>
+										<TwitterShareButton url={url} title={title} related={['@mahou']} hashtags={hashtag} >
 											<AppyButton num="info" type="twitter" />
-										</a>
+										</TwitterShareButton>
 									</div>
 								</div>
 							</div>
