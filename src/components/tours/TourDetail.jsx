@@ -157,15 +157,11 @@ class TourDetail extends Component {
 			default:
 				break;
 		}
-		// https://www.facebook.com/sharer/sharer.php?
-		// u=https%3A%2F%2Fwww.20minutos.es%2Fnoticia%2F4517265%2F0%2Fvacunados-tendran-mantener-restricciones-conozca-vacuna-evita-transmision
-		// %2F%3Futm_source%3Dfacebook.com%26utm_medium%3Dsocialshare%26utm_campaign%3Ddesktop&t=Los%20vacunados%20te
 	};
 
 	render() {
 		const { name, description, id, image } = this.state.tour;
 		const url = `${process.env.REACT_APP_URL}/tour/${id}`;
-		//const url = 'https://www.google.es/';
 		console.log(url);
 		return (
 			<div>
