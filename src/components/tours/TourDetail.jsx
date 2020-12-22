@@ -23,71 +23,74 @@ class TourDetail extends Component {
 	componentDidMount() {
 		this.fetchPlaces();
 		this.fetchTour();
+		
 	}
 
 	calculateDistance = (...places) => {
-		const service = new window.google.maps.DistanceMatrixService();
+		if (Object.keys(this.state.tour).length !== 0) {
+			const service = new window.google.maps.DistanceMatrixService();
 
-		const addresOrigin = [ ...places ];
-		const origin = [ addresOrigin[0].address ];
-		// const destinations = [addresOrigin.address];
-		const origin2 = [ addresOrigin[1].address ];
-		// const destinations2 = [addresOrigin[2].address];
-		const restOfPlaces = [ ...places ];
+			const addresOrigin = [ ...places ];
+			const origin = [ addresOrigin[0].address ];
+			// const destinations = [addresOrigin.address];
+			const origin2 = [ addresOrigin[1].address ];
+			// const destinations2 = [addresOrigin[2].address];
+			const restOfPlaces = [ ...places ];
 
-		let destinations = [];
-		restOfPlaces.forEach((place) => {
-			destinations.push(place.address);
-		});
+			let destinations = [];
+			restOfPlaces.forEach((place) => {
+				destinations.push(place.address);
+			});
 
-		destinations.shift();
+			destinations.shift();
 
-		console.log('destinations', destinations);
-		console.log('addresOrigin', addresOrigin);
-		console.log('origin', origin);
-		console.log('origin2', origin2);
-		console.log('restOfPlaces', restOfPlaces);
+			console.log('destinations', destinations);
+			console.log('addresOrigin', addresOrigin);
+			console.log('origin', origin);
+			console.log('origin2', origin2);
+			console.log('restOfPlaces', restOfPlaces);
 
-		service.getDistanceMatrix(
-			{
-				origins: origin,
-				destinations: destinations,
-				travelMode: window.google.maps.TravelMode.WALKING,
-				unitSystem: window.google.maps.UnitSystem.METRIC
-			},
-			(response, status) => {
-				if (status !== 'OK') {
-					console.log('Error was: ' + status);
-				} else {
-					const originList = response.originAddresses;
-					for (let i = 0; i < originList.length; i++) {
-						const results = response.rows[i].elements;
-						this.setState({ directions: [ ...results ] });
+			service.getDistanceMatrix(
+				{
+					origins: origin,
+					destinations: destinations,
+					travelMode: window.google.maps.TravelMode.WALKING,
+					unitSystem: window.google.maps.UnitSystem.METRIC
+				},
+				(response, status) => {
+					if (status !== 'OK') {
+						console.log('Error was: ' + status);
+					} else {
+						const originList = response.originAddresses;
+						for (let i = 0; i < originList.length; i++) {
+							const results = response.rows[i].elements;
+							this.setState({ directions: [ ...results ] });
 
-						const directions = this.state.directions;
+							const directions = this.state.directions;
 
-						// Removes last item from the directions arr
-						// directions.pop();
+							// Removes last item from the directions arr
+							// directions.pop();
 
-						let totalDistanceArr = [];
-						directions.forEach((direction) => {
-							totalDistanceArr.push(direction.distance.value);
-						});
+							let totalDistanceArr = [];
+							directions.forEach((direction) => {
+								totalDistanceArr.push(direction.distance.value);
+							});
 
-						const totalDistance = totalDistanceArr.reduce((a, b) => a + b, 0);
-						this.setState({ totalDistance: totalDistance });
+							const totalDistance = totalDistanceArr.reduce((a, b) => a + b, 0);
+							this.setState({ totalDistance: totalDistance });
 
-						let totalDurationArr = [];
-						directions.forEach((direction) => {
-							totalDurationArr.push(direction.duration.value);
-						});
+							let totalDurationArr = [];
+							directions.forEach((direction) => {
+								totalDurationArr.push(direction.duration.value);
+							});
 
-						const totalDuration = totalDurationArr.reduce((a, b) => a + b, 0);
-						this.setState({ totalDuration: totalDuration });
+							const totalDuration = totalDurationArr.reduce((a, b) => a + b, 0);
+							this.setState({ totalDuration: totalDuration });
+						}
 					}
 				}
-			}
-		);
+			);
+		}
 	};
 
 	fetchPlaces = () => {
@@ -114,57 +117,12 @@ class TourDetail extends Component {
 		this.setState({ totalRating: (totalRatingSum / placesArray.length).toFixed(1) });
 	};
 
-	// share social network
-
-	shareMessage = (e) => {
-		//const history = useHistory();
-		const nameTarget = e.target.name;
-		const { name, description, id, image } = this.state.tour;
-		const url = `${process.env.REACT_APP_URL}/tour/${id}`;
-
-		switch (nameTarget) {
-			case 'whassap':
-				const message =
-					'🍻🍺🍻🎊🎉🎊🎉🍻🍺🍻' +
-					'\n\n¿Eres buen cervecero?\nEcha un vistazo a esta ruta: ' +
-					url +
-					'\n' +
-					name +
-					'\n\n' +
-					description +
-					'\n\n_Appy hour tours_';
-
-				const messageFormat = encodeURIComponent(message);
-				console.log(message);
-				//const whasapUrl = `https://wa.me/?text=${message}`;
-				const whasapUrl = `https://api.whatsapp.com/send?text=${messageFormat}`;
-				console.log(whasapUrl);
-				window.location.href = whasapUrl;
-
-				break;
-			case 'facebook':
-				console.log('holaaa');
-				const facebookUrl = `http://www.facebook.com/sharer.php?s=100&p[url]=${url}&p[title]=${name}&p[summary]=
-									${description}&p[images][0]=${image}`;
-
-				// console.log(facebookUrl);
-				// window.localion.href = facebookUrl;
-				const urll = 'https://work.facebook.com/sharer.php?display=popup&u=' + window.location.href;
-				const options = 'toolbar=0,status=0,resizable=1,width=626,height=436';
-				window.open(urll, 'sharer', options);
-				break;
-
-			default:
-				break;
-		}
-	};
-
 	render() {
 		const { id } = this.state.tour;
 		const hashtag = [ 'appyhour', 'beer', 'enjoywithfriend' ];
 		const title = 'Appy Hour Tours';
 		const url = `${process.env.REACT_APP_URL}/tour/${id}`;
-		console.log(url);
+	
 		return (
 			<div>
 				<InfoBar back={true} tour={this.state.tour} place={this.state.places} />
@@ -252,7 +210,12 @@ class TourDetail extends Component {
 										<FacebookShareButton url={url} hashtag="#AppyHour">
 											<AppyButton num="info" type="facebook" />
 										</FacebookShareButton>
-										<TwitterShareButton url={url} title={title} related={['@mahou']} hashtags={hashtag} >
+										<TwitterShareButton
+											url={url}
+											title={title}
+											related={[ '@mahou' ]}
+											hashtags={hashtag}
+										>
 											<AppyButton num="info" type="twitter" />
 										</TwitterShareButton>
 									</div>
