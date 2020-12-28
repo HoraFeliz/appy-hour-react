@@ -213,7 +213,6 @@ class TourDetail extends Component {
 										<TwitterShareButton
 											url={url}
 											title={title}
-											related={[ '@mahou' ]}
 											hashtags={hashtag}
 										>
 											<AppyButton num="info" type="twitter" />
