@@ -33,8 +33,8 @@ class PlaceListItemNearBy extends Component {
       arrows: false,
     };
 
-    console.log('place', this.props.place)
-    console.log('this.state.photo', this.state.photo)
+   // console.log('place', this.props.place)
+    //console.log('this.state.photo', this.state.photo)
 
     return (
       // <NavLink to={this.props.place && `/place/${this.props.place.place_id}/5fa3e05b37120d8eab494398`}> {/*/${this.props.tour._id}*/}
