@@ -1,5 +1,5 @@
 import React from "react";
-import AutocompleteSearch from "../search/autocomplete-search";
+import AutocompleteSearch from "../search/autocomplete-search.jsx.bk";
 
 class TourDetail extends React.Component {
   render() {

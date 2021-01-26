@@ -3,7 +3,7 @@ import NearbyMap from '../nearest/NearbyMap';
 import './Map.scss';
 
 export default function Map(props) {
-	const [location, setLocation] = useState({ lat: -33.856, lng: 151.215 });
+	const [ location, setLocation ] = useState({ lat: -33.856, lng: 151.215 });
 	let currentInfoWindow;
 	let service;
 	let bounds;
@@ -105,14 +105,14 @@ export default function Map(props) {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			keyword: ['bar']
+			keyword: [ 'bar' ]
 		};
 
 		let requestRestaurant = {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			types: ['restaurant']
+			types: [ 'restaurant' ]
 		};
 
 		service = new window.google.maps.places.PlacesService(map);
@@ -129,21 +129,21 @@ export default function Map(props) {
 
 	// Set markers at the location of each place result Bar
 	function createMarkersBar(places) {
+		console.log(places)
 		places.forEach((place) => {
 			positionPoint.push({
 				...place,
 				address: place.vicinity,
 				tags: place.types,
 				placeId: place.place_id,
-				photos: place.photos ? [...place.photos] : '',
-				image: place.photos ? place.photos[0].getUrl() : '',
+				image: place.photos && place.photos[0].getUrl(),
 				geometry: { location: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } }
 			});
 		});
 
 		positionPoint.map((posit) => bounds.extend(posit.geometry.location));
 
-		var markers = positionPoint.map(function (location, i) {
+		var markers = positionPoint.map(function(location, i) {
 			var infoWin = new window.google.maps.InfoWindow({ maxWidth: 350 });
 			var marker = new window.google.maps.Marker({
 				position: { lat: location.geometry.location.lat, lng: location.geometry.location.lng },
@@ -155,11 +155,12 @@ export default function Map(props) {
 					// scaledSize: new window.google.maps.Size(20, 20),
 				}
 			});
-			console.log(location);
+			//console.log(location);
 
 			window.handlePlaceSelect = (placeObject) => {
-				//props.setPlaceDetail(placeObject);
-				//props.savePlaceFunction();
+		
+				props.setPlaceDetail(placeObject);
+			
 			};
 
 			let contentHTML = `
@@ -180,7 +181,7 @@ export default function Map(props) {
                     </div>
                 </div>
             `;
-			window.google.maps.event.addListener(marker, 'click', function (evt) {
+			window.google.maps.event.addListener(marker, 'click', function(evt) {
 				infoWin.setContent(contentHTML);
 				infoWin.open(map, marker);
 				currentInfoWindow.close();

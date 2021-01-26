@@ -36,7 +36,8 @@ function AddPlaces(props) {
 	const [ query, setQuery ] = useState('');
 	const [ places, setPlaces ] = useState([]);
 	const [ placeDetail, setPlaceDetail ] = useState(null);
-	const [ toogleMap, setToggleMap ] = useState(false);
+	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
+	const [ change, setChange ] = useState(false);
 	const idTour = props.match.params.id;
 
 	const autoCompleteRef = useRef(null);
@@ -55,6 +56,9 @@ function AddPlaces(props) {
 				const result = await getPlaces(props.match.params.id);
 				setPlaces(result);
 			};
+			if (placeDetail !== null) {
+				savePlaceFunction();
+			}
 
 			fetchData();
 		},
@@ -108,33 +112,37 @@ function AddPlaces(props) {
 		const place = {
 			...placeObject,
 			address: placeObject.formatted_address,
-			openingHours: placeObject.opening_hours.weekday_text,
+			openingHours: placeObject.opening_hours.weekday_text && placeObject.opening_hours.weekday_text,
 			geometry: {
-				longitude: placeObject.geometry.location.lng(),
-				latitude: placeObject.geometry.location.lat()
+				location: {
+					lng: placeObject.geometry.location.lng(),
+					lat: placeObject.geometry.location.lat()
+				}
 			},
-			image: placeObject.photos[0].getUrl(),
+			image: placeObject.photos && placeObject.photos[0].getUrl(),
 			city: placeObject.address_components[2].long_name,
 			tags: placeObject.types,
 			placeId: placeObject.place_id
 		};
 
 		setPlaceDetail(place);
+		setPlaceDetailSee(true);
 	}
 
 	const savePlaceFunction = () => {
-		
+		console.log(placeDetail);
 		if (placeDetail !== null) {
 			const placeRepeat = places.filter(
 				(place) =>
-					parseFloat(place.geometry.latitude) === parseFloat(placeDetail.geometry.latitude) &&
-					parseFloat(place.geometry.longitude) === parseFloat(placeDetail.geometry.longitude)
+					parseFloat(place.geometry.location.lat) === parseFloat(placeDetail.geometry.location.lat) &&
+					parseFloat(place.geometry.location.lng) === parseFloat(placeDetail.geometry.location.lng)
 			);
-
+				
 			if (!placeRepeat.length) {
 				savePlace(placeDetail, idTour)
 					.then((res) => {
 						setPlaceDetail(null);
+						setPlaceDetailSee(false);
 						setQuery('');
 						console.log('create', res);
 					})
@@ -142,11 +150,11 @@ function AddPlaces(props) {
 			} else {
 				setPlaceDetail(null);
 				setQuery('');
+				//setChange(!change);
 			}
 		}
 	};
-
-
+	
 	return (
 		<div>
 			<div className="appy--infobar appy--primary-color">
@@ -184,11 +192,11 @@ function AddPlaces(props) {
 			</div>
 			<div className="appy--tours-detail">
 				<div className="appy--place-item-map-canvas">
-					{placeDetail ? (
+					{placeDetail && placeDetailSee ? (
 						<div>
 							<PlaceMap
-								lat={placeDetail.geometry.latitude}
-								lng={placeDetail.geometry.longitude}
+								lat={placeDetail.geometry.location.lat}
+								lng={placeDetail.geometry.location.lng}
 								name={placeDetail.name}
 								address={placeDetail.address}
 								isOpen={Math.random() >= 0.5}
