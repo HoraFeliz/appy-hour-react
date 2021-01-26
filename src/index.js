@@ -6,7 +6,6 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { BrowserView, MobileView } from "react-device-detect";
 import { AuthContextProvider } from "./context/AuthContext";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <>
@@ -18,8 +17,8 @@ ReactDOM.render(
     </BrowserView>
     <MobileView>
       <Router>
-      <AuthContextProvider>
-        <App />
+        <AuthContextProvider>
+          <App />
         </AuthContextProvider>
       </Router>
     </MobileView>

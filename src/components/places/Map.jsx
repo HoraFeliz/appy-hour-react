@@ -3,7 +3,7 @@ import NearbyMap from '../nearest/NearbyMap';
 import './Map.scss';
 
 export default function Map(props) {
-	const [ location, setLocation ] = useState({ lat: -33.856, lng: 151.215 });
+	const [location, setLocation] = useState({ lat: -33.856, lng: 151.215 });
 	let currentInfoWindow;
 	let service;
 	let bounds;
@@ -105,14 +105,14 @@ export default function Map(props) {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			keyword: [ 'bar' ]
+			keyword: ['bar']
 		};
 
 		let requestRestaurant = {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			types: [ 'restaurant' ]
+			types: ['restaurant']
 		};
 
 		service = new window.google.maps.places.PlacesService(map);
@@ -135,7 +135,7 @@ export default function Map(props) {
 				address: place.vicinity,
 				tags: place.types,
 				placeId: place.place_id,
-				photos: place.photos ? [ ...place.photos ] : '',
+				photos: place.photos ? [...place.photos] : '',
 				image: place.photos ? place.photos[0].getUrl() : '',
 				geometry: { location: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } }
 			});
@@ -143,7 +143,7 @@ export default function Map(props) {
 
 		positionPoint.map((posit) => bounds.extend(posit.geometry.location));
 
-		var markers = positionPoint.map(function(location, i) {
+		var markers = positionPoint.map(function (location, i) {
 			var infoWin = new window.google.maps.InfoWindow({ maxWidth: 350 });
 			var marker = new window.google.maps.Marker({
 				position: { lat: location.geometry.location.lat, lng: location.geometry.location.lng },
@@ -164,15 +164,15 @@ export default function Map(props) {
 
 			let contentHTML = `
                 <div class='container'>
-                <div class='row'>
-                    <div class='col-9'>
+                <div class='appy--row'>
+                    <div class='appy--col-9'>
                 <h4 style="text-align: left;">${location.name}</h4>
                 <ul style="text-align: left; list-style: none; padding-left: 0px; font-size: 12px;">
                 <li><strong>Dirección:</strong></li>
                 <li>${location.vicinity}</li>
                 </ul>
                 </div>
-                <div class='col-3 d-flex justify-content-center'>
+                <div class='appy--col-3 d-flex justify-content-center align-items-center'>
                 <button id=${location.place_id} onclick='handlePlaceSelect(${JSON.stringify(
 				location
 			)})' class="btn appy--primary-bg appy--white-color mb-3" style="outline: none; border:none" ><img src="/img/add-button.png" alt=""></button>
@@ -180,7 +180,7 @@ export default function Map(props) {
                     </div>
                 </div>
             `;
-			window.google.maps.event.addListener(marker, 'click', function(evt) {
+			window.google.maps.event.addListener(marker, 'click', function (evt) {
 				infoWin.setContent(contentHTML);
 				infoWin.open(map, marker);
 				currentInfoWindow.close();
@@ -191,7 +191,7 @@ export default function Map(props) {
 		});
 
 		/* Once all the markers have been placed, adjust the bounds of the map to
-         * show all the markers within the visible area. */
+		 * show all the markers within the visible area. */
 		map.fitBounds(bounds);
 	}
 
