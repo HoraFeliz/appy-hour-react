@@ -59,6 +59,8 @@ const MapWithADirectionsRenderer = compose(
         const DirectionsService = new window.google.maps.DirectionsService();
         let waypts = [];
 
+        console.log('places', places);
+
         const origin = places.shift();
         let destination;
         if (places.length) {
@@ -73,6 +75,7 @@ const MapWithADirectionsRenderer = compose(
           waypts.push(waypoint);
         });
 
+        console.log(origin);
         DirectionsService.route(
           {
             origin: new window.google.maps.LatLng(

@@ -131,6 +131,7 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
                 </div>
               </div>
             </div>
+            {console.log('place', place)}
             <div className="appy--col-9 appy--col-9-place-list-item">
               {/* Slider */}
               <Slider {...settings}>
