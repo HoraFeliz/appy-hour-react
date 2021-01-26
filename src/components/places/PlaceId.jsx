@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InfoBar from "../infobar/InfoBar";
+import InfoBar from "../infobar/InfoBar.jsx";
 import ImageCanvas from "../common/ImageCanvas";
 import PlaceInfo from "./PlaceInfo";
 import {
@@ -7,6 +7,8 @@ import {
   getTourById,
 } from "../../services/api-client";
 import PlaceMap from "./placemap/PlaceMap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhotoVideo, faRoute } from "@fortawesome/free-solid-svg-icons";
 
 const PlaceId = (props) => {
   const [place, setPlace] = useState([]);
@@ -37,29 +39,50 @@ const PlaceId = (props) => {
 
   return (
     <>
-      <div className="appy--tours-detail">
-        <div className="appy--place-item-map-canvas">
-          {place && place.geometry ? (
-            <PlaceMap
-              lat={place.geometry.latitude}
-              lng={place.geometry.longitude}
-              name={place.name}
-              address={place.address}
-              isOpen={Math.random() >= 0.5}
-            />
-          ) : (
-              <h1>Loading map</h1>
-            )}
-        </div>
+      {place && place.geometry ?
+        <>
+          <div className="appy--tours-detail">
+            <div className="appy--place-item-map-canvas">
+              <PlaceMap
+                lat={place.geometry.latitude}
+                lng={place.geometry.longitude}
+                name={place.name}
+                address={place.address}
+                isOpen={Math.random() >= 0.5}
+              />
 
-      </div>
-      {tour && <InfoBar back={true} tour={tour} />}
-      <div className="appy--place-item">
-        <div className="appy--tours-detail appy--place-item-photo">
-          <ImageCanvas place={true} placeInfo={place} />
-        </div>
-        <PlaceInfo place={place} placeInfo={place} />
-      </div>
+            </div>
+          </div>
+          <InfoBar back={true} tour={tour} />
+          <div className="appy--place-item">
+            <div className="appy--tours-detail appy--place-item-photo">
+              <ImageCanvas place={true} placeInfo={place} />
+            </div>
+            <PlaceInfo place={place} placeInfo={place} />
+          </div>
+        </>
+
+        :
+
+        // Loading
+        <>
+          <div className="appy--tours-detail loading--background-default loading--background-default-touch icon-map" style={{ height: '300px' }}>
+            <div className="appy--place-item-map-canvas mb-3 ">
+              <FontAwesomeIcon icon={faRoute}></FontAwesomeIcon>
+            </div>
+          </div>
+          <InfoBar loading={true} />
+          <div className="appy--place-item">
+            <div className="appy--tours-detail appy--place-item-photo icon-map" style={{ height: '100px', fontSize: '27px', opacity: '.5', paddingTop: '15px', }}>
+              <FontAwesomeIcon icon={faPhotoVideo} />
+            </div>
+            <PlaceInfo loading={true} />
+          </div>
+        </>
+
+      }
+
+
     </>
   );
 };

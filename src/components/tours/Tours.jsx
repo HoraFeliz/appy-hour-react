@@ -3,6 +3,8 @@ import TourBarInfo from "./TourBarInfo";
 import AppyButton from "../common/AppyButton";
 import { getRecommendedTours, getRegularTours } from "../../services/api-client";
 import ToursSlider from "./ToursSlider";
+import TourItemFocus from "../helpers/TourItemFocus";
+import TourItemSlide from "../helpers/TourItemSlide";
 
 const Tours = () => {
   const [recommendedTours, setRecommendedTours] = useState([]);
@@ -10,6 +12,7 @@ const Tours = () => {
 
   // Set active Image Zoom Helper
   localStorage.setItem('imageZoom', 'active')
+  localStorage.setItem('tourItem', 'active')
 
   useEffect(() => {
     getRecommendedTours()
@@ -31,14 +34,18 @@ const Tours = () => {
   return (
     <>
       {recommendedTours.length ?
-        <TourBarInfo recommended={true}>
-          <AppyButton num={recommendedTours.length} info={true} recommended={true} />
-          <AppyButton num='info' type="map" info={true} recommended={true} />
-        </TourBarInfo>
+        <>
+          <TourBarInfo recommended={true}>
+            <AppyButton num={recommendedTours.length} info={true} recommended={true} />
+            <AppyButton num='info' type="mapa" info={true} recommended={true} />
+          </TourBarInfo>
+          <TourItemFocus focus={localStorage.getItem('tourItem')} />
+          <TourItemSlide focus={localStorage.getItem('tourItem')} />
+        </>
         :
         <TourBarInfo loading={true} recommended={true}>
-          <AppyButton loading={true} />
-          <AppyButton loading={true} info={true} />
+          <AppyButton loading={true} num={true} type={'home'} />
+          <AppyButton loading={true} num={true} info={true} type={'home'} />
         </TourBarInfo>
       }
       <ToursSlider tours={recommendedTours} recommended={true} brand="recommended" />
@@ -46,12 +53,12 @@ const Tours = () => {
       {regularTours.length ?
         <TourBarInfo>
           <AppyButton num={regularTours.length} info={true} />
-          <AppyButton num='info' type="map" info={true} />
+          <AppyButton num='info' type="mapa" info={true} />
         </TourBarInfo>
         :
         <TourBarInfo loading={true}>
-          <AppyButton loading={true} />
-          <AppyButton loading={true} info={true} />
+          <AppyButton loading={true} num={true} type={'home'} />
+          <AppyButton loading={true} num={true} info={true} type={'home'} />
         </TourBarInfo>
       }
       <ToursSlider tours={regularTours} recommended={false} brand="primary-bg" />

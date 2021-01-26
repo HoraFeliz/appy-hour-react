@@ -7,9 +7,9 @@ export default function FooterNavbarItem({ type }) {
         <div className="appy--footer-navbar-item">
             <div className="appy--footer-navbar-item-icon">
                 <FontAwesomeIcon icon={
-                    type === 'tours' ? faRoute :
-                        type === 'record' ? faCircle :
-                            type === 'create' ? faPlus : null
+                    type === 'rutas' ? faRoute :
+                        type === 'grabar' ? faCircle :
+                            type === 'crear' ? faPlus : null
                 } />
             </div>
             <div className="appy--footer-navbar-item-text">{type}</div>

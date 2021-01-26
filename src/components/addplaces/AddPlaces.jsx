@@ -124,7 +124,7 @@ function AddPlaces(props) {
           <button className="appy--button appy--button-info appy--primary-color" style={{
             backgroundColor: 'white', fontWeight: 'bold'
           }} onClick={() => setQuery("")}>
-            <FontAwesomeIcon className="appy--button-icon" icon={faPlus} style={{ paddingRight: '5px' }} /> Add
+            <FontAwesomeIcon className="appy--button-icon" icon={faPlus} style={{ paddingRight: '5px' }} /> Añadir
         </button>
           {places.length ?
             <div class="appy--tours-barinfo-info">

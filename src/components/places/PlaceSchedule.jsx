@@ -1,13 +1,29 @@
 import React from "react";
 import PlaceScheduleItem from "./PlaceScheduleItem";
 
-const PlaceSchedule = (props) => {
+const PlaceSchedule = ({ place, loading }) => {
     return (
-        <div className="appy--place-item-info-schedule">
-            <div className="appy--place-item-info-schedule-container">
-                
-                    {props.place.openingHours
-                        ? props.place.openingHours.map((openingHour, key) => (
+
+        loading ?
+
+            <div className="appy--place-item-info-schedule">
+                <div className="appy--place-item-info-schedule-container">
+                    <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading loading--background-default schedule">
+                    </div>
+                    <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading loading--background-default schedule">
+                    </div>
+                    <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading loading--background-default schedule">
+                    </div>
+                </div>
+            </div>
+
+            :
+
+            <div className="appy--place-item-info-schedule">
+                <div className="appy--place-item-info-schedule-container">
+
+                    {place.openingHours
+                        ? place.openingHours.map((openingHour, key) => (
                             <PlaceScheduleItem
                                 key={key}
                                 id={key}
@@ -16,8 +32,8 @@ const PlaceSchedule = (props) => {
                             />
                         ))
                         : "Loading"}
+                </div>
             </div>
-        </div>
     );
 };
 

@@ -26,9 +26,11 @@ const ToursSlider = ({ recommended, brand, tours }) => {
   };
   return (
     <>
+
       {tours.length ?
         <Swiper {...params}>
           {tours.map((tour, key) => (
+
             <div key={key}>
               <NavLink to={`/tour/${tour._id}`}>
                 <TourItem
@@ -40,8 +42,11 @@ const ToursSlider = ({ recommended, brand, tours }) => {
                   first={key === 0 ? true : false}
                 />
               </NavLink>
+              
             </div>
+            
           ))}
+
         </Swiper>
         :
 

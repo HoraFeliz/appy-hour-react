@@ -8,7 +8,7 @@ import Profile from './components/Profile';
 import Options from './components/Options';
 import PlaceId from './components/places/PlaceId';
 import CreateTour from './components/create-tour/CreateTour';
-import TourDetail from './components/tours/TourDetail';
+import TourDetail from './components/tours/TourDetail.jsx';
 import Login from './components/login/Login';
 import AddPlaces from './components/addplaces/AddPlaces';
 import Nearby from './components/nearest/Nearby';
@@ -18,19 +18,24 @@ import { AuthenticatedRoute, NotAuthenticatedRoute } from './components/authenti
 
 function App() {
 	return (
-		<div className="App">
-			<Switch>
-				<Route path={[ '/login' ]}>
-					<LoginLayout>
-						<NotAuthenticatedRoute exact path="/login" component={Login} />
-					</LoginLayout>
-				</Route>
-				<Route path={[ '/signup' ]}>
-					<LoginLayout>
-						<NotAuthenticatedRoute exact path="/signup" component={CreateUser} />
-					</LoginLayout>
-				</Route>
-			
+		<>
+			{/* Helpers */}
+			<div id="no-click" className="no-click d-none"></div>
+			<div id="helper-back" className="black-background-init"></div>
+
+			<div className="App">
+				<Switch>
+					<Route path={['/login']}>
+						<LoginLayout>
+							<NotAuthenticatedRoute exact path="/login" component={Login} />
+						</LoginLayout>
+					</Route>
+					<Route path={['/signup']}>
+						<LoginLayout>
+							<NotAuthenticatedRoute exact path="/signup" component={CreateUser} />
+						</LoginLayout>
+					</Route>
+
 					<AuthenticatedRoute exact path="/" component={Tours} />
 					<AuthenticatedRoute exact path="/place/:id/:tour" component={PlaceId} />
 					<AuthenticatedRoute exact path="/create" component={CreateTour} />
@@ -46,9 +51,10 @@ function App() {
 					<Route>
 						<Redirect to="/login" />
 					</Route>
-			
-			</Switch>
-		</div>
+				</Switch>
+
+			</div>
+		</>
 	);
 }
 

@@ -9,8 +9,8 @@ export default function TourBarInfo({ recommended, children, loading }) {
         loading ?
             <div className="appy--tours-barinfo" style={recommended ? { marginTop: '15px' } : { marginTop: '25px' }}>
                 <div className={`appy--tours-barinfo-title ${(recommended) && 'recommended-color'}`}>
-                    <FontAwesomeIcon className={`appy--tours-barinfo-title-icon background-loading-gradient ${recommended && 'recommended'}`} icon={(recommended) ? faStar : faRoute} />
-                    <div className="appy--tours-barinfo-title-loading background-loading-gradient"></div>
+                    <FontAwesomeIcon className={`appy--tours-barinfo-title-icon loading--background-default ${recommended && 'recommended'}`} icon={(recommended) ? faStar : faRoute} />
+                    <div className="appy--tours-barinfo-title-loading loading--background-default loading--background-default-delay1"></div>
                 </div>
                 <div className="appy--tours-barinfo-info">
                     {children}
@@ -21,7 +21,7 @@ export default function TourBarInfo({ recommended, children, loading }) {
                 <div className="appy--tours-barinfo" style={recommended ? { marginTop: '15px' } : { marginTop: '25px' }}>
                     <div className={`appy--tours-barinfo-title ${(recommended) && 'recommended-color'}`}>
                         <FontAwesomeIcon className={`appy--tours-barinfo-title-icon ${recommended && 'recommended'}`} icon={(recommended) ? faStar : faRoute} />
-                        <h5 className="appy--tours-barinfo-title-title">{(recommended) ? 'Recommended' : 'Near Tours'}</h5>
+                        <h5 className="appy--tours-barinfo-title-title">{(recommended) ? 'Recomendadas' : 'Cercanas'}</h5>
                     </div>
                     <div className="appy--tours-barinfo-info">
                         {children}

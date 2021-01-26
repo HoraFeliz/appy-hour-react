@@ -15,7 +15,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import { logOut } from '../../services/api-client';
 
 export default function Navbar() {
-	const [ navbarShow, setNavbarShow ] = useState(false);
+	const [navbarShow, setNavbarShow] = useState(false);
 
 	const { user, logout } = useAuthContext();
 
@@ -37,8 +37,8 @@ export default function Navbar() {
 				await logOut();
 				logout();
 			} catch (e) {
-                console.error(e)
-            }
+				console.error(e)
+			}
 		};
 
 		logOutUser();
@@ -54,7 +54,7 @@ export default function Navbar() {
 						<FontAwesomeIcon icon={faRoute} />
 						<span>
 							<a href="/tours" id="tours">
-								Tours
+								Rutas
 							</a>
 						</span>
 					</li>
@@ -62,18 +62,18 @@ export default function Navbar() {
 					<li>
 						<FontAwesomeIcon icon={faCircle} />
 						<span>
-							<a href={`/record`}>Record Tour</a>
+							<a href={`/record`}>Grabar Ruta</a>
 						</span>
 					</li>
 					<li>
 						<FontAwesomeIcon icon={faPlus} />
 						<span>
-							<a href={`/create`}>Create Tour</a>
+							<a href={`/create`}>Crear Ruta</a>
 						</span>
 					</li>
 					<li>
 						<FontAwesomeIcon icon={faUser} />
-						<span>Profile</span>
+						<span>Perfil</span>
 					</li>
 					<li>
 						<FontAwesomeIcon icon={faMapMarkerAlt} />
@@ -98,7 +98,7 @@ export default function Navbar() {
 					<input
 						className="appy--search-input"
 						type="search"
-						placeholder="Search Tours"
+						placeholder="Buscar Rutas"
 						aria-label="Search"
 					/>
 					<button className="appy--search-icon-location" type="submit">

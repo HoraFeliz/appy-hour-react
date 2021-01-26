@@ -6,13 +6,13 @@ export default function FooterNavbar() {
   return (
     <div className="appy--footer-navbar">
       <NavLink to={`/tours`}>
-        <FooterNavbarItem type="tours" />
+        <FooterNavbarItem type="rutas" />
       </NavLink>
       <NavLink to={`/record`}>
-        <FooterNavbarItem type="record" />
+        <FooterNavbarItem type="grabar" />
       </NavLink>
       <NavLink to={`/create`}>
-        <FooterNavbarItem type="create" />
+        <FooterNavbarItem type="crear" />
       </NavLink>
     </div>
   );

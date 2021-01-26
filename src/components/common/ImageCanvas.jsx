@@ -6,7 +6,7 @@ import ImageZoom from '../helpers/ImageZoom';
 // import { getPlaces } from '../../services/api-client';
 
 
-export default function ImageCanvas({ place, recommended, brand, placeInfo, tour, id, loading }) {
+export default function ImageCanvas({ place, recommended, brand, placeInfo, tour, id, loading, touch, first }) {
 
     const handleZoom = () => {
         const image = document.getElementById('place-image')
@@ -49,7 +49,7 @@ export default function ImageCanvas({ place, recommended, brand, placeInfo, tour
     return (
         loading ?
 
-            <div className='appy--image-placeid appy--image-placeid-loading appy--image-loading background-loading-gradient' style={{ marginRight: '5px' }} >
+            <div className={`appy--image-placeid appy--image-placeid-loading appy--image-loading loading--background-default ${touch && 'loading--background-default-touch'} ${!first && 'loading--background-default-delay4'}`} style={{ marginRight: '5px', height: '100px' }} >
                 <div className="appy--image-tours-recommended appy--image-tours-recommended-loading"></div>
                 < BeerRating loading={true} />
             </div>

@@ -11,10 +11,13 @@ import { textLength } from '../../services/textLength'
 export default function TourItem({ id, recommended, brand, place, tour, first, loading }) {
     return (
         <>
+            <div id={`${(first && recommended) ? 'appy--tours-item-first' : 'appy--tours-item-next'}`} className={loading ? `appy--tours-item ${first && 'first-item-loading'}` : `appy--tours-item`} >
 
-            <div className={loading ? `appy--tours-item ${first && 'first-item-loading'}` : 'appy--tours-item'} >
                 {loading ?
-                    <ImageCanvas loading={true} />
+                    first ?
+                        <ImageCanvas loading={true} first={true} />
+                        :
+                        <ImageCanvas loading={true} />
 
                     :
                     <ImageCanvas
@@ -32,10 +35,10 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
                         className={`appy--tours-item-distancebar appy--tours-item-distancebar-loading  `}
                     >
                         <div className="appy--tours-item-distancebar-distante-tour">
-                            <div className="appy--tours-item-distancebar-text appy--tours-item-distancebar-text-loading background-loading-gradient"></div>
+                            <div className={`appy--tours-item-distancebar-text appy--tours-item-distancebar-text-loading loading--background-default ${!first && 'loading--background-default-delay4'}`}></div>
                         </div>
                         <div className="appy--tours-item-distancebar-distante-tour">
-                            <div className="appy--tours-item-distancebar-text appy--tours-item-distancebar-text-loading background-loading-gradient"></div>
+                            <div className={`appy--tours-item-distancebar-text appy--tours-item-distancebar-text-loading loading--background-default ${first ? 'loading--background-default-delay3' : 'loading--background-default-delay6'} `}></div>
                         </div>
 
 
@@ -66,7 +69,7 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
                     <h3 className="appy--tours-item-info-title">
                         {tour ? tour[id].name :
 
-                            <div className="appy--tours-item-info-title appy--tours-item-info-title-loading background-loading-gradient"></div>
+                            <div className={`appy--tours-item-info-title appy--tours-item-info-title-loading loading--background-default ${!first && 'loading--background-default-delay4'}`}></div>
 
                         }
                     </h3>
@@ -74,9 +77,9 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
                         {tour ? textLength(tour[id].description, 40, 55, 65) :
 
                             <>
-                                <div className="appy--tours-item-info-description-loading background-loading-gradient"></div>
-                                <div className="appy--tours-item-info-description-loading background-loading-gradient"></div>
-                                <div className="appy--tours-item-info-description-loading background-loading-gradient" style={{ width: '60%' }}></div>
+                                <div className={`appy--tours-item-info-description-loading loading--background-default ${!first && 'loading--background-default-delay4'}`}></div>
+                                <div className={`appy--tours-item-info-description-loading loading--background-default ${!first && 'loading--background-default-delay4'}`}></div>
+                                <div className={`appy--tours-item-info-description-loading loading--background-default ${!first && 'loading--background-default-delay4'}`} style={{ width: '60%' }}></div>
                             </>
 
                         }
@@ -84,9 +87,9 @@ export default function TourItem({ id, recommended, brand, place, tour, first, l
 
                     {loading ?
                         <div className="appy--tours-item-info-creator">
-                            <div className="appy--tours-item-info-creator-icon appy--tours-item-info-creator-icon-loading background-loading-gradient">
+                            <div className={`appy--tours-item-info-creator-icon appy--tours-item-info-creator-icon-loading loading--background-default ${!first && 'loading--background-default-delay4'}`}>
                             </div>
-                            <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading background-loading-gradient">
+                            <div className={`appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading loading--background-default ${!first && 'loading--background-default-delay4'}`}>
                             </div>
                         </div>
                         :
