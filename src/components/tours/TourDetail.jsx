@@ -1,329 +1,231 @@
-import React, { Component } from "react";
-import InfoBar from "../infobar/InfoBar";
-import MapWithADirectionsRenderer from "./directionsrenderer/DirectionsRenderer";
-import PlaceListItem from "../places/PlaceListItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMapMarkerAlt,
-  faRoute,
-  faStopwatch,
-  faWalking,
-} from "@fortawesome/free-solid-svg-icons";
-import BeerRating from "../common/BeerRating";
-import { getPlaces, getTourById } from "../../services/api-client";
-import AppyButton from "../common/AppyButton";
-import InfoBarFocus from "../helpers/InfoBarFocus";
+import React, { Component } from 'react';
+import InfoBar from '../infobar/InfoBar';
+import MapWithADirectionsRenderer from './directionsrenderer/DirectionsRenderer';
+import PlaceListItem from '../places/PlaceListItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faRoute, faStopwatch, faWalking } from '@fortawesome/free-solid-svg-icons';
+import BeerRating from '../common/BeerRating';
+import { getPlaces, getTourById } from '../../services/api-client';
+import AppyButton from '../common/AppyButton';
+import { useHistory } from 'react-router-dom';
+import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
 
 class TourDetail extends Component {
-  state = {
-    places: [],
-    tour: {},
-    directions: [],
-    totalDistance: "",
-    totalDuration: "",
-    totalRating: 0
-  };
+	state = {
+		places: [],
+		tour: {},
+		directions: [],
+		totalDistance: '',
+		totalDuration: '',
+		totalRating: 0
+	};
 
-  componentDidMount() {
-    this.fetchPlaces();
-    this.fetchTour();
-    this.backErase();
-  }
+	componentDidMount() {
+		this.fetchPlaces();
+		this.fetchTour();
+		
+	}
 
-  backErase = () => {
-    const helperBack = document.getElementById('helper-back');
+	calculateDistance = (...places) => {
+		if (Object.keys(this.state.tour).length !== 0) {
+			const service = new window.google.maps.DistanceMatrixService();
 
-    helperBack.style.display = 'none';
-  }
+			const addresOrigin = [ ...places ];
+			const origin = [ addresOrigin[0].address ];
+			// const destinations = [addresOrigin.address];
+			const origin2 = [ addresOrigin[1].address ];
+			// const destinations2 = [addresOrigin[2].address];
+			const restOfPlaces = [ ...places ];
 
-  calculateDistance = (...places) => {
-    const service = new window.google.maps.DistanceMatrixService();
+			let destinations = [];
+			restOfPlaces.forEach((place) => {
+				destinations.push(place.address);
+			});
 
-    const addresOrigin = [...places]
-    const origin = [addresOrigin[0].address];
-    // const destinations = [addresOrigin.address];
-    const origin2 = [addresOrigin[1].address];
-    // const destinations2 = [addresOrigin[2].address];
-    const restOfPlaces = [...places];
+			destinations.shift();
 
-    let destinations = [];
-    restOfPlaces.forEach((place) => {
-      destinations.push(place.address);
-    });
+			console.log('destinations', destinations);
+			console.log('addresOrigin', addresOrigin);
+			console.log('origin', origin);
+			console.log('origin2', origin2);
+			console.log('restOfPlaces', restOfPlaces);
 
-    destinations.shift()
+			service.getDistanceMatrix(
+				{
+					origins: origin,
+					destinations: destinations,
+					travelMode: window.google.maps.TravelMode.WALKING,
+					unitSystem: window.google.maps.UnitSystem.METRIC
+				},
+				(response, status) => {
+					if (status !== 'OK') {
+						console.log('Error was: ' + status);
+					} else {
+						const originList = response.originAddresses;
+						for (let i = 0; i < originList.length; i++) {
+							const results = response.rows[i].elements;
+							this.setState({ directions: [ ...results ] });
 
-    console.log("destinations", destinations);
-    console.log('addresOrigin', addresOrigin);
-    console.log('origin', origin);
-    console.log('origin2', origin2);
-    console.log('restOfPlaces', restOfPlaces);
+							const directions = this.state.directions;
 
-    service.getDistanceMatrix(
-      {
-        origins: origin,
-        destinations: destinations,
-        travelMode: window.google.maps.TravelMode.WALKING,
-        unitSystem: window.google.maps.UnitSystem.METRIC,
-      },
-      (response, status) => {
-        if (status !== "OK") {
-          console.log("Error was: " + status);
-        } else {
-          const originList = response.originAddresses;
-          for (let i = 0; i < originList.length; i++) {
-            const results = response.rows[i].elements;
-            this.setState({ directions: [...results] });
+							// Removes last item from the directions arr
+							// directions.pop();
 
-            const directions = this.state.directions;
+							let totalDistanceArr = [];
+							directions.forEach((direction) => {
+								totalDistanceArr.push(direction.distance.value);
+							});
 
-            // Removes last item from the directions arr
-            // directions.pop();
+							const totalDistance = totalDistanceArr.reduce((a, b) => a + b, 0);
+							this.setState({ totalDistance: totalDistance });
 
-            let totalDistanceArr = [];
-            directions.forEach((direction) => {
-              totalDistanceArr.push(direction.distance.value);
-            });
+							let totalDurationArr = [];
+							directions.forEach((direction) => {
+								totalDurationArr.push(direction.duration.value);
+							});
 
-            const totalDistance = totalDistanceArr.reduce((a, b) => a + b, 0);
-            this.setState({ totalDistance: totalDistance });
+							const totalDuration = totalDurationArr.reduce((a, b) => a + b, 0);
+							this.setState({ totalDuration: totalDuration });
+						}
+					}
+				}
+			);
+		}
+	};
 
-            let totalDurationArr = [];
-            directions.forEach((direction) => {
-              totalDurationArr.push(direction.duration.value);
-            });
+	fetchPlaces = () => {
+		getPlaces(this.props.match.params.id).then((places, i) => {
+			this.calculateDistance(...places);
+			this.ratingAppyHour(...places);
+			this.setState({ places });
+		});
+	};
 
-            const totalDuration = totalDurationArr.reduce((a, b) => a + b, 0);
-            this.setState({ totalDuration: totalDuration });
-          }
-        }
-      }
-    );
-  };
+	fetchTour = () => {
+		getTourById(this.props.match.params.id).then((tour) => {
+			this.setState({ tour });
+		});
+	};
 
+	ratingAppyHour = (...places) => {
+		let totalRatingSum = 0;
+		const placesArray = [ ...places ];
 
-  fetchPlaces = () => {
-    getPlaces(this.props.match.params.id).then((places, i) => {
-      // OJO ERROR MAPS
-      //
-      //
+		placesArray && placesArray.map((place) => (totalRatingSum += place.rating));
 
-      // this.calculateDistance(...places); // Error maps
+		console.log('totalRatingSum', totalRatingSum / placesArray.length);
+		this.setState({ totalRating: (totalRatingSum / placesArray.length).toFixed(1) });
+	};
 
-      //
-      //
-      //
-      this.ratingAppyHour(...places)
-      this.setState({ places });
-    });
-  };
+	render() {
+		const { id } = this.state.tour;
+		const hashtag = [ 'appyhour', 'beer', 'enjoywithfriend' ];
+		const title = 'Appy Hour Tours';
+		const url = `${process.env.REACT_APP_URL}/tour/${id}`;
+	
+		return (
+			<div>
+				<InfoBar back={true} tour={this.state.tour} place={this.state.places} />
+				<div className="appy--tours-detail">
+					<MapWithADirectionsRenderer />
+				</div>
 
-  fetchTour = () => {
-    getTourById(this.props.match.params.id).then((tour) => {
-      this.setState({ tour });
-    });
-  };
+				<div className="appy--tours-detail-info">
+					<h2 className="appy--tours-detail-info-placename">{this.state.tour.name}</h2>
+					<div className="appy--tours-item-info-creator">
+						<div className="appy--tours-item-info-creator-icon">
+							<FontAwesomeIcon icon={faRoute} />
+						</div>
+						<div className="appy--tours-item-info-creator-text">Appy Hour Tours</div>
+					</div>
+					<p className="appy--tours-detail-info-description">{this.state.tour.description}</p>
+					<hr />
+					<div className={`appy--tours-detail-distancebar`} style={{ backgroundColor: 'white' }}>
+						<div className="appy--tours-item-distancebar-distante-tour">
+							<div className="appy--tours-item-distancebar-icon">
+								<FontAwesomeIcon icon={faWalking} />
+							</div>
+							<div className="appy--tours-item-distancebar-text" style={{ color: '#707070' }}>
+								{(this.state.totalDistance / 1000).toFixed(2)} Km
+							</div>
+						</div>
+						<div className="appy--tours-item-distancebar-distante-tour">
+							<div className="appy--tours-item-distancebar-icon">
+								<FontAwesomeIcon icon={faStopwatch} />
+							</div>
+							<div className="appy--tours-item-distancebar-text" style={{ color: '#707070' }}>
+								{(this.state.totalDuration / 60).toFixed(0)} min
+							</div>
+						</div>
+						<div className="appy--tours-item-distancebar-distante-nearby">
+							<div className="appy--tours-item-distancebar-icon">
+								<FontAwesomeIcon icon={faMapMarkerAlt} />
+							</div>
+							<div className="appy--tours-item-distancebar-text" style={{ color: '#707070' }}>
+								{this.state.places.length + ' Places'}
+							</div>
+						</div>
+					</div>
+					<hr />
+					{this.state.places.length ? (
+						this.state.places.map((place, key) => (
+							<PlaceListItem
+								key={key}
+								type="num"
+								num={key}
+								total={this.state.places.length}
+								recommended={false}
+								place={place}
+								directions={this.state.directions[key]}
+								tour={this.state.tour}
+							/>
+						))
+					) : (
+						'NO PLACES'
+					)}
+					<hr style={{ marginBottom: '10px' }} />
+					<div className="appy--tours-detail-rating-container">
+						<div className="appy--row">
+							<div className="appy--col-6">
+								<span className="appy--tours-detail-rating-text">Appy Hour Rating</span>
+							</div>
+							<div className="appy--col-6">
+								<BeerRating type="tour-detail" rating={this.state.totalRating} />
+							</div>
+						</div>
+					</div>
+					<hr style={{ marginTop: '10px' }} />
+					<div className="appy--tours-detail-share">
+						<div className="container">
+							<div className="row">
+								<div className="appy--col-6">
+									<span className="appy--tours-detail-share-text">Share Tour</span>
+								</div>
+								<div className="appy--col-6">
+									<div className="appy--tours-detail-share-buttons">
+										<WhatsappShareButton url={url} title={title}>
+											<AppyButton num="info" type="whatsapp" />
+										</WhatsappShareButton>
 
-  ratingAppyHour = (...places) => {
-    let totalRatingSum = 0
-    const placesArray = [...places]
-
-    placesArray && placesArray.map(place =>
-      totalRatingSum += place.rating
-    )
-
-    console.log('totalRatingSum', totalRatingSum / placesArray.length)
-    this.setState({ totalRating: (totalRatingSum / placesArray.length).toFixed(1) })
-  }
-
-
-  // share social network
-
-  shareMessage = (e) => {
-
-    const { name } = e.target;
-    const message = 'hla';
-    console.log(name)
-
-  }
-
-  render() {
-    return (
-      this.state.places.length ?
-        <>
-          <InfoBar back={true} tour={this.state.tour} place={this.state.places} />
-          <div className="appy--tours-detail">
-            <MapWithADirectionsRenderer />
-          </div>
-
-          <div className="appy--tours-detail-info">
-            <h2 className="appy--tours-detail-info-placename">
-              {this.state.tour.name}
-            </h2>
-            <p className="appy--tours-detail-info-description">
-              {this.state.tour.description}
-            </p>
-            <div className="appy--tours-item-info-creator">
-              <div className="appy--tours-item-info-creator-icon">
-                <FontAwesomeIcon icon={faRoute} />
-              </div>
-              <div className="appy--tours-item-info-creator-text">
-                Appy Hour Tours
-            </div>
-            </div>
-            <hr />
-            <div
-              className={`appy--tours-detail-distancebar`}
-              style={{ backgroundColor: "white" }}
-            >
-              <div className="appy--tours-item-distancebar-distante-tour">
-                <div className="appy--tours-item-distancebar-icon">
-                  <FontAwesomeIcon icon={faWalking} />
-                </div>
-                <div
-                  className="appy--tours-item-distancebar-text"
-                  style={{ color: "#707070" }}
-                >
-                  {(this.state.totalDistance / 1000).toFixed(2)} Km
-              </div>
-              </div>
-              <div className="appy--tours-item-distancebar-distante-tour">
-                <div className="appy--tours-item-distancebar-icon">
-                  <FontAwesomeIcon icon={faStopwatch} />
-                </div>
-                <div
-                  className="appy--tours-item-distancebar-text"
-                  style={{ color: "#707070" }}
-                >
-                  {(this.state.totalDuration / 60).toFixed(0)} min
-              </div>
-              </div>
-              <div className="appy--tours-item-distancebar-distante-nearby">
-                <div className="appy--tours-item-distancebar-icon">
-                  <FontAwesomeIcon icon={faMapMarkerAlt} />
-                </div>
-                <div
-                  className="appy--tours-item-distancebar-text"
-                  style={{ color: "#707070" }}
-                >
-                  {this.state.places.length + " Places"}
-                </div>
-              </div>
-            </div>
-            <hr />
-            {this.state.places.length
-              ? this.state.places.map((place, key) => (
-                <PlaceListItem
-                  key={key}
-                  type="num"
-                  num={key}
-                  total={this.state.places.length}
-                  recommended={false}
-                  place={place}
-                  directions={this.state.directions[key]}
-                  tour={this.state.tour}
-                />
-              ))
-              :
-              'no places'
-            }
-            <hr style={{ marginBottom: "10px" }} />
-            <div className="appy--tours-detail-rating-container">
-              <div className="appy--row">
-                <div className="appy--col-6">
-                  <span className="appy--tours-detail-rating-text">
-                    Appy Hour Rating
-                </span>
-                </div>
-                <div className="appy--col-6">
-                  <BeerRating type="tour-detail" rating={this.state.totalRating} />
-                </div>
-              </div>
-            </div>
-            <hr style={{ marginTop: "10px" }} />
-            <div className="appy--tours-detail-share">
-              <div className="container">
-                <div className="row">
-                  <div className="appy--col-6">
-                    <span className="appy--tours-detail-share-text">
-                      Share Tour
-                  </span>
-                  </div>
-                  <div className="appy--col-6">
-                    <div className="appy--tours-detail-share-buttons">
-                      <button name='whatsapp' onClick={this.shareMessage} >
-                        <AppyButton num='info' type="whatsapp" />
-                      </button>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&amp;src=sdkpreparse`}
-                        className="fb-xfbml-parse-ignore"
-                      >
-                        <AppyButton num='info' type="facebook" />
-                      </a>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={`https://twitter.com/intent/tweet?text=${window.location.href}`}
-                      >
-                        <AppyButton num='info' type="twitter" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <InfoBarFocus focus={localStorage.getItem('tourItem')} />
-        </>
-
-
-        :
-
-        //Loading Skeleton
-
-        <>
-          <InfoBar loading={true} />
-          <div className="appy--tours-detail loading--background-default loading--background-default-touch icon-map" >
-            <FontAwesomeIcon icon={faRoute}></FontAwesomeIcon>
-          </div>
-          <div className="appy--tours-detail-info">
-            <h2 className="appy--tours-detail-info-placename-loading loading--background-default">
-            </h2>
-            <div className="appy--tours-item-info-description">
-              <>
-                <div className="appy--tours-item-info-description-loading loading--background-default loading--background-default-large"></div>
-                <div className="appy--tours-item-info-description-loading loading--background-default loading--background-default-large"></div>
-                <div className="appy--tours-item-info-description-loading loading--background-default loading--background-default-large" style={{ width: '60%' }}></div>
-              </>
-            </div>
-            <div className="appy--tours-item-info-creator">
-              <div className="appy--tours-item-info-creator-icon appy--tours-item-info-creator-icon-loading loading--background-default">
-              </div>
-              <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading loading--background-default">
-              </div>
-            </div>
-            <hr />
-            <div
-              className={`appy--tours-detail-distancebar`}
-              style={{ backgroundColor: "white" }}
-            >
-              <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading loading--background-default">
-              </div>
-              <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading loading--background-default loading--background-default-delay3">
-              </div>
-              <div className="appy--tours-item-info-creator-text appy--tours-item-info-creator-text-loading loading--background-default loading--background-default-delay5">
-              </div>
-            </div>
-            <hr />
-            <PlaceListItem loading={true} />
-            <PlaceListItem loading={true} />
-          </div>
-        </>
-    );
-  }
+										<FacebookShareButton url={url} hashtag="#AppyHour">
+											<AppyButton num="info" type="facebook" />
+										</FacebookShareButton>
+										<TwitterShareButton
+											url={url}
+											title={title}
+											hashtags={hashtag}
+										>
+											<AppyButton num="info" type="twitter" />
+										</TwitterShareButton>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default TourDetail;
