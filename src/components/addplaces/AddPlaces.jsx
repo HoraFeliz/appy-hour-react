@@ -39,6 +39,21 @@ function AddPlaces(props) {
 	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
 	const [ change, setChange ] = useState(false);
 	const idTour = props.match.params.id;
+	const completeFields = [
+		"address_components",
+		"place_id",
+		"geometry",
+		"icon",
+		"photos",
+		"types",
+		"formatted_address",
+		"name",
+		"rating",
+		"formatted_phone_number",
+		"website",
+		"opening_hours",
+		"price_level",
+	];
 
 	const autoCompleteRef = useRef(null);
 
@@ -56,9 +71,9 @@ function AddPlaces(props) {
 				const result = await getPlaces(props.match.params.id);
 				setPlaces(result);
 			};
-			if (placeDetail !== null) {
-				savePlaceFunction();
-			}
+			// if (placeDetail !== null) {
+			// 	savePlaceFunction();
+			// }
 
 			fetchData();
 		},
@@ -77,24 +92,7 @@ function AddPlaces(props) {
 	// );
 
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
-		const completeFields = [
-			'address_components',
-			'place_id',
-			'geometry',
-			'icon',
-			'name',
-			'photos',
-			'types',
-			'formatted_address',
-			'name',
-			'rating',
-			'formatted_phone_number',
-			'reviews',
-			'website',
-			'opening_hours',
-			'price_level',
-			'types'
-		];
+		
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
 			types: [ 'establishment' ],
 			componentRestrictions: { country: 'es' }
@@ -107,6 +105,8 @@ function AddPlaces(props) {
 
 	async function handlePlaceSelect(updateQuery) {
 		const placeObject = autoComplete.getPlace();
+
+		console.log('place search', placeObject)
 
 		updateQuery(placeObject.name);
 		const place = {
@@ -209,7 +209,7 @@ function AddPlaces(props) {
 							</div>
 						</div>
 					) : (
-						<Map savePlaceFunction={savePlaceFunction} setPlaceDetail={setPlaceDetail} />
+						<Map fields={completeFields} savePlaceFunction={savePlaceFunction} setPlaceDetail={setPlaceDetail} />
 					)}
 				</div>
 			</div>
