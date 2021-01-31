@@ -10,5 +10,5 @@ export const textLength = (title, lim320, lim375, lim400) => {
     maxLength = lim400;
   }
 
-  return title.substr(0, maxLength) + (title.length > maxLength ? "..." : "");
+  return title && title.substr(0, maxLength) + (title.length > maxLength ? "..." : "");
 };
