@@ -102,11 +102,13 @@ export default function Map(props) {
 	}
 
 	function getNearbyPlacesBar(position) {
+
 		let request = {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			keyword: [ 'bar' ]
+			keyword: [ 'bar' ],
+			//openNow:true
 		};
 
 		let requestRestaurant = {
@@ -124,7 +126,6 @@ export default function Map(props) {
 
 	// Handle the results (up to 20) of the Nearby Search Bar
 	function nearbyCallbackBar(results, status) {
-		console.log('result nearby', results);
 		if (status === window.google.maps.places.PlacesServiceStatus.OK) {
 			createMarkersBar(results);
 		}
@@ -132,7 +133,6 @@ export default function Map(props) {
 
 	// Set markers at the location of each place result Bar
 	function createMarkersBar(places) {
-		console.log(places);
 		places.forEach((place) => {
 			positionPoint.push({
 				...place,
@@ -157,19 +157,29 @@ export default function Map(props) {
 			//console.log(location);
 
 			window.handlePlaceSelect = (placeObject) => {
-				const searchPlaceById = async () => {
-					try {
-						const place = await getPlaceById(placeObject.place_id, props.fields.join(','));
-						console.log('placedetailid', place);
-					} catch (e) {
-						console.error(e);
-					}
+				let request = {
+					placeId: placeObject.place_id,
+					fields: props.fields
 				};
 
-				searchPlaceById();
-				//console.log('placedetailid', placeObject);
+				service.getDetails(request, (placeResult, status) => {
+					if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+						console.log('Funciona!!!!', placeResult);
+						savePlace(placeResult).then(() => console.log(props.savePlaceFunction()))
+						// props.placeDetailSave(placeResult)
+						
+						// props.savePlaceFunction()
+						
+					}
+				});
 
-				//props.setPlaceDetail(placeObject);
+				const savePlace = (place) => {
+					return new Promise((resolve, reject) => {
+						if (props.placeDetailSave(place)) {
+							resolve()
+						} ;
+					})
+				}
 			};
 
 			let contentHTML = `

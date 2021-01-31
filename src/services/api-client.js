@@ -21,18 +21,6 @@ export const getIsPlaceOpen = (id) => {
 	});
 };
 
-export const getPlaceById = (id, fields) => {
-	return axios
-		.post(
-			`https://maps.googleapis.com/maps/api/place/details/json?place_id=${id}&fields=${fields}&key=${process.env
-				.REACT_APP_MAPS_API_KEY}`
-		)
-		.then((response) => {
-			console.log('RES', response.data.result);
-			return response.data.result;
-		});
-};
-
 export const getRecommendedTours = () => {
 	return http.get('/tour/list/recommended').then((response) => response.data);
 };
