@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getPlaceById } from '../../services/api-client';
 import NearbyMap from '../nearest/NearbyMap';
 import './Map.scss';
 
@@ -116,12 +117,14 @@ export default function Map(props) {
 		};
 
 		service = new window.google.maps.places.PlacesService(map);
+
 		service.nearbySearch(request, nearbyCallbackBar);
 		//service.nearbySearch(requestRestaurant, nearbyCallbackRest);
 	}
 
 	// Handle the results (up to 20) of the Nearby Search Bar
 	function nearbyCallbackBar(results, status) {
+		console.log('result nearby', results);
 		if (status === window.google.maps.places.PlacesServiceStatus.OK) {
 			createMarkersBar(results);
 		}
@@ -129,14 +132,10 @@ export default function Map(props) {
 
 	// Set markers at the location of each place result Bar
 	function createMarkersBar(places) {
-		console.log(places)
+		console.log(places);
 		places.forEach((place) => {
 			positionPoint.push({
 				...place,
-				address: place.vicinity,
-				tags: place.types,
-				placeId: place.place_id,
-				image: place.photos && place.photos[0].getUrl(),
 				geometry: { location: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } }
 			});
 		});
@@ -158,9 +157,19 @@ export default function Map(props) {
 			//console.log(location);
 
 			window.handlePlaceSelect = (placeObject) => {
-		
-				props.setPlaceDetail(placeObject);
-			
+				const searchPlaceById = async () => {
+					try {
+						const place = await getPlaceById(placeObject.place_id, props.fields.join(','));
+						console.log('placedetailid', place);
+					} catch (e) {
+						console.error(e);
+					}
+				};
+
+				searchPlaceById();
+				//console.log('placedetailid', placeObject);
+
+				//props.setPlaceDetail(placeObject);
 			};
 
 			let contentHTML = `

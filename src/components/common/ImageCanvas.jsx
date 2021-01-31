@@ -45,6 +45,7 @@ export default function ImageCanvas({ place, recommended, brand, placeInfo, tour
 
     // this.state.imageZoom = localStorage.getItem('imageZoom');
     // console.log(this.state.imageZoom);
+    
 
     return (
         loading ?
