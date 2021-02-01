@@ -18,7 +18,7 @@ const loadScript = (url, callback) => {
 	script.type = 'text/javascript';
 
 	if (script.readyState) {
-		script.onreadystatechange = function() {
+		script.onreadystatechange = function () {
 			if (script.readyState === 'loaded' || script.readyState === 'complete') {
 				script.onreadystatechange = null;
 				callback();
@@ -33,11 +33,11 @@ const loadScript = (url, callback) => {
 };
 
 function AddPlaces(props) {
-	const [ query, setQuery ] = useState('');
-	const [ places, setPlaces ] = useState([]);
-	const [ placeDetail, setPlaceDetail ] = useState(null);
-	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
-	const [ change, setChange ] = useState(false);
+	const [query, setQuery] = useState('');
+	const [places, setPlaces] = useState([]);
+	const [placeDetail, setPlaceDetail] = useState(null);
+	const [placeDetailSee, setPlaceDetailSee] = useState(false);
+	const [change, setChange] = useState(false);
 	const idTour = props.match.params.id;
 	const completeFields = [
 		'address_components',
@@ -71,13 +71,13 @@ function AddPlaces(props) {
 				const result = await getPlaces(props.match.params.id);
 				setPlaces(result);
 			};
-			// if (placeDetail !== null) {
-			// 	savePlaceFunction();
-			// }
+			if (placeDetail !== null) {
+				savePlaceFunction();
+			}
 
 			fetchData();
 		},
-		[ placeDetail ]
+		[placeDetail]
 	);
 
 	// useEffect(
@@ -93,7 +93,7 @@ function AddPlaces(props) {
 
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
-			types: [ 'establishment' ],
+			types: ['establishment'],
 			componentRestrictions: { country: 'es' }
 		});
 		autoComplete.setFields(completeFields);
@@ -154,7 +154,7 @@ function AddPlaces(props) {
 		// 	} else {
 		// 		setPlaceDetail(null);
 		// 		setQuery('');
-		// 		//setChange(!change);
+		// 		setChange(!change);
 		// 	}
 		// }
 	};
@@ -213,8 +213,8 @@ function AddPlaces(props) {
 							</div>
 						</div>
 					) : (
-						<Map fields={completeFields} placeDetailSave={placeDetailSave} savePlaceFunction={savePlaceFunction} />
-					)}
+							<Map fields={completeFields} placeDetailSave={placeDetailSave} savePlaceFunction={savePlaceFunction} />
+						)}
 				</div>
 			</div>
 		</div>

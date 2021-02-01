@@ -38,7 +38,7 @@ class Form extends React.Component {
       <div>
         <div className="create-style login-container">
           <form onSubmit={this.handleSubmit}>
-            <h1 style={{ fontWeight: '300' }}>Create Tour</h1>
+            <h1 style={{ fontWeight: '300' }}>Crear Ruta</h1>
             <div className="create-style form-group">
               <input
                 required
@@ -47,7 +47,7 @@ class Form extends React.Component {
                 value={this.state.name}
                 onChange={this.handleInputChange}
               />
-              <label className="create-style control-label">Name</label>
+              <label className="create-style control-label">Nombre</label>
               <i className="create-style bar"></i>
             </div>
             <div className="create-style form-group">
@@ -58,7 +58,7 @@ class Form extends React.Component {
                 value={this.state.description}
                 onChange={this.handleInputChange}
               />
-              <label className="create-style control-label">Description</label>
+              <label className="create-style control-label">Descripción</label>
               <i className="create-style bar"></i>
             </div>
             <div className="create-style checkbox">
@@ -69,7 +69,7 @@ class Form extends React.Component {
                   checked={this.state.recommended}
                   onChange={this.handleInputChange}
                 />
-                <i className="create-style helper"></i>Is Recommended
+                <i className="create-style helper"></i>¿Ruta Recomendada?
               </label>
             </div>
             <div className="create-style button-container">
@@ -78,7 +78,7 @@ class Form extends React.Component {
                 type="submit"
                 className="button"
               >
-                <span>Submit</span>
+                <span>Enviar</span>
               </button>
             </div>
           </form>
