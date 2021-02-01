@@ -18,7 +18,7 @@ const loadScript = (url, callback) => {
 	script.type = 'text/javascript';
 
 	if (script.readyState) {
-		script.onreadystatechange = function () {
+		script.onreadystatechange = function() {
 			if (script.readyState === 'loaded' || script.readyState === 'complete') {
 				script.onreadystatechange = null;
 				callback();
@@ -33,11 +33,11 @@ const loadScript = (url, callback) => {
 };
 
 function AddPlaces(props) {
-	const [query, setQuery] = useState('');
-	const [places, setPlaces] = useState([]);
-	const [placeDetail, setPlaceDetail] = useState(null);
-	const [placeDetailSee, setPlaceDetailSee] = useState(false);
-	const [change, setChange] = useState(false);
+	const [ query, setQuery ] = useState('');
+	const [ places, setPlaces ] = useState([]);
+	const [ placeDetail, setPlaceDetail ] = useState(null);
+	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
+	const [ change, setChange ] = useState(false);
 	const idTour = props.match.params.id;
 	const completeFields = [
 		'address_components',
@@ -52,7 +52,9 @@ function AddPlaces(props) {
 		'formatted_phone_number',
 		'website',
 		'opening_hours',
-		'price_level'
+		'price_level',
+		'url',
+		'user_ratings_total'
 	];
 
 	const autoCompleteRef = useRef(null);
@@ -71,13 +73,13 @@ function AddPlaces(props) {
 				const result = await getPlaces(props.match.params.id);
 				setPlaces(result);
 			};
-			if (placeDetail !== null) {
-				savePlaceFunction();
-			}
+			// if (placeDetail !== null) {
+			// 	savePlaceFunction();
+			// }
 
 			fetchData();
 		},
-		[placeDetail]
+		[ placeDetail ]
 	);
 
 	// useEffect(
@@ -93,7 +95,7 @@ function AddPlaces(props) {
 
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
-			types: ['establishment'],
+			types: [ 'establishment' ],
 			componentRestrictions: { country: 'es' }
 		});
 		autoComplete.setFields(completeFields);
@@ -114,18 +116,18 @@ function AddPlaces(props) {
 	const placeDetailSave = (placeObject) => {
 		const place = {
 			...placeObject,
-			address: placeObject.formatted_address,
-			openingHours: placeObject.opening_hours.weekday_text && placeObject.opening_hours.weekday_text,
+			address_components: {
+				locality: placeObject.address_components[2].long_name,
+				country: placeObject.address_components[5].long_name,
+				postal_code: placeObject.address_components[6].long_name
+			},
 			geometry: {
 				location: {
-					lng: placeObject.geometry.location.lng(),
-					lat: placeObject.geometry.location.lat()
+					lat: placeObject.geometry.location.lat(),
+					lng: placeObject.geometry.location.lng()
 				}
 			},
-			image: placeObject.photos && placeObject.photos[0].getUrl(),
-			city: placeObject.address_components[2].long_name,
-			tags: placeObject.types,
-			placeId: placeObject.place_id
+			photo: placeObject.photos && placeObject.photos[0].getUrl()
 		};
 
 		setPlaceDetail(place);
@@ -135,28 +137,28 @@ function AddPlaces(props) {
 
 	const savePlaceFunction = () => {
 		console.log('the save is correct', placeDetail);
-		// if (placeDetail !== null) {
-		// 	const placeRepeat = places.filter(
-		// 		(place) =>
-		// 			parseFloat(place.geometry.location.lat) === parseFloat(placeDetail.geometry.location.lat) &&
-		// 			parseFloat(place.geometry.location.lng) === parseFloat(placeDetail.geometry.location.lng)
-		// 	);
+		if (placeDetail !== null) {
+			// const placeRepeat = places.filter(
+			// 	(place) =>
+			// 		parseFloat(place.geometry.location.lat) === parseFloat(placeDetail.geometry.location.lat) &&
+			// 		parseFloat(place.geometry.location.lng) === parseFloat(placeDetail.geometry.location.lng)
+			// );
 
-		// 	if (!placeRepeat.length) {
-		// 		savePlace(placeDetail, idTour)
-		// 			.then((res) => {
-		// 				setPlaceDetail(null);
-		// 				setPlaceDetailSee(false);
-		// 				setQuery('');
-		// 				console.log('create', res);
-		// 			})
-		// 			.catch((err) => console.log('Error creating place', err));
-		// 	} else {
-		// 		setPlaceDetail(null);
-		// 		setQuery('');
-		// 		setChange(!change);
-		// 	}
-		// }
+			// if (!placeRepeat.length) {
+				savePlace(placeDetail, idTour)
+					.then((res) => {
+						setPlaceDetail(null);
+						setPlaceDetailSee(false);
+						setQuery('');
+						console.log('create', res);
+					})
+					.catch((err) => console.log('Error creating place', err));
+			// } else {
+			// 	setPlaceDetail(null);
+			// 	setQuery('');
+			// 	setChange(!change);
+			// }
+		}
 	};
 
 	return (
@@ -213,8 +215,12 @@ function AddPlaces(props) {
 							</div>
 						</div>
 					) : (
-							<Map fields={completeFields} placeDetailSave={placeDetailSave} savePlaceFunction={savePlaceFunction} />
-						)}
+						<Map
+							fields={completeFields}
+							placeDetailSave={placeDetailSave}
+							savePlaceFunction={savePlaceFunction}
+						/>
+					)}
 				</div>
 			</div>
 		</div>
