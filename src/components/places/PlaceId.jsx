@@ -44,10 +44,10 @@ const PlaceId = (props) => {
           <div className="appy--tours-detail">
             <div className="appy--place-item-map-canvas">
               <PlaceMap
-                lat={place.geometry.latitude}
-                lng={place.geometry.longitude}
+                lat={place.geometry.location.lat}
+                lng={place.geometry.location.lng}
                 name={place.name}
-                address={place.address}
+                address={place.formatted_address}
                 isOpen={Math.random() >= 0.5}
               />
 

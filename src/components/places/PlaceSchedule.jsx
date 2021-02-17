@@ -22,8 +22,8 @@ const PlaceSchedule = ({ place, loading }) => {
             <div className="appy--place-item-info-schedule">
                 <div className="appy--place-item-info-schedule-container">
 
-                    {place.openingHours
-                        ? place.openingHours.map((openingHour, key) => (
+                    {place.opening_hours.weekday_text
+                        ? place.opening_hours.weekday_text.map((openingHour, key) => (
                             <PlaceScheduleItem
                                 key={key}
                                 id={key}

@@ -29,7 +29,7 @@ const PlaceInfo = ({ placeInfo, loading }) => {
           {placeInfo.name}
         </h2>
         <p className="appy--place-item-info-address">
-          <strong>Address:</strong> {placeInfo.address}
+          <strong>Address:</strong> {placeInfo.formatted_address}
         </p>
         <p className="appy--place-item-info-address">
           <strong>Schedule:</strong>{" "}
@@ -48,7 +48,7 @@ const PlaceInfo = ({ placeInfo, loading }) => {
             <div className="appy--col-6" style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '20px' }}>
 
               <Price
-                rating={placeInfo?.priceLevel
+                rating={placeInfo?.price_level
                 }
               />
             </div>

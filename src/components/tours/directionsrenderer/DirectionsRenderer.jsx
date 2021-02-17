@@ -69,7 +69,7 @@ const MapWithADirectionsRenderer = compose(
 
         places.forEach((place) => {
           let waypoint = {
-            location: `${place.geometry.latitude}, ${place.geometry.longitude}`,
+            location: `${place.geometry.location.lat}, ${place.geometry.location.lng}`,
             stopover: true,
           };
           waypts.push(waypoint);
@@ -79,13 +79,13 @@ const MapWithADirectionsRenderer = compose(
         DirectionsService.route(
           {
             origin: new window.google.maps.LatLng(
-              origin.geometry.latitude,
-              origin.geometry.longitude
+              origin.geometry.location.lat,
+              origin.geometry.location.lng,
             ),
             destination: destination
               ? new window.google.maps.LatLng(
-                destination.geometry.latitude,
-                destination.geometry.longitude
+                destination.geometry.location.lat,
+                destination.geometry.location.lng
               )
               : "",
             waypoints: waypts || "",

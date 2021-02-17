@@ -76,7 +76,7 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
               <div
                 className="appy--place-list-item-img"
                 style={{
-                  backgroundImage: `url("${place ? place.image : "Loading"
+                  backgroundImage: `url("${place ? place.photo : "Loading"
                     }")`,
                 }}
               >
@@ -143,7 +143,7 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
                         {textLength(place.name, 12, 18, 20)}
                       </h3>
                       <p className="appy--place-list-item-info-description">
-                        {textLength(place.address, 43, 53, 63)}
+                        {textLength(place.formatted_address, 43, 53, 63)}
                       </p>
                       <div className="row appy--place-list-item-schedule-price">
                         <div className="appy--col-2 appy--place-list-item-schedule-price-price-icon">
@@ -151,7 +151,7 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
                         </div>
                         <div className="appy--col-5 appy--place-list-item-schedule-price-price-info">
                           <Price
-                            rating={place.priceLevel}
+                            rating={place.price_level}
                           />
                         </div>
                       </div>

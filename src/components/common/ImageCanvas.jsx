@@ -45,7 +45,7 @@ export default function ImageCanvas({ place, recommended, brand, placeInfo, tour
 
     // this.state.imageZoom = localStorage.getItem('imageZoom');
     // console.log(this.state.imageZoom);
-    
+
 
     return (
         loading ?
@@ -61,7 +61,7 @@ export default function ImageCanvas({ place, recommended, brand, placeInfo, tour
 
             <div id="place-image" onClick={placeInfo && handleZoom} className={(place ? 'appy--image-placeid' : 'appy--tours-item-image')}
                 style={{
-                    backgroundImage: `url('${placeInfo ? placeInfo.image :
+                    backgroundImage: `url('${placeInfo ? placeInfo.photo :
                         tour ? tour[id].image : null}')`
                 }} >
 
