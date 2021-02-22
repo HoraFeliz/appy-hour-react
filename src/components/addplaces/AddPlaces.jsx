@@ -94,7 +94,7 @@ function AddPlaces(props) {
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
 	
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
-			types: [ 'establishment', 'address' ],
+			types: [ 'establishment' ],
 			componentRestrictions: { country: 'es' }
 		});
 
