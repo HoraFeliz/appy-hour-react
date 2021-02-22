@@ -7,9 +7,6 @@ import Nearby from '../nearest/Nearby';
 import NearbyMap from '../nearest/NearbyMap';
 import Map from '../places/Map.jsx';
 import PlaceInfo from '../places/PlaceInfo';
-// import AppyButton from "../common/AppyButton";
-// import InfoBar from "../infobar/InfoBar";
-import PlaceListItem from '../places/PlaceListItem';
 import PlaceMap from '../places/placemap/PlaceMap';
 
 let autoComplete;
@@ -19,7 +16,7 @@ const loadScript = (url, callback) => {
 	script.type = 'text/javascript';
 
 	if (script.readyState) {
-		script.onreadystatechange = function () {
+		script.onreadystatechange = function() {
 			if (script.readyState === 'loaded' || script.readyState === 'complete') {
 				script.onreadystatechange = null;
 				callback();
@@ -34,11 +31,11 @@ const loadScript = (url, callback) => {
 };
 
 function AddPlaces(props) {
-	const [query, setQuery] = useState('');
-	const [places, setPlaces] = useState([]);
-	const [placeDetail, setPlaceDetail] = useState(null);
-	const [placeDetailSee, setPlaceDetailSee] = useState(false);
-	const [change, setChange] = useState(false);
+	const [ query, setQuery ] = useState('');
+	const [ places, setPlaces ] = useState([]);
+	const [ placeDetail, setPlaceDetail ] = useState(null);
+	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
+
 	const idTour = props.match.params.id;
 	const completeFields = [
 		'address_components',
@@ -80,7 +77,7 @@ function AddPlaces(props) {
 
 			fetchData();
 		},
-		[placeDetail]
+		[ placeDetail ]
 	);
 
 	// useEffect(
@@ -95,10 +92,12 @@ function AddPlaces(props) {
 	// );
 
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
+	
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
-			types: ['establishment'],
+			types: [ 'establishment', 'address' ],
 			componentRestrictions: { country: 'es' }
 		});
+
 		autoComplete.setFields(completeFields);
 		autoComplete.addListener('place_changed', () => {
 			handlePlaceSelect(updateQuery);
@@ -107,31 +106,35 @@ function AddPlaces(props) {
 
 	async function handlePlaceSelect(updateQuery) {
 		const placeObject = autoComplete.getPlace();
-
 		console.log('place search', placeObject);
+		//console.log('url image', placeObject.photos[0].getUrl())
 		updateQuery(placeObject.name);
 		placeDetailSave(placeObject);
 		setPlaceDetailSee(true);
 	}
 
 	const placeDetailSave = (placeObject) => {
-		const place = {
-			...placeObject,
-			address_components: {
-				locality: placeObject.address_components[2].long_name,
-				country: placeObject.address_components[5].long_name,
-				postal_code: placeObject.address_components[6].long_name
-			},
-			geometry: {
-				location: {
-					lat: placeObject.geometry.location.lat(),
-					lng: placeObject.geometry.location.lng()
-				}
-			},
-			photo: placeObject.photos && placeObject.photos[0].getUrl()
-		};
 
-		setPlaceDetail(place);
+		if (placeObject.place_id) {
+			console.log(placeObject)
+			const place = {
+				...placeObject,
+				address_components: {
+					locality: placeObject.address_components[2].long_name,
+					country: placeObject.address_components[5].long_name,
+					postal_code: placeObject.address_components[6].long_name
+				},
+				geometry: {
+					location: {
+						lat: placeObject.geometry.location.lat(),
+						lng: placeObject.geometry.location.lng()
+					}
+				},
+				photo: placeObject.photos && placeObject.photos[0].getUrl()
+			};
+
+			setPlaceDetail(place);
+		}
 
 		return true;
 	};
@@ -213,19 +216,18 @@ function AddPlaces(props) {
 									<ImageCanvas place={true} placeInfo={placeDetail} />
 								</div>
 								<PlaceInfo place={placeDetail} placeInfo={placeDetail} />
-
 							</div>
 						</div>
 					) : (
-							<>
-								<Map
+						<div>
+							<Map
 								fields={completeFields}
 								placeDetailSave={placeDetailSave}
 								savePlaceFunction={savePlaceFunction}
+					
 							/>
-
-							</>
-						)}
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

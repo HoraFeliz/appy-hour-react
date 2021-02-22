@@ -22,7 +22,7 @@ const PlaceSchedule = ({ place, loading }) => {
             <div className="appy--place-item-info-schedule">
                 <div className="appy--place-item-info-schedule-container">
 
-                    {place.opening_hours.weekday_text
+                    {place.opening_hours?.weekday_text
                         ? place.opening_hours.weekday_text.map((openingHour, key) => (
                             <PlaceScheduleItem
                                 key={key}
@@ -31,7 +31,7 @@ const PlaceSchedule = ({ place, loading }) => {
                                 time={openingHour.split(/:(.+)/)[1]}
                             />
                         ))
-                        : "Loading"}
+                        : "Sin horario conocido"}
                 </div>
             </div>
     );
