@@ -16,7 +16,7 @@ const loadScript = (url, callback) => {
 	script.type = 'text/javascript';
 
 	if (script.readyState) {
-		script.onreadystatechange = function() {
+		script.onreadystatechange = function () {
 			if (script.readyState === 'loaded' || script.readyState === 'complete') {
 				script.onreadystatechange = null;
 				callback();
@@ -31,10 +31,10 @@ const loadScript = (url, callback) => {
 };
 
 function AddPlaces(props) {
-	const [ query, setQuery ] = useState('');
-	const [ places, setPlaces ] = useState([]);
-	const [ placeDetail, setPlaceDetail ] = useState(null);
-	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
+	const [query, setQuery] = useState('');
+	const [places, setPlaces] = useState([]);
+	const [placeDetail, setPlaceDetail] = useState(null);
+	const [placeDetailSee, setPlaceDetailSee] = useState(false);
 
 	const idTour = props.match.params.id;
 	const completeFields = [
@@ -77,7 +77,7 @@ function AddPlaces(props) {
 
 			fetchData();
 		},
-		[ placeDetail ]
+		[placeDetail]
 	);
 
 	// useEffect(
@@ -92,9 +92,9 @@ function AddPlaces(props) {
 	// );
 
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
-	
+
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
-			types: [ 'establishment' ],
+			types: ['establishment'],
 			componentRestrictions: { country: 'es' }
 		});
 
@@ -171,7 +171,7 @@ function AddPlaces(props) {
 				<input
 					ref={autoCompleteRef}
 					onChange={(event) => setQuery(event.target.value)}
-					placeholder="Search place"
+					placeholder="Buscar Lugar"
 					value={query}
 					className="appy--search-input appy--search-place"
 				/>
@@ -219,15 +219,15 @@ function AddPlaces(props) {
 							</div>
 						</div>
 					) : (
-						<div>
-							<Map
-								fields={completeFields}
-								placeDetailSave={placeDetailSave}
-								savePlaceFunction={savePlaceFunction}
-					
-							/>
-						</div>
-					)}
+							<div>
+								<Map
+									fields={completeFields}
+									placeDetailSave={placeDetailSave}
+									savePlaceFunction={savePlaceFunction}
+
+								/>
+							</div>
+						)}
 				</div>
 			</div>
 		</div>
