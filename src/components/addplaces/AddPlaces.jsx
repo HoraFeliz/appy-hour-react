@@ -4,7 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getPlaces, savePlace } from '../../services/api-client';
 import ImageCanvas from '../common/ImageCanvas';
 import Nearby from '../nearest/Nearby';
-import Map from '../places/Map';
+import NearbyMap from '../nearest/NearbyMap';
+import Map from '../places/Map.jsx';
 import PlaceInfo from '../places/PlaceInfo';
 // import AppyButton from "../common/AppyButton";
 // import InfoBar from "../infobar/InfoBar";
@@ -18,7 +19,7 @@ const loadScript = (url, callback) => {
 	script.type = 'text/javascript';
 
 	if (script.readyState) {
-		script.onreadystatechange = function() {
+		script.onreadystatechange = function () {
 			if (script.readyState === 'loaded' || script.readyState === 'complete') {
 				script.onreadystatechange = null;
 				callback();
@@ -33,11 +34,11 @@ const loadScript = (url, callback) => {
 };
 
 function AddPlaces(props) {
-	const [ query, setQuery ] = useState('');
-	const [ places, setPlaces ] = useState([]);
-	const [ placeDetail, setPlaceDetail ] = useState(null);
-	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
-	const [ change, setChange ] = useState(false);
+	const [query, setQuery] = useState('');
+	const [places, setPlaces] = useState([]);
+	const [placeDetail, setPlaceDetail] = useState(null);
+	const [placeDetailSee, setPlaceDetailSee] = useState(false);
+	const [change, setChange] = useState(false);
 	const idTour = props.match.params.id;
 	const completeFields = [
 		'address_components',
@@ -79,7 +80,7 @@ function AddPlaces(props) {
 
 			fetchData();
 		},
-		[ placeDetail ]
+		[placeDetail]
 	);
 
 	// useEffect(
@@ -95,7 +96,7 @@ function AddPlaces(props) {
 
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
-			types: [ 'establishment' ],
+			types: ['establishment'],
 			componentRestrictions: { country: 'es' }
 		});
 		autoComplete.setFields(completeFields);
@@ -145,14 +146,14 @@ function AddPlaces(props) {
 			// );
 
 			// if (!placeRepeat.length) {
-				savePlace(placeDetail, idTour)
-					.then((res) => {
-						setPlaceDetail(null);
-						setPlaceDetailSee(false);
-						setQuery('');
-						console.log('create', res);
-					})
-					.catch((err) => console.log('Error creating place', err));
+			savePlace(placeDetail, idTour)
+				.then((res) => {
+					setPlaceDetail(null);
+					setPlaceDetailSee(false);
+					setQuery('');
+					console.log('create', res);
+				})
+				.catch((err) => console.log('Error creating place', err));
 			// } else {
 			// 	setPlaceDetail(null);
 			// 	setQuery('');
@@ -212,15 +213,19 @@ function AddPlaces(props) {
 									<ImageCanvas place={true} placeInfo={placeDetail} />
 								</div>
 								<PlaceInfo place={placeDetail} placeInfo={placeDetail} />
+
 							</div>
 						</div>
 					) : (
-						<Map
-							fields={completeFields}
-							placeDetailSave={placeDetailSave}
-							savePlaceFunction={savePlaceFunction}
-						/>
-					)}
+							<>
+								<Map
+								fields={completeFields}
+								placeDetailSave={placeDetailSave}
+								savePlaceFunction={savePlaceFunction}
+							/>
+
+							</>
+						)}
 				</div>
 			</div>
 		</div>

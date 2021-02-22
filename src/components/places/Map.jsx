@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getPlaceById } from '../../services/api-client';
 import NearbyMap from '../nearest/NearbyMap';
 import './Map.scss';
 
 export default function Map(props) {
-	const [ location, setLocation ] = useState({ lat: -33.856, lng: 151.215 });
+	const [location, setLocation] = useState(undefined);
 	let currentInfoWindow;
 	let service;
 	let bounds;
@@ -15,31 +14,32 @@ export default function Map(props) {
 	useEffect(() => {
 		loadScript(
 			`https://maps.googleapis.com/maps/api/js?key=${process.env
-				.REACT_APP_MAPS_API_KEY}&libraries=places&callback=initMap`
+				.REACT_APP_MAPS_API_KEY}&libraries=places`
 		);
 		window.initMap = initMap;
 	}, []);
 
 	function loadScript(url) {
+		const mapCluster = window.document.getElementById('map');
 		let index = window.document.getElementsByTagName('script')[0];
 		let script = window.document.createElement('script');
 		script.src = url;
 		script.async = true;
 		script.defer = true;
+		mapCluster.insertAdjacentHTML('afterend', "<script src='https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js'></script>");
 		index.parentNode.insertBefore(script, index);
 	}
 
 	function initMap() {
 		// Initialize variables
-
 		bounds = new window.google.maps.LatLngBounds();
 		map = new window.google.maps.Map(document.getElementById('map'), {
 			center: location,
 			zoom: 15
 		});
+
 		infoWindow = new window.google.maps.InfoWindow();
 		currentInfoWindow = infoWindow;
-
 		// Try HTML5 geolocation
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
@@ -102,12 +102,11 @@ export default function Map(props) {
 	}
 
 	function getNearbyPlacesBar(position) {
-
 		let request = {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			keyword: [ 'bar' ],
+			keyword: ['bar']
 			//openNow:true
 		};
 
@@ -115,7 +114,7 @@ export default function Map(props) {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			types: [ 'restaurant' ]
+			types: ['restaurant']
 		};
 
 		service = new window.google.maps.places.PlacesService(map);
@@ -142,7 +141,7 @@ export default function Map(props) {
 
 		positionPoint.map((posit) => bounds.extend(posit.geometry.location));
 
-		var markers = positionPoint.map(function(location, i) {
+		var markers = positionPoint.map(function (location, i) {
 			var infoWin = new window.google.maps.InfoWindow({ maxWidth: 350 });
 			var marker = new window.google.maps.Marker({
 				position: { lat: location.geometry.location.lat, lng: location.geometry.location.lng },
@@ -165,21 +164,20 @@ export default function Map(props) {
 				service.getDetails(request, (placeResult, status) => {
 					if (status === window.google.maps.places.PlacesServiceStatus.OK) {
 						console.log('Funciona!!!!', placeResult);
-						savePlace(placeResult).then(() => console.log(props.savePlaceFunction()))
+						savePlace(placeResult).then(() => console.log(props.savePlaceFunction()));
 						// props.placeDetailSave(placeResult)
-						
+
 						// props.savePlaceFunction()
-						
 					}
 				});
 
 				const savePlace = (place) => {
 					return new Promise((resolve, reject) => {
 						if (props.placeDetailSave(place)) {
-							resolve()
-						} ;
-					})
-				}
+							resolve();
+						}
+					});
+				};
 			};
 
 			let contentHTML = `
@@ -200,7 +198,7 @@ export default function Map(props) {
                     </div>
                 </div>
             `;
-			window.google.maps.event.addListener(marker, 'click', function(evt) {
+			window.google.maps.event.addListener(marker, 'click', function (evt) {
 				infoWin.setContent(contentHTML);
 				infoWin.open(map, marker);
 				currentInfoWindow.close();
@@ -208,6 +206,30 @@ export default function Map(props) {
 			});
 
 			return marker;
+		});
+
+		var clusterStyles = [
+			{
+				textColor: 'black',
+				url: '/img/m1.svg',
+				height: 60,
+				width: 60,
+				textSize: 15
+			}
+		];
+
+		var mcOptions = {
+			gridSize: 40,
+			styles: clusterStyles,
+			maxZoom: 18
+		};
+
+		var markerCluster = new window.MarkerClusterer(map, markers, mcOptions, {
+			ignoreHidden: true,
+			minimumClusterSize: 3,
+			averageCenter: true,
+			imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+			maxZoom: 20
 		});
 
 		/* Once all the markers have been placed, adjust the bounds of the map to
