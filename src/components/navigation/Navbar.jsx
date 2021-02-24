@@ -84,7 +84,7 @@ export default function Navbar() {
 					<li>
 						<FontAwesomeIcon icon={faSignOutAlt} />
 						<span className="last">
-							<div onClick={handleLogOut}>Logout</div>
+							<a onClick={handleLogOut}>Logout</a>
 						</span>
 					</li>
 				</ul>

@@ -66,6 +66,7 @@ export default function Map(props) {
 			);
 		} else {
 			// Browser doesn't support geolocation
+			console.log('Loading.map..');
 			handleLocationError(false, infoWindow);
 		}
 	}
@@ -221,5 +222,5 @@ export default function Map(props) {
 		map.fitBounds(bounds);
 	}
 
-	return <NearbyMap />;
+	return <NearbyMap loading={true} />;
 }

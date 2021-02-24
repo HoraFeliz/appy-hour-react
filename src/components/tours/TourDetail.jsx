@@ -27,76 +27,76 @@ class TourDetail extends Component {
 
 	}
 
-	calculateDistance = (...places) => {
-		if (Object.keys(this.state.tour).length !== 0) {
-			const service = new window.google.maps.DistanceMatrixService();
+	// calculateDistance = (...places) => {
+	// 	if (Object.keys(this.state.tour).length !== 0) {
+	// 		const service = new window.google.maps.DistanceMatrixService();
 
-			const addresOrigin = [...places];
-			const origin = [addresOrigin[0].address];
-			// const destinations = [addresOrigin.address];
-			const origin2 = [addresOrigin[1].address];
-			// const destinations2 = [addresOrigin[2].address];
-			const restOfPlaces = [...places];
+	// 		const addresOrigin = [...places];
+	// 		const origin = [addresOrigin[0].address];
+	// 		// const destinations = [addresOrigin.address];
+	// 		const origin2 = [addresOrigin[1].address];
+	// 		// const destinations2 = [addresOrigin[2].address];
+	// 		const restOfPlaces = [...places];
 
-			let destinations = [];
-			restOfPlaces.forEach((place) => {
-				destinations.push(place.address);
-			});
+	// 		let destinations = [];
+	// 		restOfPlaces.forEach((place) => {
+	// 			destinations.push(place.address);
+	// 		});
 
-			destinations.shift();
+	// 		destinations.shift();
 
-			console.log('destinations', destinations);
-			console.log('addresOrigin', addresOrigin);
-			console.log('origin', origin);
-			console.log('origin2', origin2);
-			console.log('restOfPlaces', restOfPlaces);
+	// 		console.log('destinations', destinations);
+	// 		console.log('addresOrigin', addresOrigin);
+	// 		console.log('origin', origin);
+	// 		console.log('origin2', origin2);
+	// 		console.log('restOfPlaces', restOfPlaces);
 
-			service.getDistanceMatrix(
-				{
-					origins: origin,
-					destinations: destinations,
-					travelMode: window.google.maps.TravelMode.WALKING,
-					unitSystem: window.google.maps.UnitSystem.METRIC
-				},
-				(response, status) => {
-					if (status !== 'OK') {
-						console.log('Error was: ' + status);
-					} else {
-						const originList = response.originAddresses;
-						for (let i = 0; i < originList.length; i++) {
-							const results = response.rows[i].elements;
-							this.setState({ directions: [...results] });
+	// 		service.getDistanceMatrix(
+	// 			{
+	// 				origins: origin,
+	// 				destinations: destinations,
+	// 				travelMode: window.google.maps.TravelMode.WALKING,
+	// 				unitSystem: window.google.maps.UnitSystem.METRIC
+	// 			},
+	// 			(response, status) => {
+	// 				if (status !== 'OK') {
+	// 					console.log('Error was: ' + status);
+	// 				} else {
+	// 					const originList = response.originAddresses;
+	// 					for (let i = 0; i < originList.length; i++) {
+	// 						const results = response.rows[i].elements;
+	// 						this.setState({ directions: [...results] });
 
-							const directions = this.state.directions;
+	// 						const directions = this.state.directions;
 
-							// Removes last item from the directions arr
-							// directions.pop();
+	// 						// Removes last item from the directions arr
+	// 						// directions.pop();
 
-							let totalDistanceArr = [];
-							directions.forEach((direction) => {
-								totalDistanceArr.push(direction.distance.value);
-							});
+	// 						let totalDistanceArr = [];
+	// 						directions.forEach((direction) => {
+	// 							totalDistanceArr.push(direction.distance.value);
+	// 						});
 
-							const totalDistance = totalDistanceArr.reduce((a, b) => a + b, 0);
-							this.setState({ totalDistance: totalDistance });
+	// 						const totalDistance = totalDistanceArr.reduce((a, b) => a + b, 0);
+	// 						this.setState({ totalDistance: totalDistance });
 
-							let totalDurationArr = [];
-							directions.forEach((direction) => {
-								totalDurationArr.push(direction.duration.value);
-							});
+	// 						let totalDurationArr = [];
+	// 						directions.forEach((direction) => {
+	// 							totalDurationArr.push(direction.duration.value);
+	// 						});
 
-							const totalDuration = totalDurationArr.reduce((a, b) => a + b, 0);
-							this.setState({ totalDuration: totalDuration });
-						}
-					}
-				}
-			);
-		}
-	};
+	// 						const totalDuration = totalDurationArr.reduce((a, b) => a + b, 0);
+	// 						this.setState({ totalDuration: totalDuration });
+	// 					}
+	// 				}
+	// 			}
+	// 		);
+	// 	}
+	// };
 
 	fetchPlaces = () => {
 		getPlaces(this.props.match.params.id).then((places, i) => {
-			this.calculateDistance(...places);
+			// this.calculateDistance(...places);
 			this.ratingAppyHour(...places);
 			this.setState({ places });
 		});
