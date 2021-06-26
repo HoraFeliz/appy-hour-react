@@ -134,7 +134,7 @@ export default function Map(props) {
 				map: map,
 				animation: window.google.maps.Animation.DROP,
 				icon: {
-					url: '/img/marker-point.svg',
+					url: '/img/marker-default.svg',
 					anchor: new window.google.maps.Point(20, 20)
 					// scaledSize: new window.google.maps.Size(20, 20),
 				}
@@ -170,9 +170,9 @@ export default function Map(props) {
                 <div class='container-infowindow'>
                 <div class='appy--row'>
                     <div class='appy--col-9'>
-                <h4 style="text-align: left; font-size: 20px;">${location.name}</h4>
+                <h4 style="text-align: left; font-size: 20px; color: black;">${location.name}</h4>
                 <ul style="text-align: left; list-style: none; padding-left: 0px; font-size: 12px; margin-bottom: 5px;">
-                <li><strong>Dirección:</strong> ${location.vicinity}</li>
+                <li style="color: black;"><strong>Dirección:</strong> ${location.vicinity}</li>
                 </ul>
                 </div>
                 <div class='appy--col-3 d-flex justify-content-center align-items-center mt-3'>

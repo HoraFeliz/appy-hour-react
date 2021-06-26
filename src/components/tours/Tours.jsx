@@ -39,8 +39,8 @@ const Tours = () => {
             <AppyButton num={recommendedTours.length} info={true} recommended={true} />
             <AppyButton num='info' type="mapa" info={true} recommended={true} />
           </TourBarInfo>
-          {/* <TourItemFocus focus={localStorage.getItem('tourItem')} />
-          <TourItemSlide focus={localStorage.getItem('tourItem')} /> */}
+          <TourItemFocus focus={localStorage.getItem('tourItem')} />
+          <TourItemSlide focus={localStorage.getItem('tourItem')} />
         </>
         :
         <TourBarInfo loading={true} recommended={true}>

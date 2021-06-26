@@ -28,13 +28,13 @@ const TourItemFocus = ({ focus }) => {
                 swiperNext[0].classList.add('filter-item-dark');
                 messageHelperHomeRoute.style.top = `${yItemFirst + heightItemFirst + 20}px`;
                 messageHelperHomeRoute.style.display = 'flex';
-            }, 1500);
+            }, 500);
 
             setTimeout(() => {
                 swiperActive[0].classList.add('filter-item-dark');
                 // swiperNext[0].classList.replace('filter-item-dark', 'filter-item-focus');
                 messageHelperHomeRoute.classList.replace('slide-in-bottom-anim', 'slide-out-bottom-anim');
-            }, 5500);
+            }, 1500);
         }
 
     }, []);
