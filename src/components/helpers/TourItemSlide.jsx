@@ -25,27 +25,28 @@ const TourItemSlide = ({ focus }) => {
                 circleSlide.style.left = `${xItemNext - (widthItemNext / 2) - 40}px`;
                 messageHelperHomeDrag.style.display = 'flex';
                 circleSlide.classList.replace('circle-drag-init', 'circle-drag');
-            }, 1500)
+            }, 2500)
 
             setTimeout(() => {
                 circleSlide.classList.add('heartbeat-inf-anim');
-            }, 1900)
+            }, 2900)
 
             setTimeout(() => {
                 circleSlide.classList.remove('heartbeat-inf-anim');
                 circleSlide.classList.add('slide-out-left-anim');
-            }, 2200)
+            }, 3200)
 
             setTimeout(() => {
                 swiperActive[0].classList.replace('filter-item-dark', 'filter-item-focus');
                 messageHelperHomeDrag.classList.replace('slide-in-bottom-anim', 'slide-out-bottom-anim')
                 helperBack.classList.replace('black-background', 'black-background-init');
-            }, 3000)
+            }, 5000)
 
             setTimeout(() => {
                 noClick.classList.replace('d-flex', 'd-none');
                 helperBack.style.display = 'none';
-            }, 4000)
+                localStorage.setItem('tourItem', 'show')
+            }, 6000)
         }
 
     }, []);

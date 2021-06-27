@@ -12,7 +12,7 @@ const Tours = () => {
 
   // Set active Image Zoom Helper
   localStorage.setItem('imageZoom', 'active')
-  localStorage.setItem('tourItem', 'active')
+  localStorage.getItem('tourItem') != 'show' && localStorage.setItem('tourItem', 'active')
 
   useEffect(() => {
     getRecommendedTours()
