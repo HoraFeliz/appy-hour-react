@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faSearchLocation,
@@ -13,11 +14,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useAuthContext } from '../../context/AuthContext';
 import { logOut } from '../../services/api-client';
+import { TourItemSlide } from '../helpers/TourItemSlide';
+import { TourItemFocus } from '../helpers/TourItemFocus';
 
 export default function Navbar() {
 	const [navbarShow, setNavbarShow] = useState(false);
 
 	const { user, logout } = useAuthContext();
+
+	// localStorage.getItem('beerHelp') === 'active' ? localStorage.setItem('beerHelp', 'active') : localStorage.setItem('beerHelp', 'hide');
+
 
 	const handleClickMenu = (e) => {
 		const navbarMenu = document.getElementById('navbar-menu');
@@ -43,6 +49,10 @@ export default function Navbar() {
 
 		logOutUser();
 	};
+
+	const handleViewAgain = () => {
+		localStorage.setItem('tourItem', 'active');
+	}
 
 	return (
 		<div>
@@ -89,14 +99,15 @@ export default function Navbar() {
 					</li>
 				</ul>
 			</div>
-			<nav className="appy--navbar">
+			<nav id="appy--navbar" className="appy--navbar">
 				<Link to="" className="appy--navbar-brand" onClick={handleClickMenu}>
 					<FontAwesomeIcon icon={faBars} />
 				</Link>
 
 				<form className="appy--search-form">
 					<input
-						className="appy--search-input"
+						id="appy--search-form-input"
+						className={localStorage.getItem('beerHelp') === 'hide' ? "appy--search-input" : "appy--search-input appy--search-input-help"}
 						type="search"
 						placeholder="Buscar Rutas"
 						aria-label="Search"
@@ -104,7 +115,13 @@ export default function Navbar() {
 					<button className="appy--search-icon-location" type="submit">
 						<FontAwesomeIcon icon={faSearchLocation} />
 					</button>
+
 				</form>
+				<NavLink to="/tours/"><img id="appy--navbar-help-beer-viewagain" className={localStorage.getItem('beerHelp') === 'hide' ? "appy--navbar-help-beer-viewagain d-none" : "appy--navbar-help-beer-viewagain d-flex"} src="/img/view-again.svg" onClick={handleViewAgain} /></NavLink>
+				<div id="appy--navbar-help-beer" className={localStorage.getItem('beerHelp') === 'hide' ? "appy--navbar-help-beer d-none" : "appy--navbar-help-beer d-flex"}>
+					<img className="appy--navbar-help-beer-img" src="/img/help-beer.png" />
+				</div>
+
 			</nav>
 		</div>
 	);

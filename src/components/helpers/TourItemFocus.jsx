@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 const TourItemFocus = ({ focus }) => {
 
+    console.log('focus');
+
     useEffect(() => {
         const circleClick = document.getElementById('circle-click');
         const noClick = document.getElementById('no-click');
@@ -15,6 +17,7 @@ const TourItemFocus = ({ focus }) => {
         const yItemFirst = tourItemFocusFirst.getBoundingClientRect().y;
         const heightItemFirst = tourItemFocusFirst.getBoundingClientRect().height;
         const widthItemFirst = tourItemFocusFirst.getBoundingClientRect().width;
+        const messageHelperHomeDrag = document.getElementById('message-helper-home-drag');
 
         helperBack.classList.replace('black-background', 'black-background-init');
 
@@ -23,6 +26,7 @@ const TourItemFocus = ({ focus }) => {
             helperBack.style.display = 'flex';
             helperBack.style.zIndex = '2';
             messageHelperHomeRoute.style.width = `${widthItemFirst}px`;
+
 
             setTimeout(() => {
                 helperBack.classList.replace('black-background-init', 'black-background');
@@ -33,6 +37,7 @@ const TourItemFocus = ({ focus }) => {
                 circleClick.style.top = `${yItemFirst + (heightItemFirst / 2) - 40}px`;
                 circleClick.style.left = `${xItemFirst + (widthItemFirst / 2) - 40}px`;
                 circleClick.classList.replace('circle-click-init', 'circle-click');
+                circleClick.classList.replace('d-none', 'd-flex');
             }, 500);
 
             setTimeout(() => {
@@ -45,10 +50,12 @@ const TourItemFocus = ({ focus }) => {
                 // swiperNext[0].classList.replace('filter-item-dark', 'filter-item-focus');
                 messageHelperHomeRoute.classList.replace('slide-in-bottom-anim', 'slide-out-bottom-anim');
                 circleClick.classList.remove('heartbeat-anim');
+                circleClick.classList.replace('d-flex', 'd-none');
+                // circleClick.style.display = 'none';
             }, 2500);
         }
 
-    }, []);
+    });
 
     return (
         <>
@@ -56,7 +63,7 @@ const TourItemFocus = ({ focus }) => {
                 <img className='scroll-icon' src="../../img/tap.svg" alt="tap" />
                 Detalle Ruta
             </div >
-            < div id="circle-click" className="circle-click-init scale-in-center-anim" ></div >
+            < div id="circle-click" className="circle-click-init scale-in-center-anim d-none" ></div >
         </>
 
     );

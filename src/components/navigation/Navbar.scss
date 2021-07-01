@@ -17,12 +17,44 @@
         box-shadow: $box-shadow;
         z-index: 2000;
         position: fixed;
+        transition: all .3s;
 
+        &-help {
+            justify-content: flex-start;
 
+            &-beer {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 18px;
+                padding: 0 4vw 0 5px;
 
+                &-img {
+                    width: 40px;
+                }
+                
+                &-viewagain {
+                    width: 36px;
+                    border: 1px solid #538787;
+                    padding: 5px;
+                    border-radius: 5px;
+                }
+
+                &-cuestion {
+                    font-weight: bold;
+                    padding: 3px 11px 3px 12px;
+                    border: 1px solid #538787;
+                    border-radius: 5px;
+                    margin-left: 5px;
+                    background: #538787;
+                    color: white;
+                }
+            }
+        }
 
         &-brand {
             color: $primary-color;
+            transition: all .3s;
+            margin-right: 10px;
         }
 
         &-menu {
@@ -135,9 +167,14 @@
             height: 36px;
             color: $grey-text;
             font-weight: 300;
+            transition: all .3s;
 
             &::placeholder {
                 color: $grey-text
+            }
+
+            &-help {
+                width: 55vw;
             }
         }
 
