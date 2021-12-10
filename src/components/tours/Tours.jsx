@@ -7,14 +7,19 @@ import TourItemFocus from "../helpers/TourItemFocus";
 import TourItemSlide from "../helpers/TourItemSlide";
 
 const Tours = () => {
+
+
   const [recommendedTours, setRecommendedTours] = useState([]);
   const [regularTours, setRegularTours] = useState([]);
 
   // Set active Image Zoom Helper
   localStorage.setItem('imageZoom', 'active')
-  localStorage.setItem('tourItem', 'active')
+  localStorage.getItem('tourItem') != 'show' && localStorage.setItem('tourItem', 'active');
+  localStorage.getItem('beerHelp') === 'active' ? localStorage.setItem('beerHelp', 'active') : localStorage.setItem('beerHelp', 'hide');
+
 
   useEffect(() => {
+    localStorage.setItem('beerHelp', 'hide');
     getRecommendedTours()
       .then((res) => {
         setRecommendedTours(res);
@@ -39,8 +44,8 @@ const Tours = () => {
             <AppyButton num={recommendedTours.length} info={true} recommended={true} />
             <AppyButton num='info' type="mapa" info={true} recommended={true} />
           </TourBarInfo>
-          {/* <TourItemFocus focus={localStorage.getItem('tourItem')} />
-          <TourItemSlide focus={localStorage.getItem('tourItem')} /> */}
+          <TourItemFocus focus={localStorage.getItem('tourItem')} />
+          <TourItemSlide focus={localStorage.getItem('tourItem')} />
         </>
         :
         <TourBarInfo loading={true} recommended={true}>

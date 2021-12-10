@@ -25,26 +25,26 @@ const InfoBarFocus = ({ focus }) => {
         setTimeout(() => {
             messageHelperInfoFocus.classList.replace('slide-in-bottom-anim', 'slide-out-bottom-anim');
             messageHelperInfoDetail.style.display = 'flex';
-        }, 3500);
+        }, 2500);
 
         setTimeout(() => {
             messageHelperInfoDetail.classList.replace('slide-in-bottom-anim', 'slide-out-bottom-anim');
             messageHelperInfoQuick.style.display = 'flex';
-        }, 7000);
+        }, 3000);
 
         setTimeout(() => {
             messageHelperInfoQuick.classList.replace('slide-in-bottom-anim', 'slide-out-bottom-anim');
-        }, 10000);
+        }, 4000);
 
         setTimeout(() => {
             messageHelperTourDetail.classList.replace('d-none', 'd-flex');
-        }, 10500)
+        }, 4500)
 
         setTimeout(() => {
             noClick.classList.replace('d-flex', 'd-none');
             helperBack.classList.replace('black-background', 'black-background-init');
             messageHelperTourDetail.classList.replace('d-flex', 'd-none');
-        }, 13000)
+        }, 9000)
 
         setTimeout(() => {
             helperBack.style.display = 'none';
@@ -56,10 +56,10 @@ const InfoBarFocus = ({ focus }) => {
         <>
             < div id="message-helper-info-focus" className="message-helper-infobar-nav alert alert-primary recommended text-white slide-in-bottom-anim">
                 <img className='scroll-icon' src="../../img/tap.svg" alt="tap" />
-            Barra de Navegación</div >
+                Barra de Navegación</div >
             < div id="message-helper-info-detail" className="message-helper-infobar-detail alert alert-primary recommended text-white slide-in-bottom-anim">
                 Detalle Ruta
-            <img className='scroll-icon-right' src="../../img/tap.svg" alt="tap" />
+                <img className='scroll-icon-right' src="../../img/tap.svg" alt="tap" />
             </div >
             < div id="message-helper-info-quick" className="message-helper-infobar-quick alert alert-primary recommended text-white slide-in-bottom-anim">
                 <img className='scroll-icon' src="../../img/cohete.svg" alt="tap" />

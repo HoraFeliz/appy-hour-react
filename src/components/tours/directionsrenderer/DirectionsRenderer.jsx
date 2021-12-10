@@ -17,8 +17,9 @@ const lineSymbol = {
   strokeWeight: 5,
 };
 
+let icons = [];
 
-const drawingOptions = {
+let drawingOptions = {
   polylineOptions: {
     strokeColor: primary,
     strokeWeight: 3,
@@ -72,10 +73,12 @@ const MapWithADirectionsRenderer = compose(
             location: `${place.geometry.location.lat}, ${place.geometry.location.lng}`,
             stopover: true,
           };
+          // console.log('place', place);
           waypts.push(waypoint);
         });
 
-        console.log(origin);
+        // console.log('origin', origin);
+        // console.log('destination', destination);
         DirectionsService.route(
           {
             origin: new window.google.maps.LatLng(
