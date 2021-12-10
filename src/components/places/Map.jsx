@@ -3,7 +3,9 @@ import NearbyMap from '../nearest/NearbyMap';
 import './Map.scss';
 
 export default function Map(props) {
-	const [location, setLocation] = useState(undefined);
+	const { location, setLocation, placesAdd } = props;
+	const [ firstLocation, setFirstLocation ] = useState(false);
+
 	let currentInfoWindow;
 	let service;
 	let bounds;
@@ -11,9 +13,54 @@ export default function Map(props) {
 	let map;
 	let positionPoint = [];
 
+	console.log('pruebaprueba', placesAdd)
+
 	useEffect(() => {
 		window.initMap = initMap;
 	}, []);
+
+	useEffect(
+		() => {
+			console.log('pruebapruebaasdfasfdasdfadfsasdf', placesAdd)
+			if (location) {
+				//console.log('holaholahola');
+				changeLocation();
+			}
+		},
+		[ firstLocation ]
+	);
+
+	const changeLocation = () => {
+		console.log('changeLocation');
+		bounds = new window.google.maps.LatLngBounds();
+		infoWindow = new window.google.maps.InfoWindow();
+		currentInfoWindow = infoWindow;
+
+		map = new window.google.maps.Map(document.getElementById('map'), {
+			center: location,
+			zoom: 15
+		});
+
+		bounds.extend(location);
+		getNearbyPlacesBar(location, placesAdd);
+		console.log('estos son los places', placesAdd)
+
+		placesAdd.forEach(place => {
+			console.log('pasdfasfdasdf', place)
+			new window.google.maps.Marker({
+				position: place.geometry.location,
+				map: map,
+				title: 'Estás Aquí!',
+				icon: {
+					url: `/img/marker-${placesAdd.length + 1}.svg`,
+					anchor: new window.google.maps.Point(20, 20)
+					// scaledSize: new window.google.maps.Size(20, 20),
+				}
+			});
+		})
+
+		
+	};
 
 	function initMap() {
 		// Initialize variables
@@ -29,10 +76,6 @@ export default function Map(props) {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
 				(position) => {
-					setLocation({
-						lat: position.coords.latitude,
-						lng: position.coords.longitude
-					});
 					const pos = {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude
@@ -54,9 +97,17 @@ export default function Map(props) {
 							// scaledSize: new window.google.maps.Size(20, 20),
 						}
 					});
+		
+					getNearbyPlacesBar(pos, placesAdd);
+
+					setFirstLocation(true);
+					setLocation({
+						lat: position.coords.latitude,
+						lng: position.coords.longitude
+					});
 
 					// Call Places Nearby Search on user's location
-					getNearbyPlacesBar(pos);
+
 					// getNearbyPlacesRest(location);
 				},
 				() => {
@@ -86,12 +137,16 @@ export default function Map(props) {
 		// getNearbyPlacesRest(location);
 	}
 
-	function getNearbyPlacesBar(position) {
+	function getNearbyPlacesBar(position, placeadd = placesAdd) {
+		console.log('placeADD', placeadd)
+
+
+
 		let request = {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			keyword: ['bar']
+			keyword: [ 'bar' ]
 			//openNow:true
 		};
 
@@ -99,7 +154,7 @@ export default function Map(props) {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
 			radius: 800,
-			types: ['restaurant']
+			types: [ 'restaurant' ]
 		};
 
 		service = new window.google.maps.places.PlacesService(map);
@@ -124,9 +179,16 @@ export default function Map(props) {
 			});
 		});
 
+			
+		placesAdd.forEach(p => {
+			positionPoint = positionPoint.filter(place => place.place_id !== p.place_id)
+		})
+
+	
+
 		positionPoint.map((posit) => bounds.extend(posit.geometry.location));
 
-		var markers = positionPoint.map(function (location, i) {
+		var markers = positionPoint.map(function(location, i) {
 			var infoWin = new window.google.maps.InfoWindow({ maxWidth: 350 });
 			var marker = new window.google.maps.Marker({
 				position: { lat: location.geometry.location.lat, lng: location.geometry.location.lng },
@@ -182,7 +244,7 @@ export default function Map(props) {
                     </div>
                 </div>
             `;
-			window.google.maps.event.addListener(marker, 'click', function (evt) {
+			window.google.maps.event.addListener(marker, 'click', function(evt) {
 				infoWin.setContent(contentHTML);
 				infoWin.open(map, marker);
 				currentInfoWindow.close();
@@ -208,7 +270,7 @@ export default function Map(props) {
 			maxZoom: 18
 		};
 
-		var markerCluster = new window.MarkerClusterer(map, markers, mcOptions, {
+		new window.MarkerClusterer(map, markers, mcOptions, {
 			ignoreHidden: true,
 			minimumClusterSize: 3,
 			averageCenter: true,

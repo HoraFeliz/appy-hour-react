@@ -1,8 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="22.663" height="31.288" viewBox="0 0 22.663 31.288">
-  <g id="maps-and-flags" transform="translate(-70.573)">
-    <g id="Grupo_1049" data-name="Grupo 1049" transform="translate(70.573)">
-      <path id="Trazado_1960" data-name="Trazado 1960" d="M81.9,0A11.344,11.344,0,0,0,70.573,11.331c0,7.754,10.141,19.138,10.572,19.618a1.021,1.021,0,0,0,1.518,0c.432-.481,10.572-11.864,10.572-19.618A11.344,11.344,0,0,0,81.9,0Z" transform="translate(-70.573)" fill="#c8102e"/>
-      <text id="_4" data-name="4" transform="translate(11.404 19.433)" fill="#fff" font-size="18" font-family="Roboto-Bold, Roboto" font-weight="700" letter-spacing="-0.1em"><tspan x="-5.164" y="0">4</tspan></text>
-    </g>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 31.7 43.7" style="enable-background:new 0 0 31.7 43.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#C8102E;}
+	.st1{fill:none;}
+	.st2{fill:#FFFFFF;}
+	.st3{font-family:'Roboto-Black';}
+	.st4{font-size:20px;}
+</style>
+<g id="maps-and-flags" transform="translate(-70.573)">
+	<g id="Grupo_1050" transform="translate(70.573)">
+		<g id="Grupo_1051">
+			<g id="Grupo_1052">
+				<path id="Trazado_1961" class="st0" d="M15.8,0C7.1,0,0,7.1,0,15.8c0,10.8,14.2,26.7,14.8,27.4c0.5,0.6,1.4,0.6,2,0.1
+					c0,0,0.1-0.1,0.1-0.1c0.6-0.7,14.8-16.6,14.8-27.4C31.6,7.1,24.6,0,15.8,0z"/>
+			</g>
+		</g>
+		<rect x="0" y="8.9" class="st1" width="31.7" height="15.9"/>
+		<text transform="matrix(1 0 0 1 10.0396 24.1085)" class="st2 st3 st4">4</text>
+	</g>
+</g>
 </svg>

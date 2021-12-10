@@ -9,6 +9,7 @@ import ImageCanvas from "../common/ImageCanvas";
 import { textLength } from '../../services/textLength'
 
 export default function TourItem({ id, recommended, brand, place, tour, first, loading }) {
+
     return (
         <>
             <div id={`${(first && recommended) ? 'appy--tours-item-first' : 'appy--tours-item-next'}`} className={loading ? `appy--tours-item ${first && 'first-item-loading'}` : `appy--tours-item`} >

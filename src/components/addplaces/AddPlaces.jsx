@@ -16,7 +16,7 @@ const loadScript = (url, callback) => {
 	script.type = 'text/javascript';
 
 	if (script.readyState) {
-		script.onreadystatechange = function () {
+		script.onreadystatechange = function() {
 			if (script.readyState === 'loaded' || script.readyState === 'complete') {
 				script.onreadystatechange = null;
 				callback();
@@ -31,10 +31,11 @@ const loadScript = (url, callback) => {
 };
 
 function AddPlaces(props) {
-	const [query, setQuery] = useState('');
-	const [places, setPlaces] = useState([]);
-	const [placeDetail, setPlaceDetail] = useState(null);
-	const [placeDetailSee, setPlaceDetailSee] = useState(false);
+	const [ query, setQuery ] = useState('');
+	const [ places, setPlaces ] = useState([]);
+	const [ placeDetail, setPlaceDetail ] = useState(null);
+	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
+	const [location, setLocation] = useState(undefined);
 
 	const idTour = props.match.params.id;
 	const completeFields = [
@@ -71,13 +72,10 @@ function AddPlaces(props) {
 				const result = await getPlaces(props.match.params.id);
 				setPlaces(result);
 			};
-			// if (placeDetail !== null) {
-			// 	savePlaceFunction();
-			// }
 
 			fetchData();
 		},
-		[placeDetail]
+		[ placeDetail ]
 	);
 
 	// useEffect(
@@ -92,9 +90,8 @@ function AddPlaces(props) {
 	// );
 
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
-
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
-			types: ['establishment'],
+			types: [ 'establishment' ],
 			componentRestrictions: { country: 'es' }
 		});
 
@@ -106,23 +103,19 @@ function AddPlaces(props) {
 
 	async function handlePlaceSelect(updateQuery) {
 		const placeObject = autoComplete.getPlace();
-		console.log('place search', placeObject);
-		//console.log('url image', placeObject.photos[0].getUrl())
 		updateQuery(placeObject.name);
 		placeDetailSave(placeObject);
 		setPlaceDetailSee(true);
 	}
 
 	const placeDetailSave = (placeObject) => {
-
 		if (placeObject.place_id) {
-			console.log(placeObject)
 			const place = {
 				...placeObject,
 				address_components: {
-					locality: placeObject.address_components[2].long_name,
-					country: placeObject.address_components[5].long_name,
-					postal_code: placeObject.address_components[6].long_name
+					locality: placeObject.address_components.filter((el) => el.types.includes('locality'))[0].long_name,
+					country: placeObject.address_components.filter((el) => el.types.includes('country'))[0].long_name,
+					postal_code: placeObject.address_components.filter((el) => el.types.includes('postal_code'))[0].long_name
 				},
 				geometry: {
 					location: {
@@ -132,7 +125,6 @@ function AddPlaces(props) {
 				},
 				photo: placeObject.photos && placeObject.photos[0].getUrl()
 			};
-
 			setPlaceDetail(place);
 		}
 
@@ -151,6 +143,7 @@ function AddPlaces(props) {
 			// if (!placeRepeat.length) {
 			savePlace(placeDetail, idTour)
 				.then((res) => {
+					setLocation(res.geometry.location);
 					setPlaceDetail(null);
 					setPlaceDetailSee(false);
 					setQuery('');
@@ -219,15 +212,17 @@ function AddPlaces(props) {
 							</div>
 						</div>
 					) : (
-							<div>
-								<Map
-									fields={completeFields}
-									placeDetailSave={placeDetailSave}
-									savePlaceFunction={savePlaceFunction}
-
-								/>
-							</div>
-						)}
+						<div>
+							<Map
+								fields={completeFields}
+								placeDetailSave={placeDetailSave}
+								savePlaceFunction={savePlaceFunction}
+								location={location}
+								setLocation={setLocation}
+								placesAdd={places}
+							/>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
