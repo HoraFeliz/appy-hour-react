@@ -9,9 +9,6 @@ class NearbyMap extends React.Component {
   render() {
 
     return <>
-<<<<<<< HEAD
-      <div id="map" ></div>
-=======
 
       {this.props.loading ?
 
@@ -26,7 +23,6 @@ class NearbyMap extends React.Component {
         <div id="map"></div>
       }
 
->>>>>>> 8817201b6880144ac43123cf57f3f6a0218b781b
 
     </>;
   }
