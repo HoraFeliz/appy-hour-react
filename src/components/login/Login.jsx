@@ -107,8 +107,8 @@ export default function Login(props) {
 						</button>
 					)}
 					onSuccess={responseGoogle}
-					//onFailure={responseGoogle}
-					//isSignedIn={true}
+					onFailure={responseGoogle}
+					isSignedIn={true}
 					cookiePolicy={'single_host_origin'}
 				/>
 			</div>

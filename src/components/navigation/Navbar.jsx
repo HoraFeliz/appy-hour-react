@@ -16,6 +16,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import { logOut } from '../../services/api-client';
 import { TourItemSlide } from '../helpers/TourItemSlide';
 import { TourItemFocus } from '../helpers/TourItemFocus';
+import { GoogleLogout } from 'react-google-login';
 
 export default function Navbar() {
 	const [navbarShow, setNavbarShow] = useState(false);
@@ -91,12 +92,22 @@ export default function Navbar() {
 							<a href={`/nearby`}>Near Places</a>
 						</span>
 					</li>
-					<li>
-						<FontAwesomeIcon icon={faSignOutAlt} />
-						<span className="last">
-							<a onClick={handleLogOut}>Logout</a>
-						</span>
-					</li>
+	
+						<GoogleLogout
+							clientId={process.env.REACT_APP_GOOGLE}
+							buttonText="Logout"
+							onLogoutSuccess={logout}
+							render={(renderProps) => (
+								<li onClick={renderProps.onClick}>
+									<FontAwesomeIcon icon={faSignOutAlt} />
+									<span className="last">
+									<span>Log out</span>
+									</span>
+					
+								</li>
+							)}
+							>
+							</GoogleLogout>
 				</ul>
 			</div>
 			<nav id="appy--navbar" className="appy--navbar">

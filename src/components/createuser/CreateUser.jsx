@@ -68,7 +68,6 @@ export default function CreateUser() {
 				await createUser(state.data);
 				history.push({
 					pathname: '/login',
-					state: { message: 'Activate account' }
 				});
 			} catch (e) {
 				console.error(e);
