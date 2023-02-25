@@ -73,9 +73,11 @@ export default function Map(props) {
 		infoWindow = new window.google.maps.InfoWindow();
 		currentInfoWindow = infoWindow;
 		// Try HTML5 geolocation
-		if (navigator.geolocation) {
+		if (window.navigator.geolocation) {
+			console.log('hhh', navigator.geolocation.getCurrentPosition(() => console.log('asdfasdf')))
 			navigator.geolocation.getCurrentPosition(
 				(position) => {
+					console.log(position, 'positiongeo')
 					const pos = {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude
@@ -110,9 +112,13 @@ export default function Map(props) {
 
 					// getNearbyPlacesRest(location);
 				},
-				() => {
+				(e) => {
 					// Browser supports geolocation, but user has denied permission
+					console.log('entra aqui', e)
 					handleLocationError(true, infoWindow);
+				},
+				{
+					enableHighAccuracy: true
 				}
 			);
 		} else {

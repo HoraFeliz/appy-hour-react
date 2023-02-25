@@ -134,27 +134,26 @@ function AddPlaces(props) {
 	const savePlaceFunction = () => {
 		console.log('the save is correct', placeDetail);
 		if (placeDetail !== null) {
-			// const placeRepeat = places.filter(
-			// 	(place) =>
-			// 		parseFloat(place.geometry.location.lat) === parseFloat(placeDetail.geometry.location.lat) &&
-			// 		parseFloat(place.geometry.location.lng) === parseFloat(placeDetail.geometry.location.lng)
-			// );
+			const placeRepeat = places.filter(
+				(place) =>
+					parseFloat(place.geometry.location.lat) === parseFloat(placeDetail.geometry.location.lat) &&
+					parseFloat(place.geometry.location.lng) === parseFloat(placeDetail.geometry.location.lng)
+			);
 
-			// if (!placeRepeat.length) {
-			savePlace(placeDetail, idTour)
-				.then((res) => {
-					setLocation(res.geometry.location);
-					setPlaceDetail(null);
-					setPlaceDetailSee(false);
-					setQuery('');
-					console.log('create', res);
-				})
-				.catch((err) => console.log('Error creating place', err));
-			// } else {
-			// 	setPlaceDetail(null);
-			// 	setQuery('');
-			// 	setChange(!change);
-			// }
+			if (!placeRepeat.length) {
+				savePlace(placeDetail, idTour)
+					.then((res) => {
+						setLocation(res.geometry.location);
+						setPlaceDetail(null);
+						setPlaceDetailSee(false);
+						setQuery('');
+					})
+					.catch((err) => console.log('Error creating place', err));
+			} else {
+				setPlaceDetail(null);
+				setQuery('');
+				//setChange(!change);
+			}
 		}
 	};
 
