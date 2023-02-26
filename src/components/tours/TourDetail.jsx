@@ -111,7 +111,7 @@ class TourDetail extends Component {
 	ratingAppyHour = (...places) => {
 		let totalRatingSum = 0;
 		const placesArray = [...places];
-
+		console.log(placesArray, 'placesArray')
 		placesArray && placesArray.map((place) => (totalRatingSum += place.rating));
 
 		console.log('totalRatingSum', totalRatingSum / placesArray.length);

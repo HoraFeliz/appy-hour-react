@@ -3,7 +3,7 @@ import NearbyMap from '../nearest/NearbyMap';
 import './Map.scss';
 
 export default function Map(props) {
-	const { location, setLocation, placesAdd } = props;
+	const { location, setLocation, placesAdd, savePlaceFunction, setPlaceDetail } = props;
 	const [ firstLocation, setFirstLocation ] = useState(false);
 
 	let currentInfoWindow;
@@ -13,17 +13,17 @@ export default function Map(props) {
 	let map;
 	let positionPoint = [];
 
-	console.log('pruebaprueba', placesAdd)
-
-	useEffect(() => {
-		window.initMap = initMap;
-	}, []);
+	window.placesAdd = placesAdd;
+	useEffect(
+		() => {
+			window.initMap = initMap;
+		},
+		[ placesAdd ]
+	);
 
 	useEffect(
 		() => {
-			console.log('pruebapruebaasdfasfdasdfadfsasdf', placesAdd)
 			if (location) {
-				//console.log('holaholahola');
 				changeLocation();
 			}
 		},
@@ -43,26 +43,24 @@ export default function Map(props) {
 
 		bounds.extend(location);
 		getNearbyPlacesBar(location, placesAdd);
-		console.log('estos son los places', placesAdd)
+		console.log('estos son los places', placesAdd);
 
-		placesAdd.forEach(place => {
-			console.log('pasdfasfdasdf', place)
+		placesAdd.forEach((place) => {
+			console.log('pasdfasfdasdf', place);
 			new window.google.maps.Marker({
 				position: place.geometry.location,
 				map: map,
-				title: 'Estás Aquí!',
+				title: place.name,
 				icon: {
 					url: `/img/marker-${placesAdd.length + 1}.svg`,
 					anchor: new window.google.maps.Point(20, 20)
 					// scaledSize: new window.google.maps.Size(20, 20),
 				}
 			});
-		})
-
-		
+		});
 	};
 
-	function initMap() {
+	const initMap = () => {
 		// Initialize variables
 		bounds = new window.google.maps.LatLngBounds();
 		map = new window.google.maps.Map(document.getElementById('map'), {
@@ -72,22 +70,28 @@ export default function Map(props) {
 
 		infoWindow = new window.google.maps.InfoWindow();
 		currentInfoWindow = infoWindow;
+
 		// Try HTML5 geolocation
 		if (window.navigator.geolocation) {
-			console.log('hhh', navigator.geolocation.getCurrentPosition(() => console.log('asdfasdf')))
-			navigator.geolocation.getCurrentPosition(
+			window.navigator.geolocation.getCurrentPosition(
 				(position) => {
-					console.log(position, 'positiongeo')
+					//const win
+					const hasPlaces = !!(window.placesAdd && window.placesAdd.length);
 					const pos = {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude
 					};
-					map = new window.google.maps.Map(document.getElementById('map'), {
-						center: pos,
-						zoom: 15
-					});
 
-					bounds.extend(pos);
+					getNearbyPlacesBar(pos, window.placesAdd);
+
+					if (!hasPlaces) {
+						map = new window.google.maps.Map(document.getElementById('map'), {
+							center: pos,
+							zoom: 15
+						});
+
+						bounds.extend(pos);
+					}
 
 					new window.google.maps.Marker({
 						position: pos,
@@ -99,8 +103,6 @@ export default function Map(props) {
 							// scaledSize: new window.google.maps.Size(20, 20),
 						}
 					});
-		
-					getNearbyPlacesBar(pos, placesAdd);
 
 					setFirstLocation(true);
 					setLocation({
@@ -114,11 +116,18 @@ export default function Map(props) {
 				},
 				(e) => {
 					// Browser supports geolocation, but user has denied permission
-					console.log('entra aqui', e)
-					handleLocationError(true, infoWindow);
-				},
-				{
-					enableHighAccuracy: true
+
+					const pos = {
+						lat: 40.416775,
+						lng: -3.703790
+					}
+
+					map = new window.google.maps.Map(document.getElementById('map'), {
+						center: pos,
+						zoom: 25
+					});
+
+					bounds.extend(pos);
 				}
 			);
 		} else {
@@ -126,7 +135,7 @@ export default function Map(props) {
 			console.log('Loading.map..');
 			handleLocationError(false, infoWindow);
 		}
-	}
+	};
 
 	function handleLocationError(browserHasGeolocation, infoWindow) {
 		// Display an InfoWindow at the map center
@@ -145,9 +154,14 @@ export default function Map(props) {
 	}
 
 	function getNearbyPlacesBar(position, placeadd = placesAdd) {
-		console.log('placeADD', placeadd)
+		console.log('placeADD', placeadd);
 
-
+		if (placeadd.length) {
+			position = {
+				lat: placeadd[0].geometry.location.lat,
+				lng: placeadd[0].geometry.location.lng
+			};
+		}
 
 		let request = {
 			location: position,
@@ -167,7 +181,7 @@ export default function Map(props) {
 		service = new window.google.maps.places.PlacesService(map);
 
 		service.nearbySearch(request, nearbyCallbackBar);
-		//service.nearbySearch(requestRestaurant, nearbyCallbackRest);
+		//service.nearbySearch(requestRestaurant, nearbyCallbackBar);
 	}
 
 	// Handle the results (up to 20) of the Nearby Search Bar
@@ -186,12 +200,9 @@ export default function Map(props) {
 			});
 		});
 
-			
-		placesAdd.forEach(p => {
-			positionPoint = positionPoint.filter(place => place.place_id !== p.place_id)
-		})
-
-	
+		placesAdd.forEach((p) => {
+			positionPoint = positionPoint.filter((place) => place.place_id !== p.place_id);
+		});
 
 		positionPoint.map((posit) => bounds.extend(posit.geometry.location));
 
@@ -217,21 +228,12 @@ export default function Map(props) {
 
 				service.getDetails(request, (placeResult, status) => {
 					if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-						console.log('Funciona!!!!', placeResult);
-						savePlace(placeResult).then(() => console.log(props.savePlaceFunction()));
-						// props.placeDetailSave(placeResult)
-
-						// props.savePlaceFunction()
+						console.log('Funciona!!!!', placeResult, props.setPlaceDetail);
+						props.setPlaceDetail(placeResult)
+						props.savePlaceFunction(placeResult)
 					}
 				});
 
-				const savePlace = (place) => {
-					return new Promise((resolve, reject) => {
-						if (props.placeDetailSave(place)) {
-							resolve();
-						}
-					});
-				};
 			};
 
 			let contentHTML = `

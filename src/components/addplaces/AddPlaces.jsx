@@ -78,17 +78,19 @@ function AddPlaces(props) {
 		[ placeDetail ]
 	);
 
-	// useEffect(
-	// 	() => {
-	// 		const fetchData = async () => {
-	// 			setToggleMap(true);
-	// 		};
 
-	// 		fetchData();
-	// 	},
-	// 	[ props, query ]
-	// );
+	useEffect(
+		() => {
+			const fetchData = async () => {
+				const result = await getPlaces(props.match.params.id);
+				setPlaces(result);
+			};
 
+			fetchData();
+		},
+		[ placeDetail ]
+	);
+	
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
 			types: [ 'establishment' ],
@@ -131,17 +133,17 @@ function AddPlaces(props) {
 		return true;
 	};
 
-	const savePlaceFunction = () => {
-		console.log('the save is correct', placeDetail);
-		if (placeDetail !== null) {
+	const savePlaceFunction = (currentPlaceDetail = placeDetail) => {
+		console.log('the save is correct', currentPlaceDetail);
+		if (currentPlaceDetail !== null) {
 			const placeRepeat = places.filter(
 				(place) =>
-					parseFloat(place.geometry.location.lat) === parseFloat(placeDetail.geometry.location.lat) &&
-					parseFloat(place.geometry.location.lng) === parseFloat(placeDetail.geometry.location.lng)
+					parseFloat(place.geometry.location.lat) === parseFloat(currentPlaceDetail.geometry.location.lat) &&
+					parseFloat(place.geometry.location.lng) === parseFloat(currentPlaceDetail.geometry.location.lng)
 			);
 
 			if (!placeRepeat.length) {
-				savePlace(placeDetail, idTour)
+				savePlace(currentPlaceDetail, idTour)
 					.then((res) => {
 						setLocation(res.geometry.location);
 						setPlaceDetail(null);
@@ -157,6 +159,8 @@ function AddPlaces(props) {
 		}
 	};
 
+
+console.log(places, placeDetail, 'esto entraaaa')
 	return (
 		<div>
 			<div className="appy--infobar appy--primary-color">
@@ -174,7 +178,7 @@ function AddPlaces(props) {
 							backgroundColor: 'white',
 							fontWeight: 'bold'
 						}}
-						onClick={savePlaceFunction}
+						onClick={() => savePlaceFunction()}
 					>
 						<FontAwesomeIcon
 							className="appy--button-icon"
@@ -219,6 +223,7 @@ function AddPlaces(props) {
 								location={location}
 								setLocation={setLocation}
 								placesAdd={places}
+								setPlaceDetail={setPlaceDetail}
 							/>
 						</div>
 					)}
