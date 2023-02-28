@@ -10,6 +10,7 @@ import AppyButton from '../common/AppyButton';
 import { useHistory } from 'react-router-dom';
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
 import PlaceInfo from '../places/PlaceInfo';
+// import { motion } from 'framer-motion';
 
 class TourDetail extends Component {
 	state = {
@@ -24,7 +25,7 @@ class TourDetail extends Component {
 	componentDidMount() {
 		this.fetchPlaces();
 		this.fetchTour();
-
+		window.addEventListener('scroll', this.listenToScroll)
 	}
 
 	// calculateDistance = (...places) => {
@@ -118,6 +119,33 @@ class TourDetail extends Component {
 		this.setState({ totalRating: (totalRatingSum / placesArray.length).toFixed(1) });
 	};
 
+	listenToScroll = () => {
+		// const winScroll =
+		// 	document.body.scrollTop || document.documentElement.scrollTop
+
+		// const height =
+		// 	document.documentElement.scrollHeight -
+		// 	document.documentElement.clientHeight
+
+		// const scrolled = winScroll / height
+
+		// this.setState({
+		// 	theposition: scrolled,
+		// })
+		const appyTourDetailInfo = document.getElementsByClassName('appy--tours-detail-info');
+		const appyArr = [...appyTourDetailInfo];
+		const appyInfoElem = (appyArr && appyArr[0]);
+		let scrollYPos = window.scrollY;
+		let appyInfoYPos = (appyInfoElem && appyInfoElem.offsetTop - scrollYPos);
+
+		// window.scrollTo(0, 295);
+		// console.log('appyInfoYPos', appyInfoYPos);
+
+
+		// let appyPos = appyTourDetailInfo.getBoundingClientRect();
+		// console.log(appyPos.top);
+	}
+
 	render() {
 		const { id } = this.state.tour;
 		const hashtag = ['appyhour', 'beer', 'enjoywithfriend'];
@@ -135,15 +163,36 @@ class TourDetail extends Component {
 						</div>
 
 						<div className="appy--tours-detail-info">
+							<hr className="appy--tours-item-info-drop-icon" />
 							<h2 className="appy--tours-detail-info-placename">{this.state.tour.name}</h2>
-							<div className="appy--tours-item-info-creator">
-								<div className="appy--tours-item-info-creator-icon">
-									<FontAwesomeIcon icon={faRoute} />
+							<div className="appy--tours-item-info-container">
+								<div className="appy--tours-item-info-creator">
+									<div className="appy--tours-item-info-creator-icon">
+										<FontAwesomeIcon icon={faRoute} />
+									</div>
+									<div className="appy--tours-item-info-creator-text">Appy Hour Tours</div>
 								</div>
-								<div className="appy--tours-item-info-creator-text">Appy Hour Tours</div>
+								<div className="appy--tours-item-info-data-container">
+									<div className="appy--tours-item-distancebar-distante-tour">
+										<div className="appy--tours-item-distancebar-icon">
+											<FontAwesomeIcon icon={faWalking} />
+										</div>
+										<div className="appy--tours-item-distancebar-text" style={{ color: '#707070' }}>
+											{(this.state.totalDistance / 1000).toFixed(2)} Km
+										</div>
+									</div>
+									<div className="appy--tours-item-distancebar-distante-tour">
+										<div className="appy--tours-item-distancebar-icon">
+											<FontAwesomeIcon icon={faStopwatch} />
+										</div>
+										<div className="appy--tours-item-distancebar-text" style={{ color: '#707070' }}>
+											{(this.state.totalDuration / 60).toFixed(0)} min
+										</div>
+									</div>
+								</div>
 							</div>
 							<p className="appy--tours-detail-info-description">{this.state.tour.description}</p>
-							<hr />
+							{/* <hr />
 							<div className={`appy--tours-detail-distancebar`} style={{ backgroundColor: 'white' }}>
 								<div className="appy--tours-item-distancebar-distante-tour">
 									<div className="appy--tours-item-distancebar-icon">
@@ -170,7 +219,7 @@ class TourDetail extends Component {
 									</div>
 								</div>
 							</div>
-							<hr />
+							<hr /> */}
 							{this.state.places.length ? (
 								this.state.places.map((place, key) => (
 									<PlaceListItem
@@ -185,8 +234,8 @@ class TourDetail extends Component {
 									/>
 								))
 							) : (
-									'NO PLACES'
-								)}
+								'NO PLACES'
+							)}
 							<hr style={{ marginBottom: '10px' }} />
 							<div className="appy--tours-detail-rating-container">
 								<div className="appy--row">

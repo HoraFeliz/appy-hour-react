@@ -20,8 +20,8 @@ function App() {
 	return (
 		<>
 			{/* Helpers */}
-			<div id="no-click" className="no-click d-none"></div>
-			<div id="helper-back" className="black-background-init"></div>
+			{/* <div id="no-click" className="no-click d-none"></div> */}
+			{/* <div id="helper-back" className="black-background-init"></div> */}
 
 			<div className="App">
 				<Switch>

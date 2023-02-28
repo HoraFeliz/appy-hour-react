@@ -46,7 +46,7 @@ const MapWithADirectionsRenderer = compose(
   withProps({
     googleMapURL: googleMapsUrl,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `350px` }} />,
+    containerElement: <div style={{ height: `calc(100vh - 295px)` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,

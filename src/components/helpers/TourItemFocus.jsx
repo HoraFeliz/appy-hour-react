@@ -19,38 +19,44 @@ const TourItemFocus = ({ focus }) => {
         const widthItemFirst = tourItemFocusFirst.getBoundingClientRect().width;
         const messageHelperHomeDrag = document.getElementById('message-helper-home-drag');
 
-        helperBack.classList.replace('black-background', 'black-background-init');
+        helperBack && helperBack.classList.replace('black-background', 'black-background-init');
 
         if (focus === 'active') {
-            noClick.classList.replace('d-none', 'd-flex');
-            helperBack.style.display = 'flex';
-            helperBack.style.zIndex = '2';
-            messageHelperHomeRoute.style.width = `${widthItemFirst}px`;
+            noClick && noClick.classList.replace('d-none', 'd-flex');
+            if (helperBack) {
+                helperBack.style.display = 'flex';
+                helperBack.style.zIndex = '2';
+            }
+            if (messageHelperHomeRoute) { messageHelperHomeRoute.style.width = `${widthItemFirst}px`; }
 
 
             setTimeout(() => {
-                helperBack.classList.replace('black-background-init', 'black-background');
-                swiperContainer[0].style.zIndex = '200';
-                swiperNext[0].classList.add('filter-item-dark');
-                messageHelperHomeRoute.style.top = `${yItemFirst + heightItemFirst + 20}px`;
-                messageHelperHomeRoute.style.display = 'flex';
-                circleClick.style.top = `${yItemFirst + (heightItemFirst / 2) - 40}px`;
-                circleClick.style.left = `${xItemFirst + (widthItemFirst / 2) - 40}px`;
-                circleClick.classList.replace('circle-click-init', 'circle-click');
-                circleClick.classList.replace('d-none', 'd-flex');
+                helperBack && helperBack.classList.replace('black-background-init', 'black-background');
+                if (swiperContainer) { swiperContainer[0].style.zIndex = '200'; }
+                // if (swiperNext) { swiperNext[0].classList.add('filter-item-dark'); }
+                if (messageHelperHomeRoute) {
+                    messageHelperHomeRoute.style.top = `${yItemFirst + heightItemFirst + 20}px`;
+                    messageHelperHomeRoute.style.display = 'flex';
+                }
+                if (circleClick) {
+                    circleClick.style.top = `${yItemFirst + (heightItemFirst / 2) - 40}px`;
+                    circleClick.style.left = `${xItemFirst + (widthItemFirst / 2) - 40}px`;
+                    circleClick.classList.replace('circle-click-init', 'circle-click');
+                    circleClick.classList.replace('d-none', 'd-flex');
+                }
             }, 500);
 
             setTimeout(() => {
-                circleClick.classList.add('heartbeat-anim');
-                circleClick.classList.add('slide-out-anim');
+                circleClick && circleClick.classList.add('heartbeat-anim');
+                circleClick && circleClick.classList.add('slide-out-anim');
             }, 1000)
 
             setTimeout(() => {
-                swiperActive[0].classList.add('filter-item-dark');
+                // swiperActive && swiperActive[0].classList.add('filter-item-dark');
                 // swiperNext[0].classList.replace('filter-item-dark', 'filter-item-focus');
-                messageHelperHomeRoute.classList.replace('slide-in-bottom-anim', 'slide-out-bottom-anim');
-                circleClick.classList.remove('heartbeat-anim');
-                circleClick.classList.replace('d-flex', 'd-none');
+                messageHelperHomeRoute && messageHelperHomeRoute.classList.replace('slide-in-bottom-anim', 'slide-out-bottom-anim');
+                circleClick && circleClick.classList.remove('heartbeat-anim');
+                circleClick && circleClick.classList.replace('d-flex', 'd-none');
                 // circleClick.style.display = 'none';
             }, 2500);
         }
@@ -58,13 +64,14 @@ const TourItemFocus = ({ focus }) => {
     });
 
     return (
-        <>
-            <div id="message-helper-home-route" className="message-helper alert alert-primary recommended text-white slide-in-bottom-anim">
-                <img className='scroll-icon' src="../../img/tap.svg" alt="tap" />
-                Detalle Ruta
-            </div >
-            < div id="circle-click" className="circle-click-init scale-in-center-anim d-none" ></div >
-        </>
+        <></>
+        // <>
+        //     <div id="message-helper-home-route" className="message-helper alert alert-primary recommended text-white slide-in-bottom-anim">
+        //         <img className='scroll-icon' src="../../img/tap.svg" alt="tap" />
+        //         Detalle Ruta
+        //     </div >
+        //     < div id="circle-click" className="circle-click-init scale-in-center-anim d-none" ></div >
+        // </>
 
     );
 };
