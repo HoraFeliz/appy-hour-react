@@ -1,4 +1,4 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faCoffee, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect, useRef } from 'react';
 import { getPlaces, savePlace } from '../../services/api-client';
@@ -8,6 +8,7 @@ import NearbyMap from '../nearest/NearbyMap';
 import Map from '../places/Map.jsx';
 import PlaceInfo from '../places/PlaceInfo';
 import PlaceMap from '../places/placemap/PlaceMap';
+import AppyButton from '../common/AppyButton';
 
 let autoComplete;
 
@@ -105,12 +106,14 @@ function AddPlaces(props) {
 
 	async function handlePlaceSelect(updateQuery) {
 		const placeObject = autoComplete.getPlace();
+		console.log(placeObject, 'testing')
 		updateQuery(placeObject.name);
 		placeDetailSave(placeObject);
 		setPlaceDetailSee(true);
 	}
 
 	const placeDetailSave = (placeObject) => {
+		console.log(placeObject, 'testing')
 		if (placeObject.place_id) {
 			const place = {
 				...placeObject,
@@ -127,10 +130,12 @@ function AddPlaces(props) {
 				},
 				photo: placeObject.photos && placeObject.photos[0].getUrl()
 			};
+			console.log(place, 'testingplace')
 			setPlaceDetail(place);
+			return place;
 		}
 
-		return true;
+		return placeObject;
 	};
 
 	const savePlaceFunction = (currentPlaceDetail = placeDetail) => {
@@ -159,11 +164,22 @@ function AddPlaces(props) {
 		}
 	};
 
+	const handleBack = () => {
+		if (placeDetail && placeDetailSee) {
+			setPlaceDetail(null);
+			setPlaceDetailSee(false);
+			setQuery('');
+		} else {
+			props.history.push('/tours')
+		}
+	}
 
-	console.log(places, placeDetail, 'esto entraaaa')
 	return (
 		<div>
 			<div className="appy--infobar appy--primary-color">
+				<div onClick={handleBack} className="appy--buttons-info " style={{ marginRight: '5px' }}>
+					<AppyButton loading={false} info={true} type={<FontAwesomeIcon icon={faAngleLeft} />} num='info'/>
+				</div>
 				<input
 					ref={autoCompleteRef}
 					onChange={(event) => setQuery(event.target.value)}
@@ -224,6 +240,7 @@ function AddPlaces(props) {
 								setLocation={setLocation}
 								placesAdd={places}
 								setPlaceDetail={setPlaceDetail}
+								setPlaceDetailSee={setPlaceDetailSee}
 							/>
 						</div>
 					)}

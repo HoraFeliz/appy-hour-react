@@ -3,7 +3,7 @@ import NearbyMap from '../nearest/NearbyMap';
 import './Map.scss';
 
 export default function Map(props) {
-	const { location, setLocation, placesAdd, savePlaceFunction, setPlaceDetail } = props;
+	const { location, setLocation, placesAdd, placeDetailSave, savePlaceFunction, setPlaceDetail, setPlaceDetailSee } = props;
 	const [ firstLocation, setFirstLocation ] = useState(false);
 
 	let currentInfoWindow;
@@ -46,7 +46,6 @@ export default function Map(props) {
 		console.log('estos son los places', placesAdd);
 
 		placesAdd.forEach((place) => {
-			console.log('pasdfasfdasdf', place);
 			new window.google.maps.Marker({
 				position: place.geometry.location,
 				map: map,
@@ -166,7 +165,7 @@ export default function Map(props) {
 		let request = {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
-			radius: 800,
+			radius: 4000,
 			keyword: [ 'bar' ]
 			//openNow:true
 		};
@@ -174,14 +173,14 @@ export default function Map(props) {
 		let requestRestaurant = {
 			location: position,
 			//rankBy: google.maps.places.RankBy.DISTANCE,
-			radius: 800,
+			radius: 5000,
 			types: [ 'restaurant' ]
 		};
 
 		service = new window.google.maps.places.PlacesService(map);
 
-		service.nearbySearch(request, nearbyCallbackBar);
-		//service.nearbySearch(requestRestaurant, nearbyCallbackBar);
+		//service.nearbySearch(request, nearbyCallbackBar);
+		service.nearbySearch(requestRestaurant, nearbyCallbackBar);
 	}
 
 	// Handle the results (up to 20) of the Nearby Search Bar
@@ -226,21 +225,32 @@ export default function Map(props) {
 					fields: props.fields
 				};
 
-				service.getDetails(request, (placeResult, status) => {
+				service.getDetails(request, async (placeResult, status) => {
 					if (status === window.google.maps.places.PlacesServiceStatus.OK) {
 						console.log('Funciona!!!!', placeResult, props.setPlaceDetail);
-						props.setPlaceDetail(placeResult)
-						props.savePlaceFunction(placeResult)
+						const place = await props.placeDetailSave(placeResult)
+						props.savePlaceFunction(place)
+						currentInfoWindow.close();
+						infoWin.setContent(null);
 					}
 				});
 
 			};
 
+			window.handleViewDetail = (placeObject) => {
+				props.placeDetailSave(placeObject)
+				setPlaceDetailSee(true)
+				currentInfoWindow.close();
+				infoWin.setContent(null);
+			}
+
 			let contentHTML = `
                 <div class='container-infowindow'>
                 <div class='appy--row'>
                     <div class='appy--col-9'>
-                <h4 style="text-align: left; font-size: 20px; color: black;">${location.name}</h4>
+                <h4 onclick='handleViewDetail(${JSON.stringify(
+					location
+				)})' style="text-align: left; font-size: 20px; color: black;">${location.name}</h4>
                 <ul style="text-align: left; list-style: none; padding-left: 0px; font-size: 12px; margin-bottom: 5px;">
                 <li style="color: black;"><strong>Dirección:</strong> ${location.vicinity}</li>
                 </ul>
