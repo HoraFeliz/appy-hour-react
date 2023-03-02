@@ -375,6 +375,56 @@
                     margin-top: 5px;
                 }
             }
+
+            &-user {
+                &-comment {
+                    &-container {
+                        display: flex;
+                        margin-top: 10px;
+                    }
+
+                    &-photo {
+                        width: 100%;
+                        margin-top: 15px;
+                    }
+                    
+                    &-infouser {
+                        
+                        &-container {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        
+                        &-avatar {
+                            width: 33px;
+                            height: 33px;
+                            margin-right: 10px;
+                        }
+
+                        &-name {
+                            margin-bottom: 0px;
+                            margin-top: -3px;
+
+                            &-container {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-top: -2px;
+                            }
+                        }
+
+                        &-rating {
+                            width: 30%;
+                            margin-top: -8px;
+                        }
+
+                        &-post {
+                            font-size: 12px;
+                            color: #9E9E9E;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -275,6 +275,48 @@ class TourDetail extends Component {
 									</div>
 								</div>
 							</div>
+							<hr />
+							<div className="appy--tours-detail-user-comment">
+								<div className="container">
+									<div className="row">
+										<div className="appy--tours-detail-user-comment-container">
+											<img className="appy--tours-detail-user-comment-infouser-avatar" src="/img/comment-user-photo.png" alt="User" />
+											<div className="appy--tours-detail-user-comment-infouser-container">
+												<div className="appy--tours-detail-user-comment-infouser-name-container">
+													<p className="appy--tours-detail-user-comment-infouser-name">Javier Izquierdo</p>
+													<img className="appy--tours-detail-user-comment-infouser-rating" src="/img/comment-rating.png" alt="Rating" />
+												</div>
+												<p className="appy--tours-detail-user-comment-infouser-post"><i>Enviado</i> hace 3 días por <strong>@javierizquierdo</strong></p>
+											</div>
+										</div>
+										<span className="appy--tours-detail-user-comment-text">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel leo ex. Donec maximus nulla et accumsan vestibulum. Quisque lacinia egestas mi, vitae venenatis ex convallis quis. Ut vel eros non libero fringilla cursus. Nunc id elit interdum, sollicitudin nulla sit amet, pharetra nibh. Duis et feugiat arcu.
+										</span>
+										<img className="appy--tours-detail-user-comment-photo" src="/img/comment-photo.png" alt="User" />
+									</div>
+								</div>
+							</div>
+							<hr />
+							<div className="appy--tours-detail-user-comment">
+								<div className="container">
+									<div className="row">
+										<div className="appy--tours-detail-user-comment-container">
+											<img className="appy--tours-detail-user-comment-infouser-avatar" src="/img/comment-user-photo-02.png" alt="User" />
+											<div className="appy--tours-detail-user-comment-infouser-container">
+												<div className="appy--tours-detail-user-comment-infouser-name-container">
+													<p className="appy--tours-detail-user-comment-infouser-name">Lidia García Sanchez</p>
+													<img className="appy--tours-detail-user-comment-infouser-rating" src="/img/comment-rating.png" alt="Rating" />
+												</div>
+												<p className="appy--tours-detail-user-comment-infouser-post"><i>Enviado</i> hace 5 días por <strong>@lidiagarciasamchez</strong></p>
+											</div>
+										</div>
+										<span className="appy--tours-detail-user-comment-text">
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel leo ex. Donec maximus nulla et accumsan vestibulum.
+										</span>
+										<img className="appy--tours-detail-user-comment-photo" src="/img/comment-photo-02.png" alt="User" />
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 
