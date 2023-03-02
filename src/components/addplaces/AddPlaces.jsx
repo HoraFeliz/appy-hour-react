@@ -16,7 +16,7 @@ const loadScript = (url, callback) => {
 	script.type = 'text/javascript';
 
 	if (script.readyState) {
-		script.onreadystatechange = function() {
+		script.onreadystatechange = function () {
 			if (script.readyState === 'loaded' || script.readyState === 'complete') {
 				script.onreadystatechange = null;
 				callback();
@@ -31,10 +31,10 @@ const loadScript = (url, callback) => {
 };
 
 function AddPlaces(props) {
-	const [ query, setQuery ] = useState('');
-	const [ places, setPlaces ] = useState([]);
-	const [ placeDetail, setPlaceDetail ] = useState(null);
-	const [ placeDetailSee, setPlaceDetailSee ] = useState(false);
+	const [query, setQuery] = useState('');
+	const [places, setPlaces] = useState([]);
+	const [placeDetail, setPlaceDetail] = useState(null);
+	const [placeDetailSee, setPlaceDetailSee] = useState(false);
 	const [location, setLocation] = useState(undefined);
 
 	const idTour = props.match.params.id;
@@ -75,7 +75,7 @@ function AddPlaces(props) {
 
 			fetchData();
 		},
-		[ placeDetail ]
+		[placeDetail]
 	);
 
 
@@ -88,12 +88,12 @@ function AddPlaces(props) {
 
 			fetchData();
 		},
-		[ placeDetail ]
+		[placeDetail]
 	);
-	
+
 	function handleScriptLoad(updateQuery, autoCompleteRef) {
 		autoComplete = new window.google.maps.places.Autocomplete(autoCompleteRef.current, {
-			types: [ 'establishment' ],
+			types: ['establishment'],
 			componentRestrictions: { country: 'es' }
 		});
 
@@ -160,7 +160,7 @@ function AddPlaces(props) {
 	};
 
 
-console.log(places, placeDetail, 'esto entraaaa')
+	console.log(places, placeDetail, 'esto entraaaa')
 	return (
 		<div>
 			<div className="appy--infobar appy--primary-color">
@@ -228,6 +228,11 @@ console.log(places, placeDetail, 'esto entraaaa')
 						</div>
 					)}
 				</div>
+				<a href='/tours'>
+					<div className="appy--place-item-add-route">
+						Añadir Ruta
+					</div>
+				</a>
 			</div>
 		</div>
 	);

@@ -106,6 +106,20 @@
             &-photo {
                 margin: -5px -5px 0 -5px;
             }
+
+            &-add {
+
+                &-route {
+                    height: 54px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bold;
+                    font-size: 18px;
+                    background: #C8102E;
+                    color: white;
+                }
+            }
         }
 
         &-list {

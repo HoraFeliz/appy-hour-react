@@ -12,7 +12,7 @@ class NearbyMap extends React.Component {
 
       {this.props.loading ?
 
-        <div id="map" className="loading--background-default loading--background-default-touch icon-map" style={{ height: 'calc(100vh - 170px)' }}>
+        <div id="map" className="loading--background-default loading--background-default-touch icon-map" style={{ height: 'calc(100vh - 214px)' }}>
           <div className="appy--place-item-map-canvas mb-3 ">
             <FontAwesomeIcon icon={faRoute}></FontAwesomeIcon>
           </div>

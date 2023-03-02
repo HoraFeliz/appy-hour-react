@@ -1,11 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="31.661" height="43.711" viewBox="0 0 31.661 43.711">
-  <g id="maps-and-flags" transform="translate(-70.573)">
-    <g id="Grupo_1050" data-name="Grupo 1050" transform="translate(70.573)">
-      <g id="Grupo_1051" data-name="Grupo 1051">
-        <path id="Trazado_1961" data-name="Trazado 1961" d="M86.4,0a15.848,15.848,0,0,0-15.83,15.83c0,10.833,14.167,26.736,14.77,27.408a1.426,1.426,0,0,0,2.121,0c.6-.672,14.77-16.575,14.77-27.408A15.849,15.849,0,0,0,86.4,0Z" transform="translate(-70.573)" fill="#8312e0"/>
-        <circle id="Elipse_151" data-name="Elipse 151" cx="8.5" cy="8.5" r="8.5" transform="translate(7.403 7.856)" fill="#fff"/>
-        <path id="user-solid" d="M5.339,6.209A3.078,3.078,0,0,0,8.389,3.1,3.078,3.078,0,0,0,5.339,0,3.078,3.078,0,0,0,2.288,3.1,3.078,3.078,0,0,0,5.339,6.209Zm2.135.776h-.4a4.084,4.084,0,0,1-3.475,0H3.2A3.233,3.233,0,0,0,0,10.245v1.009a1.155,1.155,0,0,0,1.144,1.164H9.533a1.155,1.155,0,0,0,1.144-1.164V10.245A3.233,3.233,0,0,0,7.474,6.985Z" transform="translate(10.661 10.238)" fill="#8312e0"/>
-      </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Group_1172" data-name="Group 1172" transform="translate(-133 -295)">
+    <circle id="Ellipse_156" data-name="Ellipse 156" cx="16" cy="16" r="16" transform="translate(133 295)" fill="#00baff"/>
+    <path id="user-solid" d="M6.481,7.537a3.736,3.736,0,0,0,3.7-3.769A3.736,3.736,0,0,0,6.481,0a3.736,3.736,0,0,0-3.7,3.769A3.736,3.736,0,0,0,6.481,7.537Zm2.592.942H8.59a4.957,4.957,0,0,1-4.218,0H3.888A3.924,3.924,0,0,0,0,12.436v1.225a1.4,1.4,0,0,0,1.389,1.413H11.573a1.4,1.4,0,0,0,1.389-1.413V12.436A3.924,3.924,0,0,0,9.073,8.479Z" transform="translate(142.519 303.463)" fill="#fff"/>
   </g>
 </svg>
