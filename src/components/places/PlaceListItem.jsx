@@ -12,6 +12,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
+import { version } from 'react';
+// import { motion } from "framer-motion";
 
 export default function PlaceListItem({ tour, place, recommended, type, num, total, directions, loading }) {
   const settings = {
@@ -22,6 +24,8 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
     slidesToScroll: 1,
     arrows: false,
   };
+
+  console.log('React Version:', version);
 
   return (
     <>
@@ -98,36 +102,36 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
                   ) : place.rating >= 0.5 ? (
                     <img src="/img/star-white-half.svg" alt="1" />
                   ) : (
-                        <img src="/img/star-off.svg" alt="1" />
-                      )}
+                    <img src="/img/star-off.svg" alt="1" />
+                  )}
                   {place.rating >= 2 ? (
                     <img src="/img/star-white-on.svg" alt="1" />
                   ) : place.rating >= 1.5 ? (
                     <img src="/img/star-white-half.svg" alt="1" />
                   ) : (
-                        <img src="/img/star-off.svg" alt="2" />
-                      )}
+                    <img src="/img/star-off.svg" alt="2" />
+                  )}
                   {place.rating >= 3 ? (
                     <img src="/img/star-white-on.svg" alt="1" />
                   ) : place.rating >= 2.5 ? (
                     <img src="/img/star-white-half.svg" alt="1" />
                   ) : (
-                        <img src="/img/star-off.svg" alt="3" />
-                      )}
+                    <img src="/img/star-off.svg" alt="3" />
+                  )}
                   {place.rating >= 4 ? (
                     <img src="/img/star-white-on.svg" alt="1" />
                   ) : place.rating >= 3.5 ? (
                     <img src="/img/star-white-half.svg" alt="1" />
                   ) : (
-                        <img src="/img/star-off.svg" alt="4" />
-                      )}
+                    <img src="/img/star-off.svg" alt="4" />
+                  )}
                   {place.rating >= 5 ? (
                     <img src="/img/star-white-on.svg" alt="1" />
                   ) : place.rating >= 4.5 ? (
                     <img src="/img/star-white-half.svg" alt="1" />
                   ) : (
-                        <img src="/img/star-off.svg" alt="5" />
-                      )}
+                    <img src="/img/star-off.svg" alt="5" />
+                  )}
                 </div>
               </div>
             </div>
@@ -159,13 +163,13 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
                     <div className="appy--col-2 appy--place-list-item-position">
                       {type === "num" ? (
                         <p className="appy--place-list-item-position-num">
-                          { num + 1}
+                          {num + 1}
                         </p>
                       ) : (
-                          <p className="appy--place-list-item-position-num">
-                            <AppyButton type="delete" />
-                          </p>
-                        )}
+                        <p className="appy--place-list-item-position-num">
+                          <AppyButton type="delete" />
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -177,13 +181,13 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
                       <div className="appy--col-3 appy--place-list-item-position">
                         {type === "num" ? (
                           <p className="appy--place-list-item-time-num">
-                            { num + 1}
+                            {num + 1}
                           </p>
                         ) : (
-                            <p className="appy--place-list-item-position-num">
-                              <AppyButton type="delete" />
-                            </p>
-                          )}
+                          <p className="appy--place-list-item-position-num">
+                            <AppyButton type="delete" />
+                          </p>
+                        )}
                       </div>
 
                       <div className="appy--col-7 appy--place-list-item-time">
@@ -215,10 +219,10 @@ export default function PlaceListItem({ tour, place, recommended, type, num, tot
                             {type ? num + 2 : ""}
                           </p>
                         ) : (
-                            <p className="appy--place-list-item-position-num">
-                              <AppyButton type="delete" />
-                            </p>
-                          )}
+                          <p className="appy--place-list-item-position-num">
+                            <AppyButton type="delete" />
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>

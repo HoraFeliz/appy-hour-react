@@ -10,7 +10,6 @@ import AppyButton from '../common/AppyButton';
 import { useHistory } from 'react-router-dom';
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
 import PlaceInfo from '../places/PlaceInfo';
-// import { motion } from 'framer-motion';
 
 class TourDetail extends Component {
 	state = {
