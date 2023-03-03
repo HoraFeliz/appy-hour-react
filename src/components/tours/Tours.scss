@@ -2,6 +2,10 @@
 
 // Tours ------------------- //
 
+.gm-style {
+	position: fixed !important;
+}
+
 // InfoBar
 
 .appy-- {
@@ -314,6 +318,9 @@
                 border-radius: 0px 0px 4px 4px;
                 text-align: left;
                 transition: all .2s ease-in-out;
+                position: relative;
+                width: calc(100% + 10px);
+                margin-left: -5px;
 
                 &-placename {
                     font-size: $text-info-title;
