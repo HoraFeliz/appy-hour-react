@@ -155,7 +155,7 @@ class TourDetail extends Component {
 			<>
 				{this.state.places.length ?
 
-					<div>
+					<div id='tour-detail'>
 						<InfoBar back={true} tour={this.state.tour} place={this.state.places} />
 						<div className="appy--tours-detail">
 							<MapWithADirectionsRenderer />

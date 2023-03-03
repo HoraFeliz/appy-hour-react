@@ -2,8 +2,10 @@
 
 // Tours ------------------- //
 
-.gm-style {
+#tour-detail .gm-style {
 	position: fixed !important;
+    height: calc(100vh - 295px) !important;
+    top: 112px !important;
 }
 
 // InfoBar
